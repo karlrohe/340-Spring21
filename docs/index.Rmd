@@ -1,108 +1,10 @@
 # Stat 340: Introduction to Data Modeling II (aka World, Data, and Models)
-### Spring 2020
+### Spring 2021
 ## UW-Madison
 ### Karl Rohe
 email: first name and last name at stat dott wisc dott edu  
 office: 1239 MSC  
 [Syllabus](syllabus.pdf), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html).
-
-### Week 9   
-
-#### Tuesday  
-1)  For lecture:  Go to canvas, then find our course, then click on Blackboard Collaborate Ultra.  
-1) Great job on the exam! 
-2) Review solutions
-3) Read the [project description](projectDescription.html)
-3)  Read the [project timeline](ProjectTimeline.html).  Note, this page describes several "homeworks" that are due on canvas.
-4)  On canvas, piazza is open for discussion boards. Please ask questions!  The TAs and I will be checking it regularly. 
-1) [peek at corona data](http://pages.stat.wisc.edu/~karlrohe/ds479/code/PeekAtCorona.R)
-
-#### Thursday  
-1) Discuss projects and data sources.  
-2) Recap [Cross validation](http://pages.stat.wisc.edu/~karlrohe/ht/05-cv_boot.pdf)
-2) [The bootstrap](http://pages.stat.wisc.edu/~karlrohe/ht/05-cv_boot.pdf)
-
-
-
-### Week 10
-1) Why are you interested in your data?
-2) Finish [the bootstrap](http://pages.stat.wisc.edu/~karlrohe/ht/05-cv_boot.pdf)
-2) [Leverage scores and model diagnostics](http://pages.stat.wisc.edu/~karlrohe/lr333/diagnostics.pdf)
-3) Consult the project description for a description of thesis statements.  
-
-
-### Week 11
-1) Discuss Thesis statements in class.
-1) [Random forest](http://pages.stat.wisc.edu/~karlrohe/ht/08-trees.pdf)  Slides 1-7, 29-40. 
-2) [Generalized Additive Models](http://pages.stat.wisc.edu/~karlrohe/ht/07-nonlinear.pdf) Slides 21-end.
-
-### Week 12
-1)  [Clustering, PCA](http://pages.stat.wisc.edu/~karlrohe/ht/10-unsupervised.pdf) and factor rotations. 
-
-###  Week 13 
-1) Continue clustering, pca, and factor rotations.
-
-Thursday: Class Presentations!
-
-
-###  Week 14 
-Class presentations!
-
-
-
-
-
-# Class before the shutdown:
-
-### Week 8 
-1) exam prep and exam.
-
-### Week 7  
-1) [logistic regression](http://pages.stat.wisc.edu/~karlrohe/ht/04-classification.pdf).
-2) Blow your mind:  "average prediction error" or expected MSE on a test set is a property of a statistical model and estimation procedure.  As such, we can use monte carlo to estimate it!  How?
-3)  [Cross Validation](http://pages.stat.wisc.edu/~karlrohe/ht/05-cv_boot.pdf)
-4) Exam next week, Thursday!
-
-
-### Week 6  
-1) [linear regression](http://pages.stat.wisc.edu/~karlrohe/ht/03-linear_regression.pdf).
-2) [logistic regression](http://pages.stat.wisc.edu/~karlrohe/ht/04-classification.pdf).
-
-
-#### Homework
-Due Tuesday March 3:     
--  Chapter 3 in ISLR: Questions 1, 3, 4, and 15 (p120).   
--  Chapter 4 in ISLR, Question 6 (p170).
-
-Start thinking about the data that you want to use for your project!  the standard project will combine two different sources of data... imagine getting $x$ from one and $y$ from another.  You will want to explore the relationship between $x$ and $y$ and to do so, you will want to control for multiple other variables via multiple linear (or logistic) regression.  You can find these other $x$'s from another source.  However, your project should place a primary emphasis on one of those $x$'s.  
-
-### Week 5  
-1) Bias variance tradeoff. [Chapter 2 in ISLR](http://pages.stat.wisc.edu/~karlrohe/ht/02-statistical_learning.pdf)
-2) [play with this simulation](http://pages.stat.wisc.edu/~karlrohe/lr333/sampleAndFit.R)
-3) [linear regression](http://pages.stat.wisc.edu/~karlrohe/ht/03-linear_regression.pdf)
-
-
-### Week 4  
-
-1)  [Prediction!](text/worldDataModels.html)  
-2)  Start [Chapter 2 in ISLR](http://pages.stat.wisc.edu/~karlrohe/ht/02-statistical_learning.pdf)
-3)  Homework 4:  ISLR (p52) 2.4.1, 2.4.2, 2.4.10.
-
-
-### Week 3  
-
-1)  Estimation in  [World, Data, Models](text/worldDataModels.html)
-2)  The Central Limit Theorem, the normal distribution, and Standard Deviation/Error in  [World, Data, Models](text/worldDataModels.html).
-3)  [Homework 3](text/homework/03-Estimation.html)
-
-
-### Week 2   
-#### Topics 
-1) Testing in [World, Data, Models](text/worldDataModels.html)
-2) Turn in [homework 1](text/01-GenerateRandomVariables.html) on canvas.  
-
-#### homework
-[Homework 2](text/homework/02-TestAndEstimate.html) in html. Or, [homework2](text/homework/02-TestAndEstimate.Rmd) in Rmd.
 
 
 
@@ -117,15 +19,9 @@ Start thinking about the data that you want to use for your project!  the standa
 
 
 #### Lecture discussion questions
--  What are your goals after graduation?
--  Where do you envision yourself in 10 years?
--  What are your experiences with R?
--  What type of data are you interested in studying? Topic of data source? Structure of data?
-
 1) What is your major?  
-1) What statistics classes have you taken?
 1) Why are you in this class?
-3) What type of questions are you interested in studying?  Topics? Data sources?  Data types?  Data sources?  
+3) What type of thing are you interested in studying?  Topics? Do you think you could find data that you would find interesting?
 
 
 #### Homework 
@@ -145,9 +41,7 @@ Optional, more "classical" text:  *Applied Linear Regression, 3rd edition* by Sa
 
 #### Helpful links
 1) [Download ISLR text](http://www-bcf.usc.edu/~gareth/ISL/) and lab codes.   
-2) Refresh material: [An Introduction to R](http://cran.r-project.org/doc/manuals/R-intro.pdf)  
-3) [Advanced R](http://adv-r.had.co.nz) by Hadley Wickham  
-4) Making beautiful documents with [R markdown](http://rmarkdown.rstudio.com) and [knitR](http://kbroman.org/knitr_knutshell/).  Here are [some](../ht/rmarkdown-cheatsheet.pdf) helpful [links](../ht/rmarkdown-reference.pdf).
+4) Making beautiful documents with [R markdown](http://rmarkdown.rstudio.com).  [some](../ht/rmarkdown-cheatsheet.pdf) helpful [links](../ht/rmarkdown-reference.pdf).
 
 #### Will we get to these topics?  
 1) [Nonlinear regression; splines, lowess, generalized additive models](../ht/07-nonlinear.pdf)  
