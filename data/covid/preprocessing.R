@@ -20,6 +20,7 @@ tryCatch({
       mdy                                   # convert to date
   }
   
+  if(!dir.exists("raw")) dir.create("raw")
   newDate = getDateFromCsv("https://static.usafacts.org/public/data/covid-19/covid_confirmed_usafacts.csv")
   oldDate = getDateFromCsv("./raw/cases.csv")
   
