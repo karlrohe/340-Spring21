@@ -1,1 +1,8 @@
+# R temp files
 .RProj.user/
+*.Rproj
+**/.Rhistory
+**/.RData
+
+# mac temp files
+**/.DS_Store
