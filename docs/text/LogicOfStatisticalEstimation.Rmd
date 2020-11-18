@@ -1,0 +1,176 @@
+# The logic of statistical estimation via Monte Carlo simulation
+
+
+
+
+## Example with seed germination
+
+You have generated a new kind of parsley plant.  You think it makes the most delicious parsley.  Now, you want to sell your seeds, but before you do, you need to figure out the probability that the seed will [germinate](https://en.wikipedia.org/wiki/Germination).  You know from your development of the new kind of plant that lots of seeds fail to germinate.  So, you want to do an experiment.  You will plant $n$ parsley seeds.  You will water them, keep them warm, and give them some light.  Then, you will examine which of the seeds germinate within 4 weeks of planting.  Denote your data as  $X_1, \dots, X_n \in \{0,1\}$, where $X_i = 1$ denotes that seed $i$ germinates.  
+
+What is the probability that a seed will germinate?
+
+We are going to *imagine* that the $X_i$'s are random variables that are independent and identically distributed Bernoulli($p$).  In this statistical model, we want to estimate $p$. 
+
+You know that if you plant enough seeds, then the average of the $X_i$'s will be really close to the true value $p$.  However, the experiment takes up space and time.  So, you cannot afford to plant a gazillion seeds.  Key questions:  
+
+1)  How many seeds should you plant if you are willing to be off by 2%?  This is a question about *experimental design.*
+3) Suppose you planted 2500 seeds and 2157 of the seeds germinated.  We estimate $p$ as $2157/2500 = .8628$. How close is this estimate to the true value of $p$?
+
+
+
+
+## Example with correlation
+
+We observe pairs of mother and daughter heights.  For example, the mother 167cm and the daughter is 169cm.  We observe this data for 100 mothers and daughters.  We want to estimate the correlation between these two quantities.  With 100 pairs (mother height, daughter height), we can compute the sample correlation between those two heights.  However, if we were to collect data on another 100 pairs, or if we were to collect more data, this sample quantity would change.  We want to compute an interval around our "point estimate" such that the interval is likely to contain the "long run average"  of getting lots and lots of pairs of heights. 
+
+
+##  Expectation
+
+Often, we want to estimate the "long run average" of our Statistic.  That is, what happens if we have a lot of data.  Notice that this is the case in both the seed example and the heights example.  The "Expectation of a random variable" is the essential mathematical notion for what we want to estimate.  
+
+[Lecture notes on expectation](figures/Expectation.jpg)
+
+
+
+
+### What is statistical estimation?  
+
+Here is the more general setup for statistical estimation.  Suppose that you have collected your data $X_1, \dots, X_n$.   If you were to repeat your data collection, you would likely obtain a different value of the $X_i$'s.  So, we *imagine* these values $X_i$ to be the realization of a random variable.  For example, the $X_i$ could represent whether seed $i$ germinated in the parsely experiment. Then, we *imagine* that  $X_1, \dots, X_n$ are  independent realizations of Bernoulli($p$) random variables.  Alternatively, $X_i = (M_i, D_i)$ could be a pair of numbers (mother height, daughter height) and we imagine these pairs being normally distributed with correlation $\rho$.
+
+With your data, you summarize it with a statistic $S(X_1, \dots, X_n)$. For example, in the seed experiment, we summarized the $X_i$'s with their average
+$$S(X_1, \dots, X_n) = \frac{1}{n}(X_1 + \dots + X_n).$$
+With the heights data, the statistic is the sample correlation between the two heights.  
+
+$$S(X_1, \dots, X_n)  = \frac{\sum\limits_{i=1}^n (M_i-\bar{M})(D_i-\bar{D})}
+            {\sqrt{\sum\limits_{i=1}^n (M_i-\bar{M})^2 \sum\limits_{i=1}^n (D_i-\bar{D})^2}}$$
+
+This statistic $S$ can be any function of your data.  In the homeworks, you are going to explore some statistics that are very strange!
+
+In any experiment for which we "do statistics," we imagine that if we were to repeat the experiment, then we would get different data.  Thus, we *imagine* that the data is random and thus we also *imagine* that the statistic $S$ is random. So, just like $X_i$ has a "distribution over possible values", so does $S$.
+
+
+## Seed germination continued; experimental design.  
+
+Let's do a simulation and fiddle with $n$ and $p$ to see how many seeds you should plant so that your estimate is within 2%.  I made a function called generateLotsOfBernoulliAverages for this experiment.  If this next line doesn't make much sense, don't worry about it.  
+
+```{r cache=T}
+# n gives the number of seeds planted
+# p is the probability that the seed germinates. 
+# we want to replicate this experiment reps times... to see how things change when we get different random variables. I set the default to 5000.
+generateLotsOfBernoulliAverages = function(n, p, reps = 10000) rbinom(n = reps, size = n, p)/n
+```
+
+What percent of the time will your seed experiment successfully produce an estimate of $p$ that is within 2% if $n = 300$ and $p= .1$?  Perform a Monte Carlo simulation! Here, define $A = (p - .02, p + .02)$.  We want to estimate
+$$P(\bar X \in A) = P(\bar X \in (p - .02, p + .02)) = P(|\bar X - p| < .02).$$
+
+First,  simulate lots of $\bar X$'s.  Then, we see what proportion of those simulations are in $A$ (i.e. within 2%).  
+
+```{r}
+n = 300
+p = .1
+averages = generateLotsOfBernoulliAverages(n,p)
+howFarFromp = abs(averages-p)
+mean(howFarFromp < .02)
+hist(averages, main = paste("n =", n, ", p =",p), breaks = 30)
+```
+
+So, $n=300$ and $p=.1$ is within 2% roughtly 75% of the time.  
+
+Exercise:   What happens when you change $n$ and keep $p$ fixed?  What happens when you fix $n$ and change $p$?  Can you find a value of $n$ such that *for all* possible values of $p$, $P(\bar X \in A) = .95$?
+
+
+###  Estimation is impossible (if you expect too much) 
+
+Your estimate is never going to be right all the time.  Even if you allow for an interval of uncertainty (e.g. +/- 2% as above), that interval is never going to contain the truth on every experiement.  The best we can do is to  have a formula/function that creates an interval and on 95% of (random) experiments, that formula will create an interval that includes the true value.    
+
+
+
+##  What are we trying to estimate?  
+
+In general, after you compute the statistic $S$, you could just report it and be done with it.  However, we often want to know "how close are we?"  This is a complicated question because we need to know what we are *actually* trying to estimate. 
+
+There are often two ways of thinking about what we want to know (i.e. what we are actually trying to estimate):    
+
+1) *Imagine getting an infinite amount of data.  What would be the value of $S$ with an infinite amount of data?* Or,   
+2)  *Imagine repeating the whole experiment lots of different times and on experiment $i$ you created statistics $S_i$. What is the average of those statistics $S_1, S_2, \dots$?*  
+
+For most functions of the data $S$, these two values are the same thing.  The first one might be a bit easier to think about. However, if they are different (and sometimes they are), it is the second one that we are actually going to use. We call that second value the expected value of the statistic $$E(S(X_1, \dots, X_n)).$$
+
+Warning: The maximum of the $X_i$'s is one statistic for which those two notions are not usually the same thing.  So is the minimum.  Why?  
+
+So, here is the problem.  $S$ is a random variable.  We only observe one value of it, but we want to estimate $E(S)$.  As discussed above, estimation is impossible. The best we can do is to make an interval that is usually right. 
+
+
+## The logic of statistical estimation  
+
+You want to compute an interval of uncertainty (or a "confidence interval") around that statistic.  You want this interval to contain the expected value of that statistic.  
+
+Imagine that we were able to repeat the actual experiment lots of times.  From those replicates of the statistic $S$, we can compute the 2.5  and 97.5 percentiles.  What this means, is that 95% of the experiments create an $S$ within that interval.  For example, suppose that interval is $(E(S) - 3, E(S) + 3)$.  So, the sampled value of $S$ is within 3 of $E(S)$ on 95% of experiments.  Said another way, $E(S)$ is within 3 of $S$ on 95% of experiments. That is the 95% confidence interval!  Now, all we need to do is be able to find that value of 3.  To do that, we will run a simulation where we pretend to know the true model; we do this by estimating the model parameters with our data.  
+
+Here are the steps to creating a confidence interval:  
+
+1)  Use the collected data to estimate the parameter(s) of the model that we imagine generating our data. 
+3)  Simulate lots of imagined experiments from that model, using the estimated parameters.  
+4)  On each imagined experiment, compute the statistic.  You now have a distribution of that statistic over the imagined experiments.
+5)  For a 95% confidence interval, find the 2.5% and 97.5% quantiles of that distribution.  This leaves 2.5% on both sides of the interval.  Those add up to 5% (100%-95% = 5%).
+
+Notice that in the parsley seed example, the statistic was the parameter of the model.  This is often the case, but not always.   
+
+
+
+
+
+##  Seed example after data collection.
+
+Suppose you planted 2500 seeds and 2157 of the seeds germinated (2157/2500 = .8628). When we were designing the experiment, we didn't know the value of $p$.  Now that we have an estimate of $p$, we can use that!  We can do another simulation to estimate our confidence interval:
+
+```{r cache=T}
+averages = generateLotsOfBernoulliAverages(n=2500, p = .8628)
+qs = quantile(averages, prob = c(.025, .975))
+qs
+hist(averages, main = "Imagined Experiments", breaks = 30)
+lines(qs[1]*c(1,1), c(0,10^9), col = "red", lwd = 3)
+lines(qs[2]*c(1,1), c(0,10^9), col = "red", lwd = 3)
+.8628 - qs[1]
+qs[2] - .8628
+```
+
+
+
+
+
+
+
+If you have learned a little bit about confidence intervals before this class, then the above logic might look very strange.  However, if scientists had "electronic computers" when they first started doing statistics, then this is exactly what they would have done and it is exactly what you would have been taught.  However, when us humans started doing statistics, it was very hard to perform simulations.  So, we came up with mathematical formulas to approximate the above logic.  Those formulas are the things you might have previously learned.  Once you understand the logic above, I hope that you can return to those formulas and find a deeper understanding for them.  At that point, the formulas are great!  They are fast and nimble; much easier than writing a new simulation for every different variation.  
+
+
+## Version 2 of the logic for statistical estimation
+
+
+We wish to find an interval $(S-a_.95, S+b_.95)$ such that 
+$$P\left(E(S) \in (S - a_.95,S+b_.95)\right) = .95,$$
+where $S$ is the only thing that is random in the above probability.  If we can find values $a_.95$ and $b_.95$ that satisfy that probability, then $(S-a_.95, S+b_.95)$ is a 95% confidence interval for $E(S)$.
+
+Exercise:  Show that
+$$P\left(E(S) \in (S - a_.95,S+b_.95)\right) = P\left(S \in (E(S) - b_.95,E(S)+ a_.95)\right).$$
+The right hand side is easier to think about because for $A = (E(S) - b_.95, E(S)+a_.95)$, we will need to compute $P(S \in A)$ using some type of Monte Carlo.  [Here is the answer to the above exercise.](figures/rearrangeTermsInConfidenceInterval.html) 
+
+We want to find $a_.95$ and $b_.95$ that satisfy
+$$P\left(E(S) \in (S - a_.95,S+b_.95)\right) = .95.$$
+The problem is that we don't know the distribution of $S$ (and we don't have a null hypothesis like before).   So, we are going to find values for $a_.95$ and $b_.95$ using Monte Carlo simulation and an approximation that allows us to do the sampling.
+
+First, we must estimate the distribution of $S$.  Once we estimate that distribution, we can generate random variables $S^*$ from that estimated model. Here, the \* superscript denotes that $S^*$ is from the imagined model with estimated parameters; this has a different distribution that $S$.  However, we can use it in the following way.  We assume that the "Monte Carlo"  $S^*$ behaves like the original random variable $S$ in that for any choice of $a$ and $b$,
+$$P\left(S^* \in (E(S^*) - b,E(S^*)+ a)\right) \approx P\left(S \in (E(S) - b,E(S)+ a)\right).$$
+
+Under that approximation, it is sufficient to find $a_.95$ and $b_.95$ using Monte Carlo with $S^*$,
+$$P\left(S^* \in (E(S^*) - b_.95,E(S^*)+ a_.95)\right) = .95.$$
+
+
+Here, the set $A$ is $(E(S^*) - b_.95,E(S^*)+ a_.95)$ and we can simulate $S^*$.  Once you find those values for $S^*$ (see below for computing $a_.95$ and $b_.95$), then we use the approximation to get a confidence interval:
+$$.95 = P\left(S^* \in (E(S^*) - b_{.95},E(S^*)+ a_{.95})\right) \approx P\left(E(S) \in (S - a_{.95},S+ b_{.95})\right).$$
+Thus, $(S-a_{.95}, S+b_{.95})$ is a 95% confidence interval for $E(S)$.
+
+### How to find $a_{.95}$ and $b_{.95}$  
+
+Find the .025 and .975 quantiles of $S^*$; call these $q_{.025}$ and $q_{.975}$.  Then,  $b_.95$ solves $E(S^*) - b_.95 = q_.025$ and $a_.95$ solves $E(S^*) + a_.95 = q_.975$.  You can compute $E(S^*)$ by taking the average of your Monte Carlo simulations of $S^*$. 
+$$b_.95  = E(S^*) - q_.025 \quad  a_.95 = q_.975 - E(S^*)$$

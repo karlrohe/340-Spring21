@@ -1,0 +1,77 @@
+# The logic of statistical testing via Monte Carlo Simulation
+
+## Example: Odd Birthdays 
+
+January 1 is an odd date, because 1 is odd.  What percentage of people are born on odd dates?  In class, let's try to estimate this with our own birthdays.  Count the number of people with odd and even dates in class.  What proportion have odd birthdays?
+
+```{r}
+# enter the data:
+odd = 20
+even = 15
+proportionOdd = odd/(odd+even)
+proportionOdd
+```
+
+In the class above, more individuals have odd birthdays.  So, proportionOdd is greater than 50%.  Is this a general fact?  That is, do most people in the population have odd birthdays?  Or, did we observe more odd's simply due to chance? 
+
+Given that half of the counting numbers are odd, it seems reasonable to suppose that half of birthday's should be odd. So, we are going to *imagine* repeating this experiment under the "null hypothesis" that half of all birthdays are odd and that birthdays are "independent." Independence means that if I learn someone's birthday in the class, that it doesn't tell me anything about anyone elses birthday.  (How might this assumption fail?)
+
+So, we want to imagine repeating the experiment under a setting where each birthday is odd with probability .5 and there are 35 students in the class.  Under these assumptions, the number of odd students is $X \sim Binomial(n=35, p = .5)$.  
+
+We want to use Monte Carlo to compute $P(X \ge 20)$, because 20 is the observed number of odd students.
+
+
+
+
+```{r}
+oddSims =  rbinom(10000,35,.5) 
+hist(oddSims)
+lines(c(odd,odd), c(0,10^9), lty = 4, col = "red")
+mean(oddSims >= odd)  
+```
+
+So, on roughly 25% of imagined experiments where *we know that the "true probability" is .5*, the number of students with odd birthdays exceeded what we observed above. That is a hard sentence.  Read it again.  Make sure you understand it.  
+
+This shows that while we observed more odd than even birthdays in our data collection, the number that we observed is not so strange, simply due to chance.
+
+
+If your "alternative hypothesis" is not that $p>.5$, but rather that $p \ne .5$, then it is also reasonable to do a two-tailed test. In that case, then we would want to use Monte Carlo to estimate $$P(X \not \in (15,20)) = P(X \le 15) + P(X \ge 20),$$ where the value of 15 comes from finding that 20 is 2.5 greater than 35/2.  
+
+```{r}
+mean(oddSims >= 20)  + mean(oddSims <= 15)  
+```
+  
+
+
+  
+## The logic of statistical testing:   
+  
+The above example is a testing problem.  Here is the outline for how we do these problems:   
+  
+1) Come up with a way to measure the thing. This is called a statistic. Compute the statistic on your data and call that value $x$.  
+2) Come up with a plausible model for your data generation where "nothing is going on" in the experiment and the results of the experiment should be ignored.  By plausible model, I mean that we should come up with a way to simulate it (e.g. rbinom).  Use that simulated data to compute the test statistic and call it $X$.  
+3) Use Monte Carlo simulation to compute $P(X\ge x)$ or $P(X \le x)$ or some quantity which depends on your alternative hypothesis.
+
+In this process, we combine our understanding of the world, or data, and our model.  With all three, we make statistical inference.   
+
+The above logic performs a Monte Carlo simulation under a hypothesized reality.  Suppose that you observe a statistic $x$.  Using a simulation of hypothesized reality, we can simulate a random variable $X$ that we *imagine* as mimicking $x$. Using Monte Carlo, we can compute (approximate) $P(X > x)$ or $P(X<x)$ (i.e. one-sided tests) or any other comparison that seems reasonable given the circumstances (e.g. two-sided tests, etc).  
+
+If you have learned a little bit about hypothesis testing before this class, then the above logic might look very strange.  However, if scientists had "electronic computers" when they first started doing statistics, then this is exactly what they would have done and it is exactly what you would have been taught.  However, when us humans started doing statistics, it was very hard to perform simulations.  So, we came up with mathematical formulas to approximate the above logic.  Those formulas are the things you might have previously learned.  Once you understand the logic above, I hope that you can return to those formulas and find a deeper understanding for them.  At that point, the formulas are great!  They are fast and nimble; much easier than writing a new simulation for every different variation.
+
+## Example: Bouncing Ball Experiment.
+
+We are going to count the number of times a ball bounces in a video.  It's pretty hard.  There are two different types of treatment, odd and even, depending upon when your birthday is.  If you have an even birthday, count the number of times the people with white t-shirts *bounce the ball* (in a pass or to themselves). If you have an odd birthday, just observe the video.  Note, the video instructs you to count *white  passes*; ignore that. See discussion for video.   
+
+```{r}
+
+```
+
+The Odd Birthday example and the Bouncing Ball Experiment are very different in the way that they think of the world.  In the experiment, you were "randomly" assigned to a treatment group.  As such, *correlation implies causation*.  This is not something that is "in the data".  This is something that is "in the world" and "in our model".
+
+
+If you think the percentage of odd dates is greater than 50%, roughly what would that number be?  How many samples would you need to see this difference?  Note that "seeing a difference" is random!  Even if there is a difference, sometimes you won't see it due to random chance. The probability that we detect the difference is called the [power](https://en.wikipedia.org/wiki/Power_(statistics)) of the test. These ideas are important when you are designing an experiment; you want to make sure that your experiment succeeds!   How many samples would we need, in order to make the power in the Odd Birthdays experiment at least 80%?  Do some simulations!
+  
+  ```{r}
+
+```
+

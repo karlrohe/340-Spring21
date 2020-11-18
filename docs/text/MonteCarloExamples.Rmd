@@ -1,0 +1,56 @@
+# Monte Carlo Examples.
+
+
+## Example 1:  The Z-table.
+
+Let $X \sim N(0,1)$.  Use Monte Carlo to estimate $P(X< -1.96)$. 
+
+```{r}
+Xrepeates = rnorm(10000)
+mean(Xrepeates < -1.96)
+```
+
+If you have had a classical Intro Statistics class before, the value 1.96 comes up a lot.  Why is that?   
+
+Note that pnorm is how you look up values in a [Z-table](figures/ztable.jpg) using R.  Compare the simulated values to the true value
+
+```{r}
+pnorm(-1.96)
+```
+
+Increase the number of repetitions to 10000. How much closer is the Monte Carlo estimate?
+
+
+
+## Example 2: Geometric random variables can be big.  
+
+Let $X \sim Geometric(.1)$.  Estimate $P(X>50)$.  
+
+```{r}
+Xrepeates = rgeom(10000,.1)
+mean(Xrepeates > 50)
+```
+
+What happens if you repeat your Monte Carlo simulation?  What happens if you simulate the experiment 100,000 times instead of 10,000? 
+
+
+## Example 3:  Central Limit Theorem.
+
+Let $\bar X$ denote the average of 1000 Bernoulli(1/3) random variables.  Let $SE(\bar X)=\sqrt{\frac{\frac{1}{3}\frac{2}{3}}{1000}} \approx  0.01490712$ denote the standard error of $\bar X$.  Use Monte Carlo to estimate $P(\bar X< 1/3 - 1.96 \ SE(\bar X))$. 
+
+```{r}
+X_bar_repeates = rbinom(10000, 1000,1/3)/1000  # why does this code work?
+mean(X_bar_repeates < 1/3 - 1.96*sqrt((1/3)*(2/3)/1000))
+```
+
+Compare that estimated probability to the example about normal random variables above.  Is it a coincidence that they are so close? If you are stuck, this next line might look more familiar,
+$$P(\bar X< 1/3 - 1.96 \ SE(\bar X)) = 
+P(\bar X - 1/3 <  - 1.96 \ SE(\bar X)) 
+= P\left(\frac{\bar X - 1/3}{SE(\bar X)} <  - 1.96 \right).
+ $$
+
+## Karl, these random variables are not that complicated!
+
+Perhaps these random variables are not that complicated.  Perhaps you already knew how to compute these probabilities "by hand" using some math and some approximations.  I promise you that later in the course we will have more complicated examples for which derivations by hand would not be as "easy".  On the other hand, if you think the above examples are hard to compute by hand, I agree.  I think that even for these "simple" examples, it is far easier to write a Monte Carlo Simulation. 
+
+Fun story:  Before trying to prove a theorem, it is nice to know whether or not it is true (isn't that a contradiction?!). A common approach is to first use Monte Carlo to see if your theorem appears true.  Then, if the simulations look good, go ahead and try to prove it! Even super famous and super brilliant mathematician/computer scientist/statistician/data scientist/graph theorist/network scientist [Dan Spielman](http://www.cs.yale.edu/homes/spielman/) performs simulations before trying to prove a theorem. 

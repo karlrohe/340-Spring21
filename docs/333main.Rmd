@@ -1,0 +1,374 @@
+# Stat 333: Applied Linear Regression
+### Fall 2019
+## UW-Madison
+### Karl Rohe
+email: first name and last name at stat dott wisc dott edu  
+office: 1239 MSC  
+[Syllabus](syllabus.pdf),  [Topics Outline](TopicsOutline.pdf), [R labs](labs.R), and [Project description](projectDescription.html).
+
+
+###  Week 13
+
+Group order:
+
+*Tuesday*   
+
+1) over under paid  
+2) csi   
+3) edugression   
+4) soccerdads   
+5) blues clues   
+6) (AAA)   
+
+*Thursday*   
+
+1)  baseball    
+2)  AAA   
+3)  -30degrees   
+4)  anticrime   
+4)   (old arms)    
+
+*Tuesday*    
+
+1)  crime et al   
+2)  econ migrationist   
+3)  old arms
+
+
+####  Comments from lecture....
+
+1) everybody must be on stage. one person can do the slides.   
+2) please email me a pdf of the slides.  include 333 and group name in subject.  
+3) i will post group order.  
+4) practice the talk!  outloud!    
+5) thesis statement.... starts off "our analysis shows that..."   
+6) Make sure to write down any questions (from Q&A) that you are unable to address. Turn in these questions on canvas within 24 hours of your presentation.   
+
+
+### Week 12    
+
+1)  determine order of talks.   
+1) Thesis statements!
+2) Discuss introductions
+2)  a template for [slides.](slideTemplate.html) 
+3)  Start presentations two weeks from today!
+2)  WHAT IS YOUR SAMPLE COMPOSED OF?  Is your sample "representative" of the units that you are imagining? Universities, health care exchanges, etc. 
+3) three considerations for adding a variable:  confounder?  collider?  outside of x? 
+4) DO NOT REMOVE CONFOUNDERS BECAUSE THEY ARE STATISTICALLY INSIGNIFICANT!
+4) MAKE SURE YOUR DATA IS OF THE CORRECT TYPE!!! For example, "$100,000" is a string/factor, but you would be (temporarily) forgiven for thinking it is a number!
+
+
+
+
+#### Thesis Statements!
+
+Bring your thesis statement to class on 11/19. This statement should be   
+
+(1) argumentative (make a claim, not just broadcast a topic), 
+(2) controversial (debatable, not obvious),  
+(3) supportable (defensible, given the resources from class and the assignment),  
+(4) focused (answers the prompt and fits the page requirements, not too big or too small),  
+(5) significant (why is it worth arguing for?),   
+(6) directed (it is a condensed argument and hints at or almost outlines the direction of the paper)  
+This is quoted from [here](https://www.vanderbilt.edu/writing/wp-content/uploads/sites/164/2016/10/Thesis-Statements-Script-2016.pdf). Click for more.  
+
+
+
+
+
+
+### Week 11
+
+
+1) Discuss visualizations.
+1)  [science, estimators, and models](https://twitter.com/karlrohe/status/1001821399059705856?s=20)   
+2)  [What is data science?](DataScience.pdf)   
+4)  who are the stakeholders in your data?   
+3)  Introduction to thesis statements.
+
+
+
+
+#### Homework
+
+Write the introduction to your project. To do this, you must have a thesis statement. To do this, you must have performed a bulk of the analysis. In your introduction, ensure that your paragraphs are coherent and that they are arranged in a logical order. Ensure that your sentences are clear and well written. *Due 11/21*.
+
+
+
+
+### Week 10   
+2)   Discuss [“Extraneous factors in judicial decisions”](http://www.pnas.org/content/108/17/6889) and ["Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination”](https://www.aeaweb.org/articles.php?doi=10.1257/0002828042002561).  Here [are](extraneous.pdf) the [pdfs](emily.pdf).  See homework from last week.   
+3)  [Do we ever want to test $H_O: \beta_0=0$?](https://twitter.com/PollsAndVotes/status/1191941507319767040?s=20)
+3)  visualizations!   
+
+
+####  Homework  
+
+Do you still need a group?  Do you still need data?  Do you know why you care about your data?  Have you loaded your data into R?  Do you need more data?  Can you write an introduction explaining why you care about your data? *Read the "data description" from where you got your data*.  Have you done the data analysis?  Can you write a thesis statement explaining your results?  Thanksgiving is three weeks from this Thursday.  On the first Tuesday back from Thanksgiving, we start group presentations.  That is 4 weeks from now. For one of those weeks, it will be a holiday.  The next "homework" on a TBD data will be to come to class with a thesis statement and an introduction.  
+
+
+
+### Week 9   
+
+1)  [Bootstrap!  Chapter 5 in ISLR.](../ht/05-cv_boot.pdf).   
+1)  [Bootstrap code](bootstrapCode.R)
+1)  Now the class *really* begins!  
+1)  Attendence is super important now.  The class website still serves as a reminder of what we did in class.  However, there are no slides. Only bits and pieces.  Your group members are going to be frustrated with you if you don't show up for discussions.  
+2)  [What is data science?](DataScience.pdf)
+2)  [Download and plot.](mapUnemployment.R)
+
+
+#### Homework
+- Make a group name.  Should be mildly descriptive and totally flamboyant.  This will help organize group discussions.  Agree on a name by class time on November 7 (next week Thursday).
+- In your group, make one interesting visualization with your data.  Submit this on learn@UW by 11:59pm on November 6.  We will discuss them on November 7, in class.  I will project it on the screen and ask you to describe it.  We will discuss and critique.  
+
+Next week Tuesday, we will have a reading quiz.  We  will discuss the following two papers, ["Are Emily and Greg More Employable Than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination”](https://www.aeaweb.org/articles.php?doi=10.1257/0002828042002561) and [“Extraneous factors in judicial decisions”](http://www.pnas.org/content/108/17/6889).  Here [are](extraneous.pdf) the [pdfs](emily.pdf).   To prepare for this quiz on November 5, think about the following issues when you are reading the documents:
+
+1)  What is the surrounding context of the research? Why it is interesting? [This should be found in the introduction.] 
+2)  What is the statistical model and the source of its data, i.e. what are the variables in the model and how were they collected?  [This should be found in a section on the methodology.]
+
+Then, after you read the paper, consider the following issues:  
+
+1)  The papers make conclusions about the "real world" based upon their statistical evidence.  Which parts of the data analysis support the authors claims?  Why? [This should be found in a section about the results/discussion.]  
+2)  After reading both papers, contrast the statistical evidence between the papers.  How are the arguments different?  This is not about the writing, but rather about the difference in their data collection. 
+
+
+
+### Week 8   
+
+1)  Exam Thursday.  Chapter 2 (intro), 3 (linear regression), 4 (logistic and LDA), 5 (CV, not bootstrap).  Diagnostics.  Confounding/collinarity. What are the main points?  Any questions for the first half of the class? 
+2)  [Bootstrap!  Chapter 5 in ISLR.](../ht/05-cv_boot.pdf).
+
+### Week 7   
+
+#### Lecture discussion questions
+1)  [Project description](projectDescription.html) is updated. I changed dates and clarified one sentence. Be sure to look at the last section of it!   
+3)  [Download and plot.](mapUnemployment.R)
+
+
+#### Topics 
+1)  Chapter 5 in ISLR. [Cross validation](../ht/05-cv_boot.pdf).
+  -  [BetterSlide14](Ch5-BetterSlide12.pdf).
+1) Exam a week from Thursday!
+3)  Why should we [select inside CV?](selectInsideCV.R)
+
+#### Homework
+
+See Week 6 homework. 
+
+
+### Week 6
+
+#### Topics
+
+1) Be sure to review the [diagnostic](diagnostics.pdf) slides. We make all sorts of assumptions (stated and unstated) about linear regression.  Many assumptions are only required for certain types of conclusions.  It is important to understand the types of assumptions, if/how we can check them, and how their failure changes our conclusions. 
+1)  Why is it offensive when someone adjusts their model because of colinearity?
+4)  Here are [three simulation examples](threeExamples.R) to illustrate crazy things that happen with correlated predictors!
+2)  What is confounding?  
+3)  [Outliers in Florida!](FloridaOutliers.R)
+3) What are the [main points from Chapter 3](ch3recap.html)?  
+1) Exam is two weeks from this Thursday.
+1) Chapter 4 in ISLR. [Classification](../ht/04-classification.pdf).
+
+Next Up:
+
+
+1) Start Chapter 5 in ISLR. [Cross validation](../ht/05-cv_boot.pdf).
+  -  [BetterSlide14](Ch5-BetterSlide12.pdf).
+2)  [Select inside CV!](selectInsideCV.R)
+
+#### Discussion
+
+1)  [Why Bother](DataScience.pdf) with data science?   [Your work must be embedded in a narrative.](https://twitter.com/karlrohe/status/1181569088251928579?s=20)
+
+
+
+
+#### Homework
+- ISLR Chapter 4, questions 4 and 6 (p168).  Due 10/15.
+-  ISLR Chapter 4:  Revised Problem 13.  Due 10/17.  This is a writing assignment.  You should write it like an essay, approximately 1 page of text and tables on other pages.  When you answer the questions (4x) below, simply write (4x) inline.  I would suggest answer the question in a sentence and then citing the question like a regular citation (4x).  
+
+Here is the revision: divide the data into a test and prediction set (randomly). On your fitting set, fit all three models (logistic, LDA, Knn) with two sets of predictors (this is 6 total models).  One set should be "all predictors" (or something like this) and the second set should be a set of predictors that you think should be good.  To pick that set of predictors, you should not peek at the data, but rather use the data description and your intuition. (4a) Write down the variables that you will include.  No justification required. You will not be graded on the "quality" of your selections, but the assignment is more fun if you spend 20 minutes thinking about this.  Additionally, fit a linear model using the original $Y$'s (i.e. the values before thresholding).  Using both "all predictors" and "all good predictors," this gives two additional models.  (4b) How could you make the same binary predictions with the linear model? Explain using complete sentences.  The next part of the question will estimate the prediction error for all 8 models.  Split your data into a training/test set.  Fit all models on the same training set. (4c) Why should you use the same split for each of the 8 models? Estimate the prediction error on the test set.  Re-run your code a total of 10 times, each time with a different "training/test" division. (4d) Make a 10x8 table reporting the estimated classification error.  (4e)  What is the best of the 8  models in each run (i.e. report 10 models, could be the same, or different)?  (4f) Does the "best model" change on those re-runs?  (4g) Now perform 5-fold cross validation and repeat 4d, 4e, 4f. (4h) Compare the the results of K-fold cross validation with the validation set approach. 
+
+
+
+
+### Week 5
+
+
+1)  Data discussions!
+6)  Finish Chapter 3 in ISLR. [Linear regression](../ht/03-linear_regression.pdf).
+4) [When standard linear regression summaries are not trustworthy.](diagnostics.pdf)
+3)  Why is it offensive when someone adjusts their model because of colinearity?
+4)  Here are [three simulation examples](threeExamples.R) to illustrate crazy things that happen with correlated predictors!
+2)  What is confounding?  
+3)  [Outliers in Florida!](FloridaOutliers.R)
+3) What are the [main points from Chapter 3](ch3recap.html)?   
+4) Chapter 4 in ISLR. [Classification](../ht/04-classification.pdf).
+
+
+#### Homework
+
+- Find a unique data source that is indexed by zip code or county. **Write a one paragraph description** of the data and a one paragraph description of your interest. Why are you interested in it? What do you think is fun about it? This step is essential because it will help to guide your future steps with the data.  This should be done individually.  Due 10/8.
+
+
+### Week 4  
+#### Announcements   
+1) return quiz. 
+2) turning in homework ok?
+1)  Anyone looking for [inspiration on course projects should check out this course](http://www.equality-of-opportunity.org/bigdatacourse/)?    
+4) Someone should add  the [goldilocks fit](https://en.wikipedia.org/wiki/Goldilocks_principle) to that wikipedia page!   
+
+#### Topics 
+1)  sit with groups.  list out topics of interest.  
+2)  What is the answer to the calculus problem? What if $f(m) = \sum_i |x_i - m|$?
+3)   Do you think we can have overfitting with linear regression?   
+-  What does it mean to have overfitting?   
+4)  [What is the core notion of overfitting?](overFittingLinearRegression.R)    
+5) What is synergy?   
+6)  Finish Chapter 3 in ISLR. [Linear regression](../ht/03-linear_regression.pdf).
+
+#### Homework
+
+- See week 3 homework.
+
+
+
+
+
+
+
+### Week 3  
+#### Topics 
+
+1) How was turning in homework?  
+1) Finish Chapter 2 in ISLR. [Introduction](../ht/02-statistical_learning.pdf)
+4)  Classification of [Trump tweets](realDonaldTrump.R)
+2)  What are the main points from [Chapter 2](ch2recap.html)? 
+1) Chapter 3 in ISLR. [Linear regression](../ht/03-linear_regression.pdf).
+
+
+
+#### Lecture discussion questions
+1) What type of questions are you interested in studying?  Topics? Data sources?  Data types?  Data sources?  
+
+-  What are your goals after graduation?
+-  Where do you envision yourself in 10 years?
+-  What are your experiences with R?
+-  What type of data are you interested in studying? Topic of data source? Structure of data?
+
+#### Homework
+
+- ISLR (p52) 2.4.1, 2.4.2. due 9/20.
+- Has everyone had calculus?  For numbers $x_1, \dots, x_n \in R$, find the value $m$ that minimizes $f(m) = \sum_i (x_i - m)^2$ as a function of $m$.... you will need to use calculus!  Due 9/24, at the beginning of class. you can write the answer with pencil/pen and paper.  
+- ISLR 3.7.1, 3.7.3, 3.7.4, 3.7.15 (p120). due 9/26.
+- Find a unique data source that is indexed by zip code or county. **Write a one paragraph description** of the data and a one paragraph description of your interest. Why are you interested in it? What do you think is fun about it? This step is essential because it will help to guide your future steps with the data.  Due TBD.  
+
+
+
+
+
+
+### Week 2  
+
+#### Announcements
+
+- Sit with groups!  Any pairs?  Any Quads+? 
+- Chapter 2 is the hardest chapter in the book.  
+- What to do when you are stuck with R? 
+- Rmarkdown! File > New File > R Markdown.  Give it a name.  Put in your (edited) code and make it read like a proper document! Push the "Knit" button.  Here are [some](../ht/rmarkdown-cheatsheet.pdf) helpful [cheat sheets](../ht/rmarkdown-reference.pdf) on R Markdown.
+- How to turn in homework?
+
+
+#### Warm up discussion   
+- What does it mean that we want to estimate a *function*?   It sounds crazy!  What does it mean?  
+- Why don't we simply interpolate our data points?
+
+
+
+
+#### Topics 
+
+1) Reading quiz on [this article](https://hbr.org/2016/10/noise).
+2) what is missing from that paper??   
+1) Chapter 2 in ISLR. This is an exciting text. Chapter 2 contains some of the most fundamental wisdom in our field.  Despite the fact that this is fundamental wisdom, many PhD do not even get it in their courses!  They learn it along the way.  Here, you get it right off the bat.  I almost feel like this is cheating!  Like you should have to work harder to get this stuff!  [A friend](https://www.ams.jhu.edu/~priebe/), who is super prolific, jokes that this is the only thing he *really* knows: [**The bias-variance tradeoff**](../ht/02-statistical_learning.pdf)
+7) What are zip codes?  Who cares?  Other possible types (e.g. census tracts).  Any level smaller than Counties that are supplied by acs.
+* Data from the [American Community Survey](http://en.wikipedia.org/wiki/American_Community_Survey) using R library acs. First, [get api key](http://api.census.gov/data/key_signup.html)  
+5) Form groups of 2 or 3. 
+6)  If there is a link on this page, [click on it](http://fivethirtyeight.com)!  
+7) [Play with this simulation](sampleAndFit.R)
+
+#### Lecture discussion questions
+-  What are your goals after graduation?
+-  Where do you envision yourself in 10 years?
+-  What are your experiences with R?
+-  What type of data are you interested in studying? Topic of data source? Structure of data?
+
+1) What is your major?  
+1) What statistics classes have you taken?
+1) Why are you in this class?
+3) What type of questions are you interested in studying?  Topics? Data sources?  Data types?  Data sources?  
+4) See page 52 in ISLR. 
+
+#### Homework 
+
+-  Form groups of two or three. Within your group, you should have similar interests (i.e. project topics). On Wednesday (9/13), sit with your group. If you have not found a group, that is totally fine! We will have a “free agent” session in class.
+- Due 9/13 to TA: ISLR (p52) 2.4.1, 2.4.2, 2.4.8
+
+
+
+
+
+
+
+
+### Week 1  
+#### Topics 
+1) This is a fun and important course because...      
+- This is not an intro course.  This course serves as a gateway to the advanced courses.  
+- This is not a math course.  This is a statistics course.  More specifically, it is an applied statistics course. 
+- Why should we study statistics?
+2) [Go over syllabus](syllabus.pdf) and [outline](TopicsOutline.pdf)
+3) Introductions to course aims and texts. [Chapter 1 in ISLR](../ht/01-introduction.pdf)
+4) Those in 327 concurrently, hurry up and learn it! :)
+4) How do you *do* statistics without a computer???  For the sake of your career, you should take 327 for 3 credits (I view 2 credits as a *minimum*).  Last I checked, we only required 1 credit for the major; I feel strongly that this is insufficient. 
+
+
+#### Lecture discussion questions
+-  What are your goals after graduation?
+-  Where do you envision yourself in 10 years?
+-  What are your experiences with R?
+-  What type of data are you interested in studying? Topic of data source? Structure of data?
+
+1) What is your major?  
+1) What statistics classes have you taken?
+1) Why are you in this class?
+3) What type of questions are you interested in studying?  Topics? Data sources?  Data types?  Data sources?  
+4) See page 52 in ISLR. 
+
+#### Homework 
+
+-  Form groups of three. Within your group, you should have similar interests (i.e. project topics). Talk to your friends or look for group members in discussion section. Next Thursday, sit with your group. On Thursday, if you have not found a group, that is totally fine! We will have a *free agent* session in class.
+- On 9/10, we will have a reading quiz on [this article](https://hbr.org/2016/10/noise).  As you are reading, consider how this article might be related to our course.
+- Due 9/12 to TA: ISLR (p52) 2.4.1, 2.4.2, 2.4.8
+-  In last class before homework is due (i.e. 9/10 for the assignment due 9/12), if you think we have not covered the required material, please ask in class.  In class, we can decide whether to extend the deadline.
+
+
+#### Texts: 
+[*An Introduction to Statistical Learning with Applications in R*](http://www-bcf.usc.edu/~gareth/ISL/)  
+by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani  
+
+For reference:  [*R for Data Science*](http://r4ds.had.co.nz) by Garrett Grolemund and Hadley Wickham
+
+Optional, more "classical" text:  *Applied Linear Regression, 3rd edition* by Sanford Weisberg.
+
+#### Helpful links
+1) [Download ISLR text](http://www-bcf.usc.edu/~gareth/ISL/) and lab codes.   
+2) Refresh material: [An Introduction to R](http://cran.r-project.org/doc/manuals/R-intro.pdf)  
+3) [Advanced R](http://adv-r.had.co.nz) by Hadley Wickham  
+4) Making beautiful documents with [R markdown](http://rmarkdown.rstudio.com) and [knitR](http://kbroman.org/knitr_knutshell/).  Here are [some](../ht/rmarkdown-cheatsheet.pdf) helpful [links](../ht/rmarkdown-reference.pdf).
+
+#### Will we get to these topics?  
+1) [Nonlinear regression; splines, lowess, generalized additive models](../ht/07-nonlinear.pdf)  
+2) [Random Forests and tree based methods](../ht/08-trees.pdf)  
+3) [k-means](../ht/10-unsupervised.pdf)  

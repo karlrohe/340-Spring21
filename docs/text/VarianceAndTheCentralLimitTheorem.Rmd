@@ -1,0 +1,107 @@
+# Variance and the Central Limit Theorem
+
+Variance is a magical quantity that is hugely important for the Central Limit Theorem.  
+
+### Simulation  
+What happens when we take an average of lots of random variables?  Let's do an experiment.
+
+
+```{r echo = F}
+generateLotsOfBernoulliAverages = function(n, reps, p) rbinom(n = reps, size = n, p)/n
+
+```
+
+Imagine sampling 100 Bernoulli(.6) random variables, then taking their average.  That is a new random variable.  What does it behave like?  
+Here is a histogram of 5000 of those random variables.
+
+```{r}
+averages = generateLotsOfBernoulliAverages(100, 5000, .6)
+hist(averages, breaks= 40, main = 100)
+```
+
+Here is the same histogram for a sequence of n = 1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000.
+
+```{r echo = F, cache=T}
+library(magrittr)
+makeOne = function(n,...){
+  generateLotsOfBernoulliAverages(n, 50000, .5) %>% hist(breaks =100, main = n,...)
+}
+par(mfrow = c(4,4), mar = c(2,2,3,1), bty = "n", yaxt = "n")
+for(j in c(1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000)) makeOne(j, ylab = "", xlim = c(0,1))
+```
+
+There are two things happening as n gets bigger.   
+
+1)  The values are all getting closer to .5.  This is its expected value.  This "convergence" is called the Law of Large Numbers. 
+2)  The "shape" goes from discrete to smooth.  That shape has a pretty functional form.  It is called 
+the normal distribution or the Gaussian distribution.  
+
+These two things above happen whenever you take averages of random variables that are independent and identically distributed.  There are some [strange distributions](https://en.wikipedia.org/wiki/St._Petersburg_paradox) that are [exceptions to this rule](https://en.wikipedia.org/wiki/Cauchy_distribution); but we will not encounter them in this course and they come up infrequently in applications. 
+
+For example, here is the Geometric(p = .1) distribution. It is how many flips it takes to get your first heads.  
+```{r}
+hist(rgeom(5000, .1), breaks = 20)
+```
+
+Notice how it is "skewed" to the right.  
+
+
+Imagine sampling 100 Geometric(.1) random variables, then taking their average.  Here is a histogram of 5000 such random variables
+```{r echo=F}
+# this is a crazy function to generate lots of averages from the function "simulator".  reps is the number of averages you want.   n is the number of samples you want in each average.  ... is any other arguments needed for simulator.
+generateLotsOfAverages = function(simulator,n, reps, ...) colMeans(matrix(simulator(n = reps*n,...), ncol = reps))
+```
+
+```{r}
+averages = generateLotsOfAverages(rgeom, 100, 5000, prob = .1)
+hist(averages, breaks= 40, main = 100)
+```
+
+Here is that histogram for a sequence n = 1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000.
+
+```{r echo = F, cache=T}
+
+par(mfrow = c(4,4), mar = c(2,2,3,1), bty = "n", yaxt = "n")
+for(j in c(1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000)) generateLotsOfAverages(rgeom, j, 5000, prob = .1) %>% 
+hist(breaks = 57, main = j, ylab = "", xlim = c(0,20))
+```
+
+We see the same phenomenon with these averages as we did with the Bernoulli averges.  As n gets bigger, the averages are all clumping around a certain value, but the average is still random, and the shape of its distribution looks more and more like a Gaussian.  
+
+### See board for lecture notes on Variance and Standard Deviation
+
+
+
+How do the above histograms look when we center (by the expectation) and scale (by the standard error)?
+
+Here are histograms for centered and scaled averages of Bernoulli random variables:
+```{r echo = F, cache=T}
+makeOne = function(n,...){
+  ((generateLotsOfBernoulliAverages(n, 50000, .5)-.5)*sqrt(n)/.5) %>% hist(breaks =500, main = n,...)
+}
+par(mfrow = c(4,4), mar = c(2,2,3,1), bty = "n", yaxt = "n")
+for(j in c(1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000)) makeOne(j, ylab = "", xlim = c(-3,3))
+```
+
+
+Here are histograms for centered and scaled averages of Geometric random variables:
+```{r echo  = F, cache=T}
+
+par(mfrow = c(4,4), mar = c(2,2,3,1), bty = "n", yaxt = "n")
+for(j in c(1,2,3,4,5,10,15,20,30,50,75,100,150, 500,1000)){
+  ((generateLotsOfAverages(rgeom, j, 50000, prob = .1)-9)*sqrt(j)/sqrt(.9/.1^2)) %>% 
+hist(breaks = 500, main = j, ylab = "", xlim = c(-3,3))
+}
+```
+
+
+###  The CLT is like computer-free Monte Carlo that works for a small subset of problems.
+
+If $\bar X$ is the averge of many independent random variables and $Z \sim N(0,1)$ is a standard normal random variable.  The CLT enables us to approximate/compute the same types of probabilities that we used Monte Carlo for.  First, notice that
+$$P(\bar X > a)= 
+P(\bar X - E(\bar X) > a - E(\bar X))
+= P\left(\frac{\bar X - E(\bar X)}{SE(\bar X)} > \frac{a - E(\bar X)}{SE(\bar X)}\right).$$
+Thus, we can approximate $P(\bar X > a)$ as follows:
+$$P(\bar X > a) = 
+P\left(\frac{\bar X - E(\bar X)}{SE(\bar X)} > \frac{a - E(\bar X)}{SE(\bar X)}\right) \approx P\left(Z > \frac{a - E(\bar X)}{SE(\bar X)}\right).$$
+With Monte Carlo, you could approximate/compute the left hand side by simulating $\bar X$ a million times and then seeing what proportion of those times $\bar X > a$.  Alternatively, you could use the right hand side and look it up in a Z-table (or use pnorm).  

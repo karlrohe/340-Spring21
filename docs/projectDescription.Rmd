@@ -1,0 +1,109 @@
+---
+title: "Project description for Stat 340, Spring 2020"
+author: "Karl Rohe"
+date: "March 22, 2020"
+output: html_document
+---
+
+This is a slow project, like [slow food](https://en.wikipedia.org/wiki/Slow_Food).  This project will take time and energy over a prolonged time period.  Inside of this time period, it will require reflection on your curiosities and the class material.  Please be patient with your selves. 
+
+Great projects start from a place of genuine curiosity.  As you read this, try to imagine things that *might* be measured and easily accessible AND which interest you.
+
+**In the end** (i.e. not yet!), you must ask and answer a question; how are $x$ and $y$ related?  Then, you must develop a "theory" (or a story) for why they are related and use the data to examine your theory.  You should not think of $x$ and $y$ as data, but rather as things that are measurable with data! 
+
+For example, $x$ = "education level" is measured by the US Census bureau in the ACS at several geographic resolutions, over time.  You might choose $y$ = "age of first marriage," if you could find this data.  Then, there are several "theories" for why these things might be related; different theories imply different directions (+/-).  Perhaps people who choose to go to college are more interested in developing their careers before getting married (-).  Perhaps people who have children in high school do not have the time/money to go to college; instead, they get married (-).  Perhaps college is a great place to meet a spouse (+).  Perhaps only people with good jobs (that require an education) can afford a wedding (+).  These are not listed because they are *good* explanations (or theories), but rather because they possible explanations.  One such explanation should be contained in your thesis statement; your project must test the plausibility of your explanation. 
+
+If you are starting with a $y$, you might first identify things that *should* predict it (they don't need to be "interesting").   Explore these predictors.  Can you identify the sorts of observations for which your model fails to make good predictions?  What predictors might help?  
+
+There are some motivating restrictions on your final choice of $x$ and $y$. 
+
+1)   $x$ and $y$ must be measurable by freely available data that is    
+3)   Every group in the class must have a unique pair ($x$ and $y$) that they study in their project.   
+4)   You may use US Census or [American Community Survey](https://en.wikipedia.org/wiki/American_Community_Survey) data for [measurements](https://cran.r-project.org/web/packages/acs/index.html) of $x$ or $y$.  However, 
+4)   $x$ and $y$ must come from separate sources.
+
+For example, $x$ and $y$ could be indexed by (nearly all) zip codes or (nearly all) counties in the United States.  
+
+
+If you wish to deviate from this, please talk with me individually. Please find an $x$ and $y$ that motivate and interest you; from past experience, the best projects have highly motivated questions from interested authors. 
+
+
+
+
+### Paper structure
+
+The first section (~2-3 paragraphs) is the **introduction**.  It should 
+
+1)   motivate your question to the layperson,
+2)   convey your research question (this is the "story"), and
+2)   give a clear thesis statement that accurately summarizes your data analyses. 
+
+A clear thesis statement is   
+
+-   argumentative (make a claim, not just broadcast a topic),   
+-   controversial (debatable, not obvious),   
+-   supportable (defensible, given the resources from class and the assignment),   
+-   focused (answers the prompt and fits the page requirements, not too big or too small),   
+-   significant (why is it worth arguing for?),   
+-   directed (it is a condensed argument and hints at or almost outlines the direction of the paper)
+
+This is quoted [from here](https://www.vanderbilt.edu/writing/wp-content/uploads/sites/164/2016/10/Thesis-Statements-Script-2016.pdf). Click for more.  
+
+The second section of your document is the **methods** section.  The methods section should give a description of 
+
+1)   your data sources--url links, citations, AND data descriptions;
+2)   your data cleaning--describe the steps that you took, should be replicable via your .Rmd file but not visible in the .pdf (echo = FALSE), and
+3)   a brief description of the statistical techniques and a description of *why you chose these techniques.*
+
+Note: Your main interest is in the relationship between $x$ and $y$, not in the variables that measure $x$ and $y$.  Confounding/lurking variables should be included in your analysis to focus on $x$ and $y$ and NOT their measurements.  The methods section should motivate your inclusion of confounders (why do you think they confound?) and include their data descriptions.
+
+The third section of your paper contains the **results**.  What do your methods reveal?  Interpret the "output" with text and figures. Measure the sensitivity of the "output" to various perturbations (e.g. bootstrapped p-values, fit the model on California data and predict Wisconsin data).    You should have several visualizations to interpret your results.  Tables and graphs should have titles, labeled axes, legends (if appropriate), and captions.  
+
+
+The fourth and final section of the paper is the **conclusion**.  It should return to your thesis statement/hypothesis.  Summarize the main evidence that supports your conclusions; reference back to key figures/tables/equations and highlight the important pieces. Interpret the results of the key coefficients on the variable(s) measuring $x$.  Describe the limitations of your analysis, both big and small.  Describe issues that remain uncertain, but could be explored more fully with your available resources (+ more time).  
+
+The audience for your document is a general audience who is comfortable reading equations, but doesn't know anything about the content of our course or the topics that you wish to study.
+
+You will be graded based upon:   
+
+i)   the clarity and brevity of your exposition (title, clean thesis statement, organization, headings, clear sentences, focused paragraphs, explain figures in captions and body of paper, etc.),  
+ii) the interestingness of your application,
+ii)   the appropriateness of your methods, 
+iii)   the interpretation of the results, 
+iv)    and the appropriateness of your conclusions. 
+
+
+￼
+
+
+While there are no hard limits, your entire document should be roughly [2000 words](http://wordcounttools.com) +/- 500 words.
+
+
+
+#### Learning objectives   
+
+1)   Identify an interesting problem that can be partially addressed with the tools in this course. 
+2)   Gather, clean, and process relevant data. 
+4)   Use the methodological tools from the course to create a partial answer.  Interpret the "output", diagnose the sensitivities, and illustrate with friendly visualizations.
+2)   Communicate your results to a general audience.
+4)   Critically addresses the limitations of the study and the statistical conclusions.
+
+
+
+####  Throughout this process, curiosity is essential.
+
+The overarching goal is to learn how to ask and answer questions with data. When you are naturally curious about a topic, you will avoid the projects that I fear most. These projects have no intention, but also perfectly demonstrate the "textbook knowledge" of the course.  The easiest tell of a bad project:  a student finds some predictors $x$ and finds an outcome $y$ and puts it all into linear regression, treats the linear regression like a black box, then performs all of the "proper" interpretation of the results (including the diagnostics!).  This is a project that is both useless and boring, but also a demonstration of "the methods." After leaving my course, this author will rarely realize an opportunity for linear regression, because they have never realized it for themselves.  This author understands that linear regression is a sort of tool, like a hammer. This author understands how to swing a hammer (push the buttons). However, this author cannot build a structure, nor can this author contextualize why we bother swinging the hammer. This author understands data analysis, but only in isolation, not embedded in any purpose. This student will only use the methods when they have a boss that knows what they are doing.  I want you to be boss!  Own it!  Here is how...
+
+When you begin the project with fundamental curiosity about the source of the data, bad projects are trivially avoided.  Instead of mindlessly demonstrating the tools, your work has purpose.  As you play with your data, try to curate your curiosity into a **research question**.  What is it that makes it interesting?  What else is it related to?  
+
+Students often ask:  
+
+- How do I clean the data?   
+- Should I throw out missing values?    
+- What variables should I keep?    
+- Is it ok that I am combining data sources from different years?     
+- What statistical techniques am I required to use? What visualizations should I make?
+
+These questions (and other "how do I do this project?" questions) are answered by another question:  **How do you best address your curiosity?**  And remember, you get to decide what question you ask!  As you learn more, you are likely to discover a more interesting / more realistic / better informed question.  That is great!  Keep going!
+
+As your curiosity turns into a research question,  you should realizes many of the challenges of answering questions with data, including a fundamental dichotomy of Statistics: we want to make conclusions about the data source (i.e. IRL), but we only have measurements (i.e. data) from this source.  Consider the problems in (for example) measurement, missing data, imprecise measurements, confounding, etc.  How should you address these issues?  Or, must they be listed as limitations?  
