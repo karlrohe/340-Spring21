@@ -1,3 +1,6 @@
+# random temp files
+**/tmp
+
 # R temp files
 .RProj.user/
 *.Rproj
