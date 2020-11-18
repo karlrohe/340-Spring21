@@ -37,7 +37,6 @@ by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 
 For reference:  [*R for Data Science*](http://r4ds.had.co.nz) by Garrett Grolemund and Hadley Wickham
 
-Optional, more "classical" text:  *Applied Linear Regression, 3rd edition* by Sanford Weisberg.
 
 #### Helpful links
 1) [Download ISLR text](http://www-bcf.usc.edu/~gareth/ISL/) and lab codes.   
