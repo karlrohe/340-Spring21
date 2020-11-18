@@ -1,0 +1,73 @@
+---
+title: "Homework 2 for Stat 340; Testing and estimation"
+author: "Karl Rohe"
+output: html_document
+---
+
+###  Green Bay Packers
+
+The Green Bay Packers won 13 of their 16 regular season games this year (2019).  Olivia Munn, hillarious actress and former girlfriend of Aaron Rogers, says the Packers are just so so. Use the Logic of Statistical Testing to test her hypothesis. Suppose each game is an independent and identically distributed Bernoulli(p) trial and test whether p=.5.
+
+
+
+
+### Lie detection   
+
+Before you read this problem, write down a sequence of heads and tails of length 200 in the code chunk below.  *Make the sequence as random as possible.* Do this without using the computer to generate random numbers!  
+```{r}
+# Turn on caps lock and let it rip:
+myFlips = "HTHHTHTHTTHH..."
+nchar(myFlips)  #make sure it length 200
+```
+
+
+If you haven't filled in myFlips, don't keep reading!  It will be way more fun if you do that first.  I promise.  
+
+You ask your friend to generate a sequence of 200 coin flips from a fair coin.  You want to test whether your friend is cheating (e.g. just writing down H's and T's like you were above) or if they are actually taking the time to flip a coin.  To do this, you are going to use the logic of statistical testing.   
+
+So, you need a test statistic that measures if they are cheating.  This test statistic should look different for cheaters than it should for non-cheaters.  That is what we want of a good test statistic.
+
+Use the length of the "longest run" of heads or tails.  For example, if a sequence of flips was HHTTTHT, then the length of the longest run is 3, because there were three T's in a row.  You inspect their sequence to see that the longest run has length 4.  Do you think your friend is cheating?  Use the logic of statistical testing and justify your answer.
+
+To help you out, here is how you simulate a sequence of heads/tails
+```{r}
+flips  = sample(c("H","T"), 200,replace=T)
+```
+and here is a function to compute the longest run
+```{r}
+# you are welcome to trust that this function works.
+# but I would encourage you to look at the function to ensure that it makes sense to you.
+#  if you find an error, please let me know!  :)
+
+longestRun = function(flips){
+  # the first flip is always a run of length 1.
+  MaxRunSoFar = 1
+  currentRun = 1
+  
+  for(i in 2:length(flips)){ # for every flip
+    # if it is equal to the last flip
+    if(flips[i]==flips[i-1]){
+      # then increase the length of the currentRun
+      currentRun = currentRun + 1
+      # and if the run is larger than the maxRunSoFar, redefine that.
+      if(currentRun>MaxRunSoFar) MaxRunSoFar = currentRun
+    }
+    # otherwise, 
+    if(flips[i]!=flips[i-1]){
+      # set the current run back to 1
+      currentRun=1
+  }
+  }
+  return(MaxRunSoFar)
+}
+```
+
+```{r}
+# split up the characters:  
+x <-unlist(strsplit(myFlips, split = ""))  
+# find your longest run:
+longestRun(x)
+```
+
+
+I suspect that the easiest way to answer this question is with a for loop, because you are going to want to repeat the experiment lots of times.  

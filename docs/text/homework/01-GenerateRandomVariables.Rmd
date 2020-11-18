@@ -1,0 +1,117 @@
+---
+title: "Homework 1 for Stat 340; Introduction to Discrete Random Variables"
+author: "Karl Rohe"
+date: "1/22/2020"
+output: html_document
+---
+Use R to generate a single Bernoulli, Binomial, Geometric, and Poisson random variable. You can choose the parameter of the distribution to be anything you like.  
+
+Here are the function names... think of the "r" as "generate **R**andom number":
+```{r}
+?rbinom
+?rgeom
+?rpois
+```
+
+
+```{r}
+# generate a single Bernoulli random variable:
+rbinom(1,1,.3)
+
+# generate a single Binomial random variable:
+
+# generate a single Geometric random variable:
+
+# generate a single Poisson random variable:
+```
+
+
+Now, generate 10 copies of those random variables:
+
+```{r}
+# generate 10 Bernoulli random variables:
+rbinom(10,1,.3)
+
+# generate 10 Binomial random variables:
+
+# generate 10 Geometric random variables:
+
+# generate 10 Poisson random variables:
+
+```
+
+
+
+Now, generate 10,000 copies of those random variables and put them in a histogram:
+
+```{r}
+# Bernoulli:
+hist(rbinom(10000,1,.3))
+# or 
+library(magrittr)
+rbinom(10000,1,.3) %>% hist
+
+# Binomial:
+
+# Geometric:
+
+# Poisson:
+
+```
+
+Repeat the last step, but change the value of the parameter that you put in.  
+
+
+```{r}
+# Bernoulli:
+hist(rbinom(10000,1,.3))
+# or 
+library(magrittr)
+rbinom(10000,1,.6) %>% hist
+
+# Binomial:
+
+# Geometric:
+
+# Poisson:
+
+```
+
+What happens to the histogram when the parameter gets bigger?  Answer in words:
+
+1) Bernoulli: The Bernoulli histogram "moves to the right" when the parameter p gets bigger.
+2) Binomial:
+3) Geometric:
+4) Poisson:
+
+
+
+If you generate 10,000 of the random variables and  take the mean of these 10,000 values, what value is it close to? Try to express that value in terms of the parameter value(s)!  Fiddle aruond with a few values before you settle on an answer.  Explore!
+```{r}
+# Bernoulli:
+rbinom(10000,1, .3) %>% mean
+rbinom(10000,1, .6) %>% mean
+
+# Binomial
+
+# Geometric
+
+# Poisson
+```
+
+
+What is this code doing?
+
+```{r}
+# Bernoulli:
+pseq = seq(0,1,len = 100)
+BernoulliData = matrix(NA, nrow= 10000, ncol = 100)
+for(i in 1:100){
+  BernoulliData[,i] = rbinom(10000,1, pseq[i])
+}
+
+plot(pseq, apply(BernoulliData,2,mean))
+plot(pseq, apply(BernoulliData,2,sd))
+```
+
+After interpreting that code, repeat that code for the other three distributions. Describe how the parameter values in the distribution relate to the mean and sd.  Can you guess a mathematical formula? 

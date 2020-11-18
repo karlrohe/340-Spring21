@@ -1,0 +1,33 @@
+---
+title: "Homework 3 for Stat 340; Estimation"
+author: "Karl Rohe"
+output: html_document
+---
+  
+###  Green Bay Packers
+  
+The Green Bay Packers won 13 of their 16 regular season games this year (2019). Propose a statistical model with random variables for their wins and loses.  We will estimate their win probabilty as $13/16 \approx .81$  Generate a 90% confidence interval for the true probability.  Notice that you need to do it differently for a 90% probabillity.  
+
+
+
+### Counting the fish in Mendota
+
+In order to count the number of [Northern Pike](https://en.wikipedia.org/wiki/Northern_pike) in Lake Mendota,  we perform the following experiment.  We enlist a 100 fishers with 100 boats.  On the first weekend in June, all 100 go fishing for pike.  For every pike they catch, they tag it [like this](fishTag.png) and then release it back into the lake.  After the weekend, everyone reports back.  In total, they caught 558 pike.  Then, on the last weekend in July, they all go fishing for pike again.  This time, they caught 547 pike. Of those 547 fish, 8 of them had a tag.  
+
+Your job is to (1) estimate the number of pike in Lake Mendota and (2) create a 95% confidence interval for that estimate.  What assumptions do you need to make?
+
+  
+  
+  
+###  Old school vs New school
+  
+Over the past 7 seasons, the Green Bay Packers have won  66 of the 111 games that they have played.  We wish to test the null hypothesis $H_0:$ Each win can be modeled as an independent Bernoulli(1/2) random variable.  
+
+a) Generate a p-value using the logic of statistical testing. (New school!)   
+b) Generate a p-valeu using the central limit theorem.  That is, under the null hypothesis, the proportion of wins can be modeled as (approximately) a normal random variable.  Hint: the standard error for the proportion of wins in 111 independent Bernoulli(1/2) trials is $.5/\sqrt{111}$.  (Old School!)    
+c)  In the logic of statistical testing, step 3 says to generate the test statistic lots and lots of times using the null model.  In part a), when you do that for this problem, compute the standard deviation of those test values with the R function sd.  Compare that value to 
+```{r} 
+.5/sqrt(111)
+```
+d)  Repeat these steps for the Green Bay Packers example in *Homework 2* (i.e. the last homework).  In that example, the standard error for the proportion of wins in 16 independent Bernoulli(1/2) trials is $.5/\sqrt{16}$.  What are the p-values from the new school (homework 2) and the old school (using CLT)? In step 3 of the logic of statistical testing, compute the standard deviation of the test statistics.  Compare that standard deviation to  $.5/\sqrt{16}$.    
+e)  Compare the p-values from step a and step b.  They should be very close!  Compare the p-values in step d.  They should be different!  However, in both cases, the simulated data should have a standard deviation equal to $.5/\sqrt{n}$, where $n$ is the number of games.  How can this all be true?  (This could be an exam question.  I would expect it to be hard.)

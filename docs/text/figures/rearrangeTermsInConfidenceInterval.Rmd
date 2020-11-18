@@ -1,0 +1,8 @@
+### Rearrange the terms...  
+$$ E(S ) > S  - a_.95 \quad \Leftrightarrow \quad S <E(S )+a_.95$$
+and 
+$$ E(S ) < S  +b_.95 \quad \Leftrightarrow \quad S >E(S )-b_.95$$
+So, 
+$$E(S ) \in (S  - a_.95,S + b_.95) \quad \Leftrightarrow \quad S  \in (E(S ) - b_.95,E(S )+ a_.95).$$
+This implies that 
+$$P\left(E(S ) \in (S  - a_.95,S + b_.95)\right) = P\left(S  \in (E(S ) - b_.95,E(S )+ a_.95)\right).$$
