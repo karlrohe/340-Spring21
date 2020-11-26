@@ -1,3 +1,3 @@
-# initial commit
+# STAT340 (Spring 2021) course planning page
 
-Pages being deployed from /docs directory. Link to deployed webpage: https://karlrohe.github.io/340-Spring21/
+Link to page: https://karlrohe.github.io/340-Spring21/
