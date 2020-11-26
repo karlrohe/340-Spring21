@@ -15,7 +15,7 @@ ui <- fillPage(
     ),
     girafeOutput("unemployment",height="88%"),
     div(style = "margin: auto; width: 80%",
-        sliderInput("year","Year:",min=1990,max=2019,value=2019,width="100%",)
+        sliderInput("year","Year:",min=1990,max=2019,value=2019,sep=NA,width="100%")
     )
     
 )
