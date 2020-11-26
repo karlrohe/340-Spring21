@@ -6,6 +6,6 @@ Scripts for downloading, cleaning, and visualizing annual county-level unemploym
 
 Animated gif:
 
-![animated plot of unemployment rates](./unemployment.gif)
-
 [Interactive shiny visualization](https://bwu62.shinyapps.io/BLS_Unemployment/)
+
+![animated plot of unemployment rates](./unemployment.gif)
