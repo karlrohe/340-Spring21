@@ -1,3 +1,0 @@
-[submodule "data/tweets/congresstweets"]
-	path = data/tweets/congresstweets
-	url = https://github.com/alexlitel/congresstweets
