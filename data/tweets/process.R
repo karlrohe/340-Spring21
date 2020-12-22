@@ -7,7 +7,7 @@ pacman::p_load(magrittr,tidyverse,lubridate,rjson,tidyjson)
 
 # define function to read dates
 readDate = function(jsonFile){
-  fromJSON(file=jsonFile) %>% 
+  rjson::fromJSON(file=jsonFile) %>% 
     as_tbl_json %>% 
     spread_all %>% 
     select(-document.id) %>% 
@@ -18,10 +18,9 @@ readDate = function(jsonFile){
 
 # define function to read users
 readUsers = function(jsonFile="https://raw.githubusercontent.com/alexlitel/congresstweets-automator/master/data/historical-users-filtered.json"){
-  fromJSON(file=jsonFile) %>% 
-    as_tbl_json %>% 
-    spread_all %>% 
-    select(-document.id)
+  jsonlite::fromJSON(txt=jsonFile,flatten=T) %>% 
+    mutate(accounts = lapply(accounts, . %>% setNames(.,paste0("acc_",names(.))))) %>% 
+    unnest(accounts)
 }
 
 # test
@@ -30,5 +29,3 @@ head(D)
 
 U = readUsers()
 head(U)
-
-J=jsonlite::flatten(fromJSON(txt=jsonFile,flatten=T),recursive=T)
