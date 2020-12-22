@@ -30,3 +30,5 @@ head(D)
 
 U = readUsers()
 head(U)
+
+J=jsonlite::flatten(fromJSON(txt=jsonFile,flatten=T),recursive=T)
