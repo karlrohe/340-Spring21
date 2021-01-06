@@ -127,4 +127,4 @@ head(covid19,10)
 tail(covid19,10)
 
 # save result
-write.csv(covid19,file="covid19.csv")
+write.csv(covid19,file=gzfile("covid19.csv.gz",compression=9))
