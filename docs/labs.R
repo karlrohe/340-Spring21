@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Chapter 2 Lab: Introduction to R
 
 # Basic Commands
@@ -2053,5 +2052,3 @@ table(km.clusters,hc.clusters)
 hc.out=hclust(dist(pr.out$x[,1:5]))
 plot(hc.out, labels=nci.labs, main="Hier. Clust. on First Five Score Vectors")
 table(cutree(hc.out,4), nci.labs)
-
->>>>>>> e8620dd172db0eaae8a7e1ee8483ee49fc99685c
