@@ -6,14 +6,6 @@
 *.Rproj
 **/.Rhistory
 **/.RData
-<<<<<<< HEAD
 
 # mac temp files
 **/.DS_Store
-=======
-**/rsconnect/
-
-# mac temp files
-**/.DS_Store
->>>>>>> e8620dd172db0eaae8a7e1ee8483ee49fc99685c
-.Rproj.user

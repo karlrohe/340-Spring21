@@ -1,0 +1,13 @@
+name: BLS_Unemployment
+title: BLS_Unemployment
+username:
+account: bwu62
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3304301
+bundleId: 3907948
+url: https://bwu62.shinyapps.io/BLS_Unemployment/
+when: 1606373530.88037
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: getData.R|plot.R|README.md|unemployment.gif|raw
