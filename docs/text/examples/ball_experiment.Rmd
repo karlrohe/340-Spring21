@@ -1,0 +1,29 @@
+---
+title: "Ball_experiment"
+output: html_document
+---
+
+
+We are going to count the number of times a ball bounces in a video.  It's pretty hard.  There are two different types of treatment, odd and even, depending upon when your birthday is.  If you have an even birthday, count the number of times the people with white t-shirts *bounce the ball* (in a pass or to themselves). If you have an odd birthday, just observe the video.  Note, the video instructs you to count *white  passes*; ignore that. See discussion for video.   
+
+```{r eval = F, echo = F}
+library(tidyverse)
+# ball_experiment = tibble(group = "even", answer = 1:10, count = rep(0,10))
+# ball_experiment = edit(ball_experiment)
+```
+
+The rest of this section might look silly or simplistic.  Please stick with it. It will soon get more complicated and this will help us to understand those more complicated settings.
+
+
+
+**World**: Why did someone make up this experiment?  Why is it (kinda) well known? There is something in the world that we want to understand. What is that thing?   
+
+**World**: In the world, to do this experiment, each person was (kinda) *randomly assigned* to a group (via their birthday).  Because of that random assignment, any correlations are causally due to the group assignment and not due to anything else. Why? How could assignment be poorly performed such that we don't get to make such conclusions?
+
+**Data**: We collected this data to help us understand that part of the world.  From all this data, we are going to get one number, a "test statistic". This statistic is going to summarize our data.
+
+**Model**: We need a probability model to help us say what "no correation" means.  In particular, even if there is no causal effect, we might still witness a positive correlation simply due to chance.  
+
+**Model**: A key assumption that we are going to make, is a key assumption that is made throughout statistical inference. We are going to assume that everyone's answer is *independent*.  This is a fundamental assumption throughout all of statistical inference.  Each person's responses is not "influenced" by anyone elses.  For example, no one is talking about the experiment, sharing answers. 
+
+

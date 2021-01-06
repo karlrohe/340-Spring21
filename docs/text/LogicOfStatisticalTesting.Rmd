@@ -58,16 +58,17 @@ The above logic performs a Monte Carlo simulation under a hypothesized reality. 
 
 If you have learned a little bit about hypothesis testing before this class, then the above logic might look very strange.  However, if scientists had "electronic computers" when they first started doing statistics, then this is exactly what they would have done and it is exactly what you would have been taught.  However, when us humans started doing statistics, it was very hard to perform simulations.  So, we came up with mathematical formulas to approximate the above logic.  Those formulas are the things you might have previously learned.  Once you understand the logic above, I hope that you can return to those formulas and find a deeper understanding for them.  At that point, the formulas are great!  They are fast and nimble; much easier than writing a new simulation for every different variation.
 
-## Example: Bouncing Ball Experiment.
+## Example  
 
-We are going to count the number of times a ball bounces in a video.  It's pretty hard.  There are two different types of treatment, odd and even, depending upon when your birthday is.  If you have an even birthday, count the number of times the people with white t-shirts *bounce the ball* (in a pass or to themselves). If you have an odd birthday, just observe the video.  Note, the video instructs you to count *white  passes*; ignore that. See discussion for video.   
+[Let's do an experiment](examples/ball_experiment.html).
 
-```{r}
 
-```
+## Comparing Bouncing Balls to odd birthdays
 
 The Odd Birthday example and the Bouncing Ball Experiment are very different in the way that they think of the world.  In the experiment, you were "randomly" assigned to a treatment group.  As such, *correlation implies causation*.  This is not something that is "in the data".  This is something that is "in the world" and "in our model".
 
+
+## Power: the probability that you reject the null hypothesis
 
 If you think the percentage of odd dates is greater than 50%, roughly what would that number be?  How many samples would you need to see this difference?  Note that "seeing a difference" is random!  Even if there is a difference, sometimes you won't see it due to random chance. The probability that we detect the difference is called the [power](https://en.wikipedia.org/wiki/Power_(statistics)) of the test. These ideas are important when you are designing an experiment; you want to make sure that your experiment succeeds!   How many samples would we need, in order to make the power in the Odd Birthdays experiment at least 80%?  Do some simulations!
   

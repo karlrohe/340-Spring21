@@ -5,6 +5,41 @@ date: "March 22, 2020"
 output: html_document
 ---
 
+We encourage you to go out and find new and exciting data sets.  
+
+Groups up to 4.  
+
+
+  
+  
+You will be graded based upon:
+
+
+  
+  
+the interestingness of your application,
+the appropriateness of your methods,
+the interpretation of the results,
+and the appropriateness of your conclusions.
+￼
+
+While there are no hard limits, your entire document should be roughly 2000 words +/- 500 words.
+
+Learning objectives
+Identify an interesting problem that can be partially addressed with the tools in this course.
+Gather, clean, and process relevant data.
+Use the methodological tools from the course to create a partial answer. Interpret the “output”, diagnose the sensitivities, and illustrate with friendly visualizations.
+Communicate your results to a general audience.
+Critically addresses the limitations of the study and the statistical conclusions.
+
+
+
+
+
+
+
+
+
 This is a slow project, like [slow food](https://en.wikipedia.org/wiki/Slow_Food).  This project will take time and energy over a prolonged time period.  Inside of this time period, it will require reflection on your curiosities and the class material.  Please be patient with your selves. 
 
 Great projects start from a place of genuine curiosity.  As you read this, try to imagine things that *might* be measured and easily accessible AND which interest you.

@@ -1,0 +1,63 @@
+---
+title: "Discussion Problems for Monte Carlo"
+output: html_document
+---
+
+
+
+Let $X$ be the average of 1000 random variables "independent and identically distributed" (iid) random variables.  Using different distributions for the original 1000, make a histogram of 1,000,000 $X$'s.  
+
+For this one, we don't need to check_if_X_in_A.  We just need to generate a bunch of $X$'s.  We can still use the same code...
+
+
+
+```{r echo= F}
+library(tidyverse)
+library(purrr)
+
+# First, write a function to simulate X
+simulate_X = function(){
+  a_bunch_of_random_variables = rbernoulli(10000, .3)
+  # a_bunch_of_random_variables = rbernoulli(10000, .6)
+  # a_bunch_of_random_variables = now do, binomial, geometric, and poisson.
+  X = mean(a_bunch_of_random_variables)
+  return(X)
+}
+
+
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 10000
+monte_carlo = data.frame(replicate = 1:r, 
+                     X = rep(NA,r)) 
+for(i in 1:r){
+  monte_carlo$X[i] = simulate_X()
+}
+
+hist(monte_carlo$X,breaks = 80, freq = F)
+
+Z = (monte_carlo$X - mean(monte_carlo$X))/sd(monte_carlo$X)
+hist(Z,breaks = 80, freq = F)
+xseq = seq(-4,4,len=100) 
+lines(xseq,  dnorm(xseq))
+```
+
+
+What is this code doing?  If it isn't clear, fiddle with it.
+
+```{r}
+# Bernoulli:
+pseq = seq(.01,.99,len = 100)
+GeometricMean = rep(NA, 100)
+for(i in 1:100){
+  GeometricMean[i] = rgeom(10000,pseq[i]) %>% mean
+}
+
+plot(pseq, GeometricMean)
+plot((1/pseq)-1, 
+     GeometricMean, 
+     log = "xy")
+abline(0,1)
+```
+
+

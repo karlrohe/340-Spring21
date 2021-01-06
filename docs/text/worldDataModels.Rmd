@@ -9,13 +9,15 @@ output:
 
 These notes weave together a basic understanding for doing science with data. 
 
-**There is a trichotomy between world, data, and models.**
+In the fabric of these notes, we will make sense of statistical inference as a know-how that synthesizes your understanding of the world,  your data, and your model.
 
-**Science lives in the world. Estimators live with data. Models live in your head.**
+**There is a trichotomy between world, measurements, and models.**
 
-**Data let us see the world. Estimators let us see our data. Models let us see our estimators.**
+**We want to see the world.  So,  we first summarize the world by taking measurements of the world. Then, we summarize our measurements with a statistic. Finally, a model lets us see the world,  through our measurements and statistics. While these steps happen sequentially in time, statistical inference in the final step requires all three to align, at the same time.**
 
-In the fabric of these notes, we will make sense of statistical inference as a know-how that synthesizes your understanding of your world,  data, and model. 
+**Science lives in the world. Statistics live with measurements. Models live in your head.**
+
+Why is data science a misnomer? 
 
 [Data science](DataScience.pdf).
 
@@ -23,13 +25,16 @@ There are five types of statistical practice that we will touch on. We will call
 
 1) Experiments    
 2) Sampling  
-3)  Exploration  
+3) Exploration  (my favorite)  
 4) Prediction  
 5) Observational data analysis
 
 **Experiments**
 
-Sometimes, correlation does imply causation!  This requires that the "treatment" is somehow randomly allocated.  The best example is in a randomized and controlled experiment.
+Wouldn't it all be so easy if correlation implied causation?  
+Well, good news!  Sometimes, it does!  *Sometimes*, correlation implies causation.  
+
+This requires that the "treatment" is somehow randomly allocated.  The best example is in a randomized, placebo controlled, double-blind experiment.
 
 **Example experiment:**  Thirty milk-producing cows are randomly split into two groups of fifteen (treatment vs control).  The treatment group is given a multivitamin in their water.  The treatment group is not.  Over the course of a year, the average amount of milk they produce each day is given below (in pounds).  We want to know if the multivitamin increases milk production.  
 
@@ -41,8 +46,6 @@ control = c(68,63,48,57,70,66,90,44,105,67,59,96,77,79,33)
 What should we do?  
 
 What might be a different experiment?
-
-**Example:** ball counting video. Randomize the treatment.
 
 **Sampling   **   
 
@@ -80,17 +83,21 @@ To be discussed later.
 
 # Random Variables 
 
-Random variables are a way of expressing random numbers with mathematical notation.   [Here are the lecture notes.](figures/randomVariables.jpg)  
+[Random variables are a way of expressing random numbers with mathematical notation.](chapter_01_random_variables/random_variables.html)   
 
-[homework1](homework/01-GenerateRandomVariables.html).
+[homework1](chapter_01_random_variables/homework-01-generate_random_variables.html).
 
 # Monte Carlo Simulation.
 
-Suppose you have a complicated random variable or random process $X$ and you want to know how often $X$ has a certain property $A$.  For example, $X$ could be a number and $A$ could be the property that $X>5$ or $X$ could be a random social network and $A$ could be the property two particular people are friends in that social network.  We write $X \in A$ if $X$ has the property.  We want to know $P(X \in A)$.  As we will see in the next chapters, these are the sorts of probabilities that needed to test hypothesis and create confidence intervals. If you have ever used a Z-table before, it gives you such probabilities for one type of random variable $X$ and one type of set $A$. 
+Suppose you have a complicated random variable or random process $X$ and you want to know how often $X$ has a certain property $A$.  For a simple example, $X$ could be a number and $A$ could be the property that $X>5$. This type of property $A$example is going to be very important in the next chapter. 
 
-[Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) is a way to use a computer to approximate this probability.  The idea is simple.  Simulate the random variable $X$ with your computer.  Then, check if $X$ has that property.  If you can do this 10,000 times, then the proportion of those 10,000 times that $X$ has property $A$ is an estimate of $P(X \in A)$.  Monte Carlo is a key idea for this course.  We will use it again and again and again.  
+We write $X \in A$ if $X$ has the property $A$.  We want to know $P(X \in A)$.  As we will see in the next chapters, these are the sorts of probabilities that needed to test hypothesis and create confidence intervals. For example, you have ever used a Z-table before, it gives you such probabilities for one type of random variable $X$ and one type of set $A$. 
 
-**[Monte Carlo Examples](MonteCarloExamples.html)**
+[Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) is a way to use a computer to "compute" the probability $P(X \in A)$. The idea is simple.  Simulate the random variable $X$ with your computer.  Then, check if $X$ has that property.  If you can do this simulation lots of times, then the proportion of those simulations for which $X$ has property $A$ is an estimate of $P(X \in A)$.  Monte Carlo is a key idea for this course.  We will use it again and again and again.  
+
+[Monte Carlo](chapter_02_monte_carlo/monte_carlo.html)
+
+[Homework](chapter_02_monte_carlo/homework-02-monte_carlo.html)
 
 
 

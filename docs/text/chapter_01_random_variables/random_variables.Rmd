@@ -1,0 +1,166 @@
+---
+title: "Random variables"
+output: html_document
+---
+
+These are random variables:
+
+1)  Does a coin flip comes up heads?  
+2)  In the Covid-19 vaccine trial, how many vaccinated individuals will become symptomatic with Covid-19?  How many in the placebo control group will?  
+3)  How many days until a light bulb burns out?  
+2)  How many fish will you catch tomorrow?   
+
+
+## Discrete random variables
+
+**Bernoulli random variables.**  
+
+Coin flips have two possible outcomes, heads or tails. Let $p$ be the probability that it comes up heads.  The coin flip is a Bernoulli($p$) random variable.  A fair coin is Bernoulli(.5).
+```{r}
+library(purrr)
+rbernoulli(1, p=.5) # the 1 indicates that we are only sampling 1 bernoulli random variable. 
+rbernoulli(1, p=.5)
+rbernoulli(1, p=.5)
+rbernoulli(1, p=.5)
+```
+
+**Binomial random variables.**  
+
+Suppose that there are 20,100 people that receive a vaccine and 20,000 people that recieve the placebo.  Then, whether or not an individual becomes symptomatic is a Bernoulli($p_{vaccine}$) or Bernoulli($p_{placebo}$) random variable, depending on whether they received the vaccine or the placebo.  If we presume that everyone's infection status is independent (e.g. they don't infect each other), then the total number of vaccinated individuals that become symptomatic is Binomial($size = 20100, p = p_{vaccine}$) and the number of individuals that received the placebo that become symptomatic is Binomial($size = 20000, p=p_{placebo}$).  As such, a Binomial random variable is ``the sum'' of independent Bernoulli random variables with the same $p$.  
+
+```{r}
+p_vaccine = .001
+p_placebo = .01
+rbinom(1, size = 20100, p = p_vaccine) # the 1 indicates that we are only sampling 1 binomial random variable. 
+
+# if we repeat the experiment, we get different results:
+rbinom(1, 20100, p_vaccine); rbinom(1, 20100, p_vaccine); rbinom(1, 20100, p_vaccine); rbinom(1, 20100, p_vaccine)
+
+rbinom(1, 20000, p_placebo); rbinom(1, 20000, p_placebo); rbinom(1, 20000, p_placebo); rbinom(1, 20000, p_placebo)
+
+```
+
+**Geometric random variable.**  
+
+One way to model the failure of a light bulb is to imagine that it is *memoryless*; the probability that it fails on any given day is independent of what has happened so far.  This means that it fails on day zero as Bernoulli($p$), where TRUE denotes failure. And, if it has not yet failed before any day $t$, then the probability it fails on day $t$ is *again* Bernoulli($p$).  Light bulb failures don't need to be *memoryless*, but this is a surprisingly powerful and simple modeling assumption for lots of various "waiting times," how long until something happens.  Under this memoryless model, the day of failure is the first in a sequence of independent Bernoulli($p$)'s to come up TRUE.  This is called Geometric($p$).  
+```{r}
+p = .0001
+rgeom(1,p); rgeom(1,p); rgeom(1,p); rgeom(1,p)
+```
+
+
+
+**Poisson random variable** 
+
+You are going fishing on Lake Monona tomorrow. How many fish are you going to catch?  
+
+- There are lots and lots and lots of fish in the lake.   
+- For each fish in the lake, we are going to catch it, or not.  Assign each fish an independent Bernoulli($p$) random variable to denote whether it gets caught. 
+- Suppose that no matter how many fish there are, you think you will catch around 5. 
+
+Denote the total number of fish as $N$.  Note that it should hold that $5 = Np$. Why is that?  This means that $p = 5/N$.
+
+The total number of fish that you will catch is Binomial($N,p$).  For really big $N$ ("infinite"), this is equivalent to another distribution, Poisson(5). 
+
+```{r}
+rpois(1,5); rpois(1,5); rpois(1,5); rpois(1,5)
+```
+
+## Let's get lots of random variables...
+
+Instead of putting 1 in the first argument to the functions, put how many replicates of the random variable you want. 
+```{r}
+rbernoulli(11, p=.5)
+rbinom(11, 20100, p_vaccine)
+rbinom(11, 20000, p_placebo)
+rgeom(11,p)
+rpois(11,5)
+```
+
+## Notation
+
+Let $X$ denote a random variable. We write $X \sim$ Bernoulli$(p)$ if $X$ has the distribution Bernoulli($p$). 
+
+$$ X \sim Bernoulli(p)$$
+$$ X \sim Binomial(size, p)$$
+$$ X \sim Geometric(p)$$
+$$ X \sim Poisson(\lambda)$$
+
+### Other distributions
+
+A number $x$ is in the *support of a random variable $X$* if the probability that $X=x$ is strictly greater than zero (i.e. $P(X = x)>0$ )  The *support of a random variable $X$* is all such numbers $x$.
+
+The above doesn't make much sense if you don't pay attention to upper and lower case!
+
+On this page, we have only discussed *discrete* random variables; this means that the support of each random variable has been a *discrete* set (e.g. the counting numbers).  
+
+There are lots of other [``named distributions'' for discrete random variables](https://en.wikipedia.org/wiki/List_of_probability_distributions#Discrete_distributions).   
+
+A distribution doesn't need to have a name! To make a discrete distribution, you must identify the support, then assign numbers (i.e. ``probabilities'') to these values. To ensure it is a proper probability distribution, the numbers must (1) be non-negative and (2) the sum to one over the entire support. If those things hold, then you have a probability distribution!
+
+
+## Continuous random variables  
+
+The random variables above are all "discrete random variables" because $X$ always had a "discrete set of possible outcomes" (e.g. $\{0,1,2,...\}$).  This section covers "continuous random variables".  These random variables are a little trickier.  
+
+**Normal or Gaussian random variables**
+
+This is probably the most well known distribution. It "looks like this":
+
+```{r echo = F}
+xseq = seq(-4,4,len=100) 
+plot(xseq,  dnorm(xseq), type="l", xlab = "x", ylab = "density", main = "Normal/Gaussian distribution")
+```
+
+Here is one sample:
+
+```{r}
+rnorm(1)
+```
+
+Here are 10 samples:
+
+```{r}
+rnorm(10)
+```
+
+The plot is showing the "density" of the standard normal distribution (mean zero, variance one).  This density is the function 
+$$f(x) = \frac{e^{x^2/2}}{\sqrt{2\pi}}. $$ 
+We write $X \sim N(0,1)$ if $X$ has that distribution; the zero and the one represent the mean and variance.  If you simulate a million $N(0,1)$ random variables and make their histogram, it looks like the density:
+
+```{r echo = F}
+X = rnorm(10^6)
+hist(X, breaks = 100)
+```
+
+
+
+This distribution comes up a lot in classical statistics because when you average a lot of random variables, then subtract their mean and divide by their standard deviation, then you get a random variable that has this distribution. It is very handy, because we can make $Z$-tables that give us numbers like 1.96 to make confidence intervals and hypothesis tests (perhaps you've heard of these things and also have bad dreams about the number 1.96 like I do!).
+
+However, in this class we will use Monte Carlo simulation (next chapter) as a much more powerful computational tool that means we don't have much use for this distribution!  Wild!  Right? No more bad dreams about 1.96!
+
+
+**Exponential distribution**
+
+This is a continuous distribution that is often used to model "waiting times".  It is similar to the geometric distribution, but for the fact that it is continuous. Here are ten:
+
+```{r}
+rexp(10)
+```
+
+Here is a histogram of one million:
+
+```{r}
+x = rexp(10^6)
+hist(x, breaks = 100)
+```
+
+### There are lots of other named distributions.
+
+Here is [a list of a bunch of continuous distributions](https://en.wikipedia.org/wiki/List_of_probability_distributions#Continuous_distributions) that have names. 
+
+## Things can get way more complicated!
+
+In a lot of settings, we want to think about a random variable that is a function of multiple other random variables.  This can get really complicated.  Thankfully, the next section shows an easy way to handle these situations.
+
+In my research, I study social networks.  There are lots of probability models for social networks.  You get to see who is friends with who, and that's it!  Then, we apply all sorts of wild functions to these networks (e.g. compute eigenvectors, if you know what those are).  It is really difficult to handle these situations without the Monte Carlo tools in the next chapter.

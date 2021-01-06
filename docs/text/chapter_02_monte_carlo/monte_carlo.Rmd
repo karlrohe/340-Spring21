@@ -1,0 +1,209 @@
+# Monte Carlo 
+
+In lots of settings, we have some random variable $X$ and some property $A$ and we want to know the probability that $X$ has property $A$.  
+
+
+*Starting question*:    
+Suppose that $X \sim Geometric(p = .0001)$.  Consider the probability that $X$ is greater than $20,000$, 
+$$P(X > 20,000).$$ 
+Is this a random number or a fixed number?  
+
+
+In the above setting, the property $A$ can be written as the interval $(20,000, \infty]$. We can then write $P(X >20,000) = P(X \in A)$.  
+
+In classical probability classes, we would do lots of math to compute  $P(X \in A)$.  The problem is that you quickly run into problems that you can't solve.  
+
+For example, if you've had a statistics class before, then perhaps you are familiar with the standard normal distribution (mean zero and standard deviation one).  We write this $X \sim N(0,1)$. You've probably looked up $P(X< -1.96)$ or $P(X \in (-1.96, 1.96))$ or something similar in a Z-table.  You look it up in a table, because it is really hard to actually compute those probabilities without using a computer.  
+
+In this class, we are going to do Monte Carlo simulation to "compute" these probabilities.  This solution is great because it can be easily extended to problems that are much much harder and far more interesting (in my opinion).
+
+To compute $P(X \in A)$ with Monte Carlo, you need to be able to (1) generate/simulate $X$ and (2) evaluate whether the generated "sample" satisfies $X \in A$.  Then, you repeat that process $r$ times, where $r$ stands for replicates.  Your "estimate" of $P(X \in A)$ is the proportion of those $r$ replicates for which $X \in A$.  
+
+In my research, I do this all the time.  At the end of every paper, there is a "simulation section" in which we use Monte Carlo to compute probabilities which are simply too hard to exactly compute with mathematics.
+
+## Example 1:  The Z-table.
+
+Let $X \sim N(0,1)$.  Use Monte Carlo to estimate $P(X > 1.96)$. 
+
+
+```{r cache = T}
+library(dplyr)
+# First, write a function to simulate X
+simulate_X = function(){
+  return(rnorm(1))
+}
+
+# Second, write a function to evaluate whether X \in A.
+check_if_X_in_A = function(X){
+  return(X  > 1.96)
+}
+
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 10000
+monte_carlo = data.frame(replicate = 1:r, 
+                     X = rep(NA,r), 
+                     X_in_A = rep(NA, r)) 
+for(i in 1:r){
+  monte_carlo$X[i] = simulate_X()
+  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+ 
+## you could also write this as:   
+#  monte_carlo[i,2] = simulate_X()
+#  monte_carlo[i,3] = check_if_X_in_A(monte_carlo[i,2])
+}
+
+monte_carlo = as_tibble(monte_carlo)
+monte_carlo %>% summarise(mean(X_in_A))
+```
+
+
+If you have had a classical Intro Statistics class before, the value 1.96 comes up a lot.  Why is that?   
+
+Note that pnorm is how you look up values in a [Z-table](figures/ztable.jpg) using R.  Compare the simulated values to the true value
+
+```{r}
+pnorm(-1.96)
+```
+
+Increase r to 100000. How much closer is the Monte Carlo estimate?
+
+
+
+## Example 2: Geometric random variables can be big.  
+
+Let $X \sim Geometric(p = .0001)$.  Compute $P(X > 20,000)$ with Monte Carlo.
+
+All you need to do is copy and paste the code from above. Then, change the two functions ```simulate_X``` and ```check_if_X_in_A```.  Then, run the code. That's it!  Here it is:
+
+```{r cache = T}
+library(dplyr)
+# First, write a function to simulate X
+simulate_X = function(){
+  return(rgeom(1,prob = .0001))
+}
+
+# Second, write a function to evaluate whether X \in A.
+check_if_X_in_A = function(X){
+  return(X > 20000)  # remember to not put the comma in 20,000.  R doesn't like that!
+}
+
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 1000
+monte_carlo = data.frame(replicate = 1:r, 
+                     X = rep(NA,r), 
+                     X_in_A = rep(NA, r)) 
+for(i in 1:r){
+  monte_carlo$X[i] = simulate_X()
+  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+}
+
+monte_carlo = as_tibble(monte_carlo)
+monte_carlo %>% summarise(mean(X_in_A))
+```
+
+What happens if you repeat your Monte Carlo simulation?  Does the probability change?  Is $P(X > 20,000)$ random?  What happens if you simulate the experiment 100,000 times instead of 1,000? 
+
+
+## Example 3:  Central Limit Theorem.
+
+Let $X$ denote the proportion of 100 Bernoulli(1/3) random variables that come up true.  Compute $P(X>.426)$ via Monte Carlo. 
+
+Like every problem in this chapter, first copy and paste the code.  Then, change the two key functions.  ```simulate_X``` is a little more complicated in this one!
+
+```{r cache = T}
+library(dplyr)
+library(purrr)
+# First, write a function to simulate X
+simulate_X = function(){
+  lots_of_random_variables = rbernoulli(n = 100, p=1/3)
+  X = mean(lots_of_random_variables)
+  return(X)
+}
+
+# Second, write a function to evaluate whether X \in A.
+check_if_X_in_A = function(X){
+  return(X > .426)  # remember to not put the comma in 20,000.  R doesn't like that!
+}
+
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 10000
+monte_carlo = data.frame(replicate = 1:r, 
+                     X = rep(NA,r), 
+                     X_in_A = rep(NA, r)) 
+for(i in 1:r){
+  monte_carlo$X[i] = simulate_X()
+  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+}
+
+monte_carlo = as_tibble(monte_carlo)
+monte_carlo %>% summarise(mean(X_in_A))
+```
+
+
+Did you ever learn the old school way to compute  $P(X>.426)$ using a Z-table?  If that's fun to recall, here is how you would do it.  If it gives you bad dreams, please skip ahead to "Two other things that we can investigate with Monte Carlo" because you don't need to know this anymore!  
+
+Define the random variable $Z = (X - 1/3)/SE(X)$, where $SE(X)$ is the standard error of $X$. Perhaps you might have used different notation?  Recall that $Z$ is approximately normally distributed with mean zero and variance one (Central Limit Theorem).  So, if we can solve for the question mark: $P(X> .426) = P(Z> ?)$, then we can look up $P(Z>?)$ in a Z-table.  
+
+$$P(X> .426) = P\left(\frac{X-1/3}{SE(X)} > \frac{.426 - 1/3}{SE(X)}\right)= P\left(Z > \frac{.426 - 1/3}{SE(X)})\right)$$
+Now, we need to get $SE(X)$. This is often the hard part and you might have learned in different ways.  Here is the answer: $SE(X)=\sqrt{\frac{\frac{1}{3}\frac{2}{3}}{100}} \approx  .0471$.  So, the question mark becomes 
+$$? = \frac{.426 - 1/3}{SE(X)} \approx \frac{.426 - 1/3}{.0471} \approx 1.96$$.
+
+So, now we need to look up $P(Z > 1.96)$ in a Z-table.  You may recall this value is roughly .025.  It is used to create two sided 95% confidence intervals. You don't need to know how to do it in R, but if you are curious, here is the function:
+```{r}
+1 - pnorm(1.96)
+```
+
+##  Two other things that we can investigate with Monte Carlo
+
+Up until now, we've used Monte Carlo to compute $P(X \in A)$.  We can also use Monte Carlo to investigate two other quantities.  
+
+###  First other thing to compute with Monte Carlo:  "Long run averages"
+
+Suppose you generated a million $X$ values and then took their average.  This is a Monte Carlo estimate of what we call "the expected value of $X$," written $E(X)$ or, if we want to be super fancy $\mathbb{E}(X)$.  
+
+**Example:**
+
+```{r cache = T}
+library(dplyr)
+# First, write a function to simulate X
+simulate_X = function(){
+  return(rnorm(1))
+}
+
+# Second, write a function to evaluate whether X \in A.
+check_if_X_in_A = function(X){
+  return(X < -1.96)
+}
+
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 1000
+monte_carlo = data.frame(replicate = 1:r, 
+                     X = rep(NA,r), 
+                     X_in_A = rep(NA, r)) 
+for(i in 1:r){
+  monte_carlo$X[i] = simulate_X()
+  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+ 
+## you could also write this as:   
+#  monte_carlo[i,2] = simulate_X()
+#  monte_carlo[i,3] = check_if_X_in_A(monte_carlo[i,2])
+}
+
+monte_carlo = as_tibble(monte_carlo)
+monte_carlo %>% summarise(mean(X_in_A))
+```
+
+
+###  Second thing to compute with Monte Carlo: "The histogram"
+
+Suppose you generated a million $X$ values and then made their histogram.  This is a Monte Carlo estimate of what we call "the distribution of $X$." You will do this in your homework for a super fun random variable $X$.    
+
+## These examples can quickly get very complicated.
+
+Perhaps these random variables are not that complicated.  I promise you that we will have more complicated examples (in your homework this week!).  On the other hand, if you think the above examples are hard to compute by hand, I agree.  I think that even for these "simple" examples, it is far easier to write a Monte Carlo Simulation. 
+
+Fun story:  Before trying to prove a theorem, it is nice to know whether or not it is true (isn't that a contradiction?!). A common approach is to first use Monte Carlo to see if your theorem "appears true."  Then, if the simulations look good, go ahead and try to prove it! Even super famous and super brilliant mathematician/computer scientist/statistician/data scientist/graph theorist/network scientist [Dan Spielman](http://www.cs.yale.edu/homes/spielman/) performs simulations before trying to prove a theorem. 
