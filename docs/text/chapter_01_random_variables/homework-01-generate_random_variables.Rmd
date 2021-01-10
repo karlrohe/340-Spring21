@@ -15,8 +15,6 @@ Here are the function names: `rbernoulli, rbinom, rgeom, rpois`. Think of the "r
 
 Reading the help files is hard at first, but it is an essential skill.  Have a look at their help files.  What are the 8 headings?
 ```{r}
-library(purrr)
-?rbernoulli
 ?rbinom
 ?rgeom
 ?rpois
@@ -27,8 +25,9 @@ library(purrr)
 ### 1b) Generate a single copy of each random variable.
 
 ```{r}
-# generate a single Bernoulli random variable:
 
+# generate a single Bernoulli random variable:
+library(purrr)
 rbernoulli(n = 1, p=.5) 
 
 # generate a single Binomial random variable:

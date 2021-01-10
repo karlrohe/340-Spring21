@@ -394,8 +394,8 @@ check_if_X_in_A = function(X){
 # Let&#39;s arrange the simulations in a data.frame with three columns
 r = 10000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -410,12 +410,16 @@ monte_carlo %&gt;% summarise(mean(X_in_A))</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(X_in_A)`
 ##            &lt;dbl&gt;
-## 1         0.0233</code></pre>
+## 1         0.0264</code></pre>
 <p>If you have had a classical Intro Statistics class before, the value 1.96 comes up a lot. Why is that?</p>
 <p>Note that pnorm is how you look up values in a <a href="figures/ztable.jpg">Z-table</a> using R. Compare the simulated values to the true value</p>
-<pre class="r"><code>pnorm(-1.96)</code></pre>
+<pre class="r"><code>#don&#39;t worry about this code.
+pnorm(-1.96)</code></pre>
 <pre><code>## [1] 0.0249979</code></pre>
-<p>Increase r to 100000. How much closer is the Monte Carlo estimate?</p>
+<pre class="r"><code>#or
+1 - pnorm(1.96)</code></pre>
+<pre><code>## [1] 0.0249979</code></pre>
+<p>Exercise: Increase r to 100000. How much closer is the Monte Carlo estimate?</p>
 </div>
 <div id="example-2-geometric-random-variables-can-be-big." class="section level2">
 <h2>Example 2: Geometric random variables can be big.</h2>
@@ -436,8 +440,8 @@ check_if_X_in_A = function(X){
 # Let&#39;s arrange the simulations in a data.frame with three columns
 r = 1000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -448,7 +452,7 @@ monte_carlo %&gt;% summarise(mean(X_in_A))</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(X_in_A)`
 ##            &lt;dbl&gt;
-## 1          0.137</code></pre>
+## 1          0.141</code></pre>
 <p>What happens if you repeat your Monte Carlo simulation? Does the probability change? Is <span class="math inline">\(P(X &gt; 20,000)\)</span> random? What happens if you simulate the experiment 100,000 times instead of 1,000?</p>
 </div>
 <div id="example-3-central-limit-theorem." class="section level2">
@@ -473,8 +477,8 @@ check_if_X_in_A = function(X){
 # Let&#39;s arrange the simulations in a data.frame with three columns
 r = 10000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -486,12 +490,19 @@ monte_carlo %&gt;% summarise(mean(X_in_A))</code></pre>
 ##   `mean(X_in_A)`
 ##            &lt;dbl&gt;
 ## 1         0.0268</code></pre>
-<p>Did you ever learn the old school way to compute <span class="math inline">\(P(X&gt;.426)\)</span> using a Z-table? If that’s fun to recall, here is how you would do it. If it gives you bad dreams, please skip ahead to “Two other things that we can investigate with Monte Carlo” because you don’t need to know this anymore!</p>
+<div id="the-old-school-way-of-computing-this-special-case" class="section level4">
+<h4>The old school way of computing this special case</h4>
+<p>This example is a super important special case for a random variable. That’s because <span class="math inline">\(X\)</span> is the average of lots of independent random variables (100 Bernoulli’s).</p>
+<p>Because of this, we can apply the Central Limit Theorem.</p>
+<p>This theorem says that <span class="math inline">\(X\)</span>, minus its “expected value” and divided by its “standard error” is normally distributed with mean zero and variance 1.</p>
+<p>Did you ever learn about this? If you had a statistics class before 240, you probably did. Did you ever learn the old school way to compute <span class="math inline">\(P(X&gt;.426)\)</span> using a Z-table?</p>
+<p>If it gives you bad dreams to recall this, don’t worry. We have Monte Carlo so that you don’t need to do this calculations!</p>
 <p>Define the random variable <span class="math inline">\(Z = (X - 1/3)/SE(X)\)</span>, where <span class="math inline">\(SE(X)\)</span> is the standard error of <span class="math inline">\(X\)</span>. Perhaps you might have used different notation? Recall that <span class="math inline">\(Z\)</span> is approximately normally distributed with mean zero and variance one (Central Limit Theorem). So, if we can solve for the question mark: <span class="math inline">\(P(X&gt; .426) = P(Z&gt; ?)\)</span>, then we can look up <span class="math inline">\(P(Z&gt;?)\)</span> in a Z-table.</p>
 <p><span class="math display">\[P(X&gt; .426) = P\left(\frac{X-1/3}{SE(X)} &gt; \frac{.426 - 1/3}{SE(X)}\right)= P\left(Z &gt; \frac{.426 - 1/3}{SE(X)})\right)\]</span> Now, we need to get <span class="math inline">\(SE(X)\)</span>. This is often the hard part and you might have learned in different ways. Here is the answer: <span class="math inline">\(SE(X)=\sqrt{\frac{\frac{1}{3}\frac{2}{3}}{100}} \approx .0471\)</span>. So, the question mark becomes <span class="math display">\[? = \frac{.426 - 1/3}{SE(X)} \approx \frac{.426 - 1/3}{.0471} \approx 1.96\]</span>.</p>
 <p>So, now we need to look up <span class="math inline">\(P(Z &gt; 1.96)\)</span> in a Z-table. You may recall this value is roughly .025. It is used to create two sided 95% confidence intervals. You don’t need to know how to do it in R, but if you are curious, here is the function:</p>
 <pre class="r"><code>1 - pnorm(1.96)</code></pre>
 <pre><code>## [1] 0.0249979</code></pre>
+</div>
 </div>
 <div id="two-other-things-that-we-can-investigate-with-monte-carlo" class="section level2">
 <h2>Two other things that we can investigate with Monte Carlo</h2>
@@ -500,38 +511,39 @@ monte_carlo %&gt;% summarise(mean(X_in_A))</code></pre>
 <h3>First other thing to compute with Monte Carlo: “Long run averages”</h3>
 <p>Suppose you generated a million <span class="math inline">\(X\)</span> values and then took their average. This is a Monte Carlo estimate of what we call “the expected value of <span class="math inline">\(X\)</span>,” written <span class="math inline">\(E(X)\)</span> or, if we want to be super fancy <span class="math inline">\(\mathbb{E}(X)\)</span>.</p>
 <p><strong>Example:</strong></p>
+<p>Suppose that <span class="math inline">\(X \sim Poisson(\lambda = 10)\)</span>. What is <span class="math inline">\(\mathbb{E}(X)\)</span>? Well, simulate a bunch of <span class="math inline">\(X\)</span>’s, and then take their average!</p>
 <pre class="r"><code>library(dplyr)
 # First, write a function to simulate X
 simulate_X = function(){
-  return(rnorm(1))
+  return(rpois(n=1, lambda = 10))
 }
 
+# we don&#39;t need the second function this time!
 # Second, write a function to evaluate whether X \in A.
-check_if_X_in_A = function(X){
-  return(X &lt; -1.96)
-}
+# check_if_X_in_A = function(X){
+#   return(X &lt; -1.96)
+# }
 
 # Now, we are going to do it lots of times.  
 # Let&#39;s arrange the simulations in a data.frame with three columns
 r = 1000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
-  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
- 
-## you could also write this as:   
-#  monte_carlo[i,2] = simulate_X()
-#  monte_carlo[i,3] = check_if_X_in_A(monte_carlo[i,2])
-}
+  # monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+ }
 
 monte_carlo = as_tibble(monte_carlo)
-monte_carlo %&gt;% summarise(mean(X_in_A))</code></pre>
+# monte_carlo %&gt;% summarise(mean(X_in_A))
+monte_carlo %&gt;% summarise(mean(X))</code></pre>
 <pre><code>## # A tibble: 1 x 1
-##   `mean(X_in_A)`
-##            &lt;dbl&gt;
-## 1          0.026</code></pre>
+##   `mean(X)`
+##       &lt;dbl&gt;
+## 1      9.97</code></pre>
+<p>Exercise: What happens if we increase r?</p>
+<p>Exercise: If <span class="math inline">\(X \sim Poisson(\lambda = 5)\)</span>, then what is <span class="math inline">\(\mathbb{E}(X)\)</span>?</p>
 </div>
 <div id="second-thing-to-compute-with-monte-carlo-the-histogram" class="section level3">
 <h3>Second thing to compute with Monte Carlo: “The histogram”</h3>

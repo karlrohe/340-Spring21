@@ -42,8 +42,8 @@ check_if_X_in_A = function(X){
 # Let's arrange the simulations in a data.frame with three columns
 r = 10000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -63,10 +63,13 @@ If you have had a classical Intro Statistics class before, the value 1.96 comes 
 Note that pnorm is how you look up values in a [Z-table](figures/ztable.jpg) using R.  Compare the simulated values to the true value
 
 ```{r}
+#don't worry about this code.
 pnorm(-1.96)
+#or
+1 - pnorm(1.96)
 ```
 
-Increase r to 100000. How much closer is the Monte Carlo estimate?
+Exercise:  Increase r to 100000. How much closer is the Monte Carlo estimate?
 
 
 
@@ -92,8 +95,8 @@ check_if_X_in_A = function(X){
 # Let's arrange the simulations in a data.frame with three columns
 r = 1000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -131,8 +134,8 @@ check_if_X_in_A = function(X){
 # Let's arrange the simulations in a data.frame with three columns
 r = 10000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
   monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
@@ -142,8 +145,18 @@ monte_carlo = as_tibble(monte_carlo)
 monte_carlo %>% summarise(mean(X_in_A))
 ```
 
+#### The old school way of computing this special case
 
-Did you ever learn the old school way to compute  $P(X>.426)$ using a Z-table?  If that's fun to recall, here is how you would do it.  If it gives you bad dreams, please skip ahead to "Two other things that we can investigate with Monte Carlo" because you don't need to know this anymore!  
+This example is a super important special case for a random variable. That's because $X$ is the average of lots of independent random variables (100 Bernoulli's).  
+
+Because of this, we can apply the Central Limit Theorem. 
+
+
+This theorem says that $X$, minus its "expected value" and divided by its "standard error" is normally distributed with mean zero and variance 1.   
+
+Did you ever learn about this?  If you had a statistics class before 240, you probably did.  Did you ever learn the old school way to compute  $P(X>.426)$ using a Z-table?  
+
+If it gives you bad dreams to recall this, don't worry.  We have Monte Carlo so that you don't need to do this calculations!
 
 Define the random variable $Z = (X - 1/3)/SE(X)$, where $SE(X)$ is the standard error of $X$. Perhaps you might have used different notation?  Recall that $Z$ is approximately normally distributed with mean zero and variance one (Central Limit Theorem).  So, if we can solve for the question mark: $P(X> .426) = P(Z> ?)$, then we can look up $P(Z>?)$ in a Z-table.  
 
@@ -166,37 +179,40 @@ Suppose you generated a million $X$ values and then took their average.  This is
 
 **Example:**
 
+
+Suppose that $X \sim Poisson(\lambda = 10)$.  What is $\mathbb{E}(X)$?  Well, simulate a bunch of $X$'s, and then take their average!
 ```{r cache = T}
 library(dplyr)
 # First, write a function to simulate X
 simulate_X = function(){
-  return(rnorm(1))
+  return(rpois(n=1, lambda = 10))
 }
 
+# we don't need the second function this time!
 # Second, write a function to evaluate whether X \in A.
-check_if_X_in_A = function(X){
-  return(X < -1.96)
-}
+# check_if_X_in_A = function(X){
+#   return(X < -1.96)
+# }
 
 # Now, we are going to do it lots of times.  
 # Let's arrange the simulations in a data.frame with three columns
 r = 1000
 monte_carlo = data.frame(replicate = 1:r, 
-                     X = rep(NA,r), 
-                     X_in_A = rep(NA, r)) 
+                         X = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
 for(i in 1:r){
   monte_carlo$X[i] = simulate_X()
-  monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
- 
-## you could also write this as:   
-#  monte_carlo[i,2] = simulate_X()
-#  monte_carlo[i,3] = check_if_X_in_A(monte_carlo[i,2])
-}
+  # monte_carlo$X_in_A[i] = check_if_X_in_A(monte_carlo$X[i])
+ }
 
 monte_carlo = as_tibble(monte_carlo)
-monte_carlo %>% summarise(mean(X_in_A))
+# monte_carlo %>% summarise(mean(X_in_A))
+monte_carlo %>% summarise(mean(X))
 ```
 
+Exercise:  What happens if we increase r?  
+
+Exercise:  If $X \sim Poisson(\lambda = 5)$, then what is $\mathbb{E}(X)$?
 
 ###  Second thing to compute with Monte Carlo: "The histogram"
 

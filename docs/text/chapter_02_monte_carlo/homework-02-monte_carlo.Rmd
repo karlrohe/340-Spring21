@@ -9,18 +9,18 @@ output: html_document
 
 ###  1) Binomial and Poisson distribution
 
-Let $X_1 \sim Binomial(n = 10, p = 5/10)$. Compute $P(X_1>9)$.
+Let $X  \sim Binomial(n = 10, p = 5/10)$. Compute $P(X >9)$.
 
 ```{r}
 # Copy and paste the code from the top of chapter 2.
 # Then, edit the functions simulate_X and check_if_X_in_A
 ```
 
-Let $X_2 \sim Binomial(n = 50, p = 5/50)$. Compute $P(X_2 > 9)$.
+Let $X  \sim Binomial(n = 50, p = 5/50)$. Compute $P(X  > 9)$.
 
-Let $X_3 \sim Binomial(n = 100, p = 5/100)$. Compute $P(X_3>9)$.
+Let $X  \sim Binomial(n = 100, p = 5/100)$. Compute $P(X >9)$.
 
-Let $X_4 \sim Poisson(\lambda = 5)$. Compute $P(X_4>9)$.
+Let $X  \sim Poisson(\lambda = 5)$. Compute $P(X >9)$.
 
 
 ###  2) Binomial and Poisson distribution (cont)
@@ -34,7 +34,7 @@ Compare the four probabilities from the four parts. Relate this to the discussio
 
 **Part 1:** Using Example 1 in the [Monte Carlo lecture notes](monte_carlo.html), run the simulation using r = 1000, r = 10,000 and r = 100,000.   Compare the Monte Carlo estimates to their true values.  
 
-**Part 2:** If you repeat the above simulation, the Monte Carlo estimates change because they are random.  Does this mean that $P(X \in A)$ is random? 
+**Part 2:** If you repeat the above simulation, the Monte Carlo estimates change because they are random.  Does this mean that $P(X \in A)$ is random? Explain.
 
 
 
