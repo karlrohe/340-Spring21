@@ -7,7 +7,12 @@ output:
     number_sections: true
 ---
 
-These notes weave together a basic understanding for doing science with data. 
+
+These notes weave together a basic understanding for doing science with data, focusing on the role of statistical models and algorithms.  
+
+
+[What is data science?](http://pages.stat.wisc.edu/~karlrohe/dsthemes/)
+
 
 In the fabric of these notes, we will make sense of statistical inference as a know-how that synthesizes your understanding of the world,  your data, and your model.
 
@@ -83,19 +88,27 @@ To be discussed later.
 
 # Random Variables 
 
-[Random variables are a way of expressing random numbers with mathematical notation.](chapter_01_random_variables/random_variables.html)   
+Random variables are a way of expressing random numbers with mathematical notation.
+
+After [Chapter 1](chapter_01_random_variables/random_variables.html), you should be able to
+
+1) Identify random variables for basic things that we want to model.  
+2) Start to build richer models with basic random variables. 
+
 
 [homework1](chapter_01_random_variables/homework-01-generate_random_variables.html).
 
 # Monte Carlo Simulation.
 
-Suppose you have a complicated random variable or random process $X$ and you want to know how often $X$ has a certain property $A$.  For a simple example, $X$ could be a number and $A$ could be the property that $X>5$. This type of property $A$example is going to be very important in the next chapter. 
+Suppose you have a complicated random variable or random process $X$ and you want to know how often $X$ has a certain property $A$.  For a simple example, $X$ could be a number and $A$ could be the property that $X>5$. We write $X \in A$ if $X$ has the property $A$.  We want to compute $P(X \in A)$.  As we will see in the next chapters, we need these types of probabilities to test hypotheses and create confidence intervals. For example, you have ever used a Z-table before, it gives you such probabilities for one type of random variable $X$ and one type of set $A$. 
 
-We write $X \in A$ if $X$ has the property $A$.  We want to know $P(X \in A)$.  As we will see in the next chapters, these are the sorts of probabilities that needed to test hypothesis and create confidence intervals. For example, you have ever used a Z-table before, it gives you such probabilities for one type of random variable $X$ and one type of set $A$. 
+[Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) is a really fancy phrase to describe a super simple idea:  To "compute"  $P(X \in A)$, simulate the random variable $X$ with your computer.  Then, check if $X$ has that property. Do this simulation lots of times. The proportion of those simulations for which $X$ has property $A$ is an estimate of $P(X \in A)$.  Monte Carlo is a key idea for this course.  We will use it again and again and again.  
 
-[Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) is a way to use a computer to "compute" the probability $P(X \in A)$. The idea is simple.  Simulate the random variable $X$ with your computer.  Then, check if $X$ has that property.  If you can do this simulation lots of times, then the proportion of those simulations for which $X$ has property $A$ is an estimate of $P(X \in A)$.  Monte Carlo is a key idea for this course.  We will use it again and again and again.  
-
-[Monte Carlo](chapter_02_monte_carlo/monte_carlo.html)
+After [the chapter on Monte Carlo](chapter_02_monte_carlo/monte_carlo.html), you should know how to compute 
+(1) probabilities $P(X \in A)$ as frequencies
+(2) expectations $\mathbb{E}(X)$ as averages and
+(3) "distributions" as histograms 
+by simulating the random variable $X$.  These techniques are referred to as Monte Carlo simulation.
 
 [Homework](chapter_02_monte_carlo/homework-02-monte_carlo.html)
 
@@ -103,11 +116,18 @@ We write $X \in A$ if $X$ has the property $A$.  We want to know $P(X \in A)$.  
 
 # Testing; how do you know that you are not fooling yourself?
 
-Randomness creates all sorts of artifacts.  Sometimes, those artifacts look like "signal," leading us to make inferences that are false.  Hypothesis testing asks, "might we have observed this thing simply due to chance?"
+Randomness creates all sorts of artifacts.  Sometimes, those artifacts look like "signal," leading us to make inferences that are false.  Hypothesis testing asks, "might we have observed this thing simply due to chance?"  Asked another way, "could this pattern be an artifact of noise?"
 
 If you have learned about hypothesis testing before, buckle up!  We are going to use a more general formulation in this course, using Monte Carlo simulation.  If you have not heard of hypothesis testing, that's ok too!  
 
-[The logic of statistical testing via Monte Carlo Simulation](LogicOfStatisticalTesting.html)
+Either way, read the excerpt from Jordan Ellenberg's New York Times Best Selling book *How not to be wrong; the power of mathematical thinking* that should be posted in canvas.  It offers a fresh view of hypothesis testing. While it is not the main point of the reading, one of my favorite parts is how it relates the proof that $\sqrt{2}$ is irrational (the proof is given in the reading and it is surprisingly simple!) to the logic of statistical hypothesis testing.  We will have a reading quiz on the main points from the reading.
+
+
+After [the logic of statistical testing via Monte Carlo Simulation](LogicOfStatisticalTesting.html), you should know how to test a hypothesis with Monte Carlo.  This involves three steps.   
+1) Convert null hypothesis into a statistical model from which we can simulate (recall chapter 1).  
+2) Develop a test statistic $T$ and "surprising set" for $T$ based upon observed data and our understanding of the setting.   
+3) Compute $P(T \in SurprisingSet)$ with Monte Carlo to get a p-value (recall chapter 2).  
+
 
 [homework2](homework/02-TestAndEstimate.html).  Note that you can [change the web address](homework/02-TestAndEstimate.Rmd) to get the .Rmd code.  
 

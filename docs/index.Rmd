@@ -1,7 +1,12 @@
-# Stat 340: Introduction to Data Modeling II (aka World, Data, and Models)
-### Spring 2021
-## UW-Madison
-### Karl Rohe
+---
+title: "Stat 340: Introduction to Data Modeling II (aka World, Data, and Models)"
+author: "Karl Rohe"
+date: "Spring 2021"
+output: 
+  html_document:
+    number_sections: FALSE
+---
+
 email: first name and last name at stat dott wisc dott edu  
 office: 1239 MSC  
 [Syllabus](syllabus.pdf), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html).
@@ -10,18 +15,21 @@ office: 1239 MSC
 
 ### Week 1  
 #### Topics 
-1) This is a fun and important course because...      
-- This is not an intro course.  This course serves as a gateway to the advanced courses.  
-- This is not a math course.  This is a statistics course.  More specifically, it is an applied statistics course. 
-- Why should we study statistics?
+1) This is a fun and important course because this is not an intro course.  It serves as a gateway to the "advanced" courses.  Moreover, we get to play with data!
 2) [Go over syllabus](syllabus.pdf)
-3) Introductions to course aims and texts. [World, Data, Models](text/worldDataModels.html)
+3) Let's begin with an example from my lab's research:
+
+[![Murmuration](text/murmuration-Lecture/assets/thumbnail.jpeg)](text/murmuration-Lecture/index.html)
+
+4) [What is data science?](http://pages.stat.wisc.edu/~karlrohe/dsthemes/)
+5) I want you to begin to see data science as its own culture. It has a set of cultural practices to see the world with data.   
+  - these practices create data and software to study data. 
+  - moreover, these practices are emergent from the rich set of dependencies in the web of software and data.
+3) Why do we need statistical models?  What is the point of modeling? [World, Data, Models](text/worldDataModels.html)
 
 
 #### Lecture discussion questions
-1) What is your major?  
-1) Why are you in this class?
-3) What type of thing are you interested in studying?  Topics? Do you think you could find data that you would find interesting?
+What type of thing are you interested in studying?  Topics? Do you think you could find data that you would find interesting?
 
 
 #### Homework 

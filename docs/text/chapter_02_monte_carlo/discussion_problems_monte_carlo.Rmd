@@ -3,7 +3,7 @@ title: "Discussion Problems for Monte Carlo"
 output: html_document
 ---
 
-
+This is scrap content...  go below with caution. 
 
 Let $X$ be the average of 1000 random variables "independent and identically distributed" (iid) random variables.  Using different distributions for the original 1000, make a histogram of 1,000,000 $X$'s.  
 

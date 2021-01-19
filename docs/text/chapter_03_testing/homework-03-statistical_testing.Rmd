@@ -1,0 +1,62 @@
+---
+title: "Homework 3 for Stat 340; Statistical Testing"
+author: "Karl Rohe"
+output: html_document
+---
+
+
+
+
+###  1) What does *reductio ad unlikely* mean?
+
+It should take about a paragraph or two to explain this. 
+
+
+
+###  2) Are odd birthdays independent?
+
+a) What does it mean that odd birthdays (as discussed in the text) are independent?   
+b) The text says that it is **wrong** to assume odd birthdays are independent. Why is that?   
+c) The text says that it is still **reasonable** to assume odd birthdays are independent. Why is that?
+
+###  3) Green Bay Packers
+
+In last week's homework, we used Monte Carlo to compute the probability that the Packers would win 13 *or more* games out of 16 under (our best guess of) Olivia Munn's probability model. 
+
+We could imagine this as a statistical hypothesis test.  State the null hypothesis and the p-value. 
+
+### 4) Fraud detection 1   
+
+a) In the [fraud detection in coin flips example](LogicOfStatisticalTesting.html), suppose that you observe a longest run of 4 in a sequence of 200 coin flips.  What would the p-value be for the null hypothesis stated in the text?      
+b) Suppose that you obesrve a longest run of 5 in a sequence of 10,000 flips (instead of 200).  Make a histogram of the random variable $X$ and give the p-value.   
+
+
+### 5) Fraud detection 2 
+
+
+
+In the six sequences below, one of them is actually randomly generated from a fair coin.  Which one do yout think is?  Explain why?  
+
+Here, you are not graded on whether you get the right answer, but rather based upon your reasoning. You should fuse your own insights and guesses with the things you've learned thus far.
+
+```{r}
+
+KarlsFlip1 = "HTHTHTHTHTHTHTHTHTHTHTHTHTHTHTHTHHTHTHTHTHTHTHTTHTHTHTHTHTHTHHTHTHTHTHTHTHTHTHTHTHTHTHTHTHHTTHTHTHTHTHTHTHTHTHTHTHTHTHHTHTHTHTHTHTHTHTHTHTHTHTTHTHTHTHTHTHTHTHTHTHTHTHTHHTHTHTHTHTHTHTHTHTHTHTHHTHTHTHTH"
+
+KarlsFlip2 = "HHHTHTTTHHTHHTHHHTTTTHTHTHHTTHTHHHTHHTHTTTHTHHHTHTTTHTHTHHTHTHTTHTHHTHTHTTTHTHHHTHTHTTHTHTHHTHTHTHHHTHTTTHTHHTHTHTHHTTTHTHHTHHTTTTHTHTHHHTHTTHTHHTHTHTTHTHHTHTHHHTHHHTHTTTHTTHTTTHTHHHTHTHTTHTHHTHHTHTTT"
+
+KarlsFlip3 = "HHTHTHTTTHTHHHTHHTTTHTHHTHTTTHTHTHHTHTHTTHTHHHHHHTTTHTHTHHTHTTTHTHHTHTHTTTHTHHHTTHTTTHTHTHHHHTHTTHHTTTTTHTHHHTHTHTTTTTHHHTHHTHHTHHHTTTTHTHTHHHTHHTTTTTHTHHHTHTHTHTTTHTHHHTHTHTHTTHTHHTHTHTHTTTTHTHHHTHTH"
+
+KarlsFlip4 = "HTHHHHHHHTHTTHHTTHHHTHTHTTTHHTHHHTHHTTHTTTTTTTTTHTHHTTTTTHTHTHTHHTTHTTHTTTTTHHHTHTTTHTHTHHHTHTTTTHTHTHHTTHTHTTHHTHTHHHHTHTTHHTTHTTHTTHTHHHHHHTTTTTTHHHTTHTHHHHTTTHTTHHHTTHTHHTTTHHTHHTTTHTHHTHHHTHHTTHHH"
+
+KarlsFlip5 = "HHHHHHHHHHHTTTTTTTTTTTHHHHHHHHHHHHTTTTTTTTTTTHHHHHHHHHHHHHTTTTTTTTTTHHHHHHHHHHTTTTTTTTHHHHHHHHTTTTTTTHHHHHHHHHTTTTTTTTTHHHHHHHHTTTHHHHHHHHHHHTTTTTTTTTTTHHHHHHHHHHHHTTTTTTTTTTTHHHHHHHHHHHHHTTTTTTTTTTHH"
+
+KarlsFlip6 = "TTHTTTHTTTTTTTHTHTHTHTTHTTHTHHTHHTTTHHTHTTTHTHHTHHHTHTTHHTHHTTHTHTTTTHTHTTTHHTTTTTTTTHTHHTTHTTTTTTHTHTHTHTTTHTTHHTTHTTTHHTTTHTTHTTTTHTTTTHHTTTHTHTHHHTTTTTTHTHHTTTTTTTTTTTTHHHTTTHHHTTTHTTTHTHTTHTTTTTHT"
+```
+
+
+Here is a hint, hidden deep inside a story.
+
+In one sense, "independence" says that there are no patterns (of dependence).  But as we saw in last weeks homework, "independent" coin flips have a surprising pattern.  What other surprising (or unsurprising) patterns should independent coin flips have?
+
+I had a class in graduate school from Terry Speed (who was an expert witness in the OJ Simpson trial).  He said that a Las Vegas Casino had some electronic slot machines and they wanted to be sure that the random number generator was actually producing "random numbers".  This is important to them because, perhaps someone hacked the machines and knows how it is generating random numbers and could then use that to profit from the machines.  They asked him to consult (I don't know if he did).  Even though the machine could generate as many "random numbers" as one would want, it is very hard (i.e. impossible) to prove that they are independent.  In order to "test for independence" you first need to hypothesize about *how* they might be dependent.  So, all you can do is come up with new functions and know how they behave if things are actually independent.  The function in last weeks homework "longestRun" is a good test against humans because we are particularly biased against putting in long runs (it doesn't feel random!).  Put in language that you might have heard before, "we never accept the null hypothesis, we only *fail to reject the null hypothesis*".  Here, the null hypothesis is statistical independence and you can never accept it.  :(  sorry Las Vegas.
