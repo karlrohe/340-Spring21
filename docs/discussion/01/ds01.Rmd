@@ -24,7 +24,7 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 
 ## Warmup
 
-Break into pairs and introduce each other. Questions:
+Break off into pairs and introduce each other. Questions:
 
 1. Year?
 1. Major?
@@ -36,7 +36,7 @@ Break into pairs and introduce each other. Questions:
 
 Note: Chromebooks do not support R/Rstudio and thus are not sufficient for this class. Please talk to instructors/TAs if you are unable to find a suitable computer to use for this course.
 
-1. [Install R](https://cloud.r-project.org/)
+- [Install R](https://cloud.r-project.org/)
    - If you already have R, please check it's the most recent version (4.0.3)
 
 ```{r}
@@ -44,7 +44,7 @@ Note: Chromebooks do not support R/Rstudio and thus are not sufficient for this 
 sessionInfo()$R.version$version.string
 ```
 
-1. [Install Rstudio](https://rstudio.com/products/rstudio/download/#download)
+- [Install Rstudio](https://rstudio.com/products/rstudio/download/#download)
 
 ## Setup course folder
 
@@ -84,4 +84,6 @@ fs::dir_tree("../../../STAT340")
 
 Make sure your R and Rstudio are both installed, up to date, and ready to rock. If you're having issues, ask now!
 
-## Optional: Git setup
+## Optional: backup/version control
+
+It is **strongly recommended** you use some kind of backup or version control system (GitHub/Lab, Dropbox, Onedrive, etc.) so you don't lose your course files if something unexpected happens. If you need help with this, please ask your instructors/TA.
