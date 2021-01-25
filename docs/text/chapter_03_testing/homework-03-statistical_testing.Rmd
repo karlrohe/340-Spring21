@@ -7,9 +7,12 @@ output: html_document
 
 
 
-###  1) What does *reductio ad unlikely* mean?
+###  1) Summarize the *How not to be wrong* reading. 
 
-It should take about a paragraph or two to explain this. 
+a) Give 2-4 sentences summarizing the reading. 
+b) Write 2-4 sentences of reaction (question, comments, disagreed, something piqued your interest, etc) on the reading. 
+
+
 
 
 

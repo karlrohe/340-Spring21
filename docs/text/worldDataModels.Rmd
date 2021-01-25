@@ -90,10 +90,11 @@ To be discussed later.
 
 Random variables are a way of expressing random numbers with mathematical notation.
 
-After [Chapter 1](chapter_01_random_variables/random_variables.html), you should be able to
+**Learning objectives:** After [Chapter 1](chapter_01_random_variables/random_variables.html), you should be able to
 
 1) Identify random variables for basic things that we want to model.  
-2) Start to build richer models with basic random variables. 
+2) Critique why a certain distribution is a poor model for some real world phenomenon. 
+3) Start to build richer models with basic random variables. 
 
 
 [homework1](chapter_01_random_variables/homework-01-generate_random_variables.html).
@@ -104,11 +105,13 @@ Suppose you have a complicated random variable or random process $X$ and you wan
 
 [Monte Carlo simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) is a really fancy phrase to describe a super simple idea:  To "compute"  $P(X \in A)$, simulate the random variable $X$ with your computer.  Then, check if $X$ has that property. Do this simulation lots of times. The proportion of those simulations for which $X$ has property $A$ is an estimate of $P(X \in A)$.  Monte Carlo is a key idea for this course.  We will use it again and again and again.  
 
-After [the chapter on Monte Carlo](chapter_02_monte_carlo/monte_carlo.html), you should know how to compute 
-(1) probabilities $P(X \in A)$ as frequencies
-(2) expectations $\mathbb{E}(X)$ as averages and
-(3) "distributions" as histograms 
-by simulating the random variable $X$.  These techniques are referred to as Monte Carlo simulation.
+**Learning objectives:** After [the chapter on Monte Carlo](chapter_02_monte_carlo/monte_carlo.html), you should know how to compute     
+
+(1) probabilities $P(X \in A)$ as frequencies   
+(2) expectations $\mathbb{E}(X)$ as averages and   
+(3) "distributions" as histograms    
+
+by simulating the random variable $X$ multiple times.  These techniques are referred to as Monte Carlo simulation.
 
 [Homework](chapter_02_monte_carlo/homework-02-monte_carlo.html)
 
@@ -123,13 +126,14 @@ If you have learned about hypothesis testing before, buckle up!  We are going to
 Either way, read the excerpt from Jordan Ellenberg's New York Times Best Selling book *How not to be wrong; the power of mathematical thinking* that should be posted in canvas.  It offers a fresh view of hypothesis testing. While it is not the main point of the reading, one of my favorite parts is how it relates the proof that $\sqrt{2}$ is irrational (the proof is given in the reading and it is surprisingly simple!) to the logic of statistical hypothesis testing.  We will have a reading quiz on the main points from the reading.
 
 
-After [the logic of statistical testing via Monte Carlo Simulation](LogicOfStatisticalTesting.html), you should know how to test a hypothesis with Monte Carlo.  This involves three steps.   
+**Learning objectives:**  After [the logic of statistical testing via Monte Carlo Simulation](chapter_03_testing/LogicOfStatisticalTesting.html), you should know how to test a hypothesis with Monte Carlo.  This involves three steps.  
+
 1) Convert null hypothesis into a statistical model from which we can simulate (recall chapter 1).  
-2) Develop a test statistic $T$ and "surprising set" for $T$ based upon observed data and our understanding of the setting.   
-3) Compute $P(T \in SurprisingSet)$ with Monte Carlo to get a p-value (recall chapter 2).  
+2) Develop a test statistic $S$ and "surprising set" for $S$ based upon  our understanding of the setting.   
+3) Compute $P(S \in SurprisingSet)$ with Monte Carlo to get a p-value (recall chapter 2).  
 
 
-[homework2](homework/02-TestAndEstimate.html).  Note that you can [change the web address](homework/02-TestAndEstimate.Rmd) to get the .Rmd code.  
+[homework2](homework/).  Note that you can [change the web address](homework/02-TestAndEstimate.Rmd) to get the .Rmd code.  
 
 
 #  Estimation

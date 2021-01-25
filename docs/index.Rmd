@@ -15,7 +15,7 @@ office: 1239 MSC
 
 ### Week 1  
 #### Topics 
-1) This is a fun and important course because this is not an intro course.  It serves as a gateway to the "advanced" courses.  Moreover, we get to play with data!
+1) This is a fun and important course because this is not an intro course.  It serves as a gateway to the "advanced" courses.  Moreover, we get to learn fundamental methodologies and play with data. 
 2) [Go over syllabus](syllabus.pdf)
 3) Let's begin with an example from my lab's research:
 
@@ -34,9 +34,8 @@ What type of thing are you interested in studying?  Topics? Do you think you cou
 
 #### Homework 
 
-- [homework1](01-GenerateRandomVariables.html)
--  Form groups of three. Within your group, you should have similar interests (i.e. project topics). Talk to your friends or look for group members in discussion section. Next Thursday, sit with your group. On Thursday, if you have not found a group, that is totally fine! We will have a *free agent* session in class.
-- Next week, we will have a reading quiz on [this article](https://hbr.org/2016/10/noise).  As you are reading, consider how this article might be related to our course.
+
+-  Form groups of three(ish). Within your group, you should have similar interests (i.e. project topics). Talk to your friends or look for group members in discussion section. If you cannot found a group, that is totally fine! We will have a *free agent* session in class.
 
 
 #### Texts: 

@@ -125,7 +125,7 @@ rnorm(10)
 ```
 
 The plot is showing the "density" of the standard normal distribution (mean zero, variance one).  This density is the function 
-$$f(x) = \frac{e^{x^2/2}}{\sqrt{2\pi}}. $$ 
+$$f(x) = \frac{e^{-x^2/2}}{\sqrt{2\pi}}. $$ 
 We write $X \sim N(0,1)$ if $X$ has that distribution; the zero and the one represent the mean and variance.  If you simulate a million $N(0,1)$ random variables and make their histogram, it looks like the density:
 
 ```{r echo = F}
