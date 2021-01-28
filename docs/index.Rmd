@@ -13,7 +13,6 @@ office: 1239 MSC
 
 ### Week 2  
 
-1) [Intro to github in discussion section.](http://pages.stat.wisc.edu/~karlrohe/lectures/github.html)  Get github linked up with Rstudio.
 
 ### Week 1  
 #### Topics 
