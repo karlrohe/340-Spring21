@@ -17,13 +17,15 @@ get_bls_county <- function(){
   countyemp <- read.csv(temp, fill=T, header=F, sep="|", skip=6, stringsAsFactors=F, strip.white=T) %>% 
     dplyr::rename(area_code=V1, fips_state=V2, fips_county=V3, area_title=V4, period=V5, labor_force=V6, employed=V7, 
                   unemployed=V8, unemployed_rate=V9) %>%
+    select(-area_code) %>% 
+    relocate(period) %>% 
     # Get rid of empty rows at the bottom and set period to proper date format.
     na.omit() %>% dplyr::mutate(period=as.Date(paste("01-", period, sep = ""), format = "%d-%b-%y"))
   
   # Get the FIPS code: Have to add leading zeros to any single digit number and combine them.
   countyemp$fips_county <- formatC(countyemp$fips_county, width = 3, format = "d", flag = "0")
   countyemp$fips_state <- formatC(countyemp$fips_state, width = 2, format = "d", flag = "0")
-  countyemp$fips <- paste(countyemp$fips_state,countyemp$fips_county,sep="")
+  #countyemp$fips <- paste(countyemp$fips_state,countyemp$fips_county,sep="")
   
   unlink(temp)
   
