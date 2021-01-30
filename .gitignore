@@ -9,3 +9,6 @@
 
 # mac temp files
 **/.DS_Store
+
+# R cache files
+**/*_cache/
