@@ -18,6 +18,8 @@ office: 1239 MSC
 
 ### Week 2  
 
+1) Why do we need statistical models? What is the point of modeling? [World, Data, Models (wdm)](text/worldDataModels.html)
+2) Chapter 1 in wdm; random variables.
 
 ### Week 1  
 #### Topics 
