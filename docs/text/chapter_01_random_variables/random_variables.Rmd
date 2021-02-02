@@ -171,14 +171,14 @@ Random variables can be formed by taking a function of another random variable. 
 
 \textbf{Binomial asset pricing model:}  One area of finance is "option pricing."  Suppose that $X$ is the price of IBM stock in one month from today.  An "option" pays you $f(X)$ for some function $f$.  
 
-For example, suppose IBM costs \$120 today and the function is
+For example, suppose GME costs \$120 today and the function is
 \[f(X) = \left\{\begin{array}{ll}
-X-120 & \mbox{if $X>120$} \\
-0 & \mbox{if $X \le 0$.}
+120-X & \mbox{if $X<120$} \\
+0 & \mbox{if $X \ge 120$.}
 \end{array}\right.\]
-This is often referred to as a [call option](https://en.wikipedia.org/wiki/Call_option).  This is like giving you the *option* to purchase IBM in one month at today's price, then immediately sell IBM at the price in one month.  If the price goes down, you would not use that option and you would make zero (but not lose any money).  Otherwise, you would make $X-120$. 
+This is often referred to as a [put option](https://en.wikipedia.org/wiki/Put_option).  This is like giving you the *option* to purchase GME stock in one month and selling GME at today's price.  If the price goes up, you would not use that option and you would make zero (but not lose any money).  Otherwise, you would make $120-X$. In effect, you are betting that GME will go down.
 
-Suppose you are a bank and someone wants to purchase this call option.  You need to determine the price.  What would be the fair price to charge them?  We will refer back to this example in the next section on Monte Carlo.  In that section, we will need a model for the asset price $X$.  
+Suppose you are a bank and someone wants to purchase this put option.  You need to determine the price.  What would be the fair price to charge them?  We will refer back to this example in the next section on Monte Carlo.  In that section, we will need a model for the asset price $X$.  
 
 One of the simplest models for $X$ is the [Binomial Asset Pricing Model](https://en.wikipedia.org/wiki/Binomial_options_pricing_model) which says that at every time step (e.g. every minute), the price goes up by one penny with probability $p$, or down by one penny with probability $1-p$.   In this example, both $X$ and $f(X)$ are random variables. 
 

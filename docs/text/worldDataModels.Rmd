@@ -34,32 +34,37 @@ There are five types of statistical practice that we will touch on. We will call
 4) Prediction  
 5) Observational data analysis
 
-**Experiments**
+## Experiments
 
 Wouldn't it all be so easy if correlation implied causation?  
 Well, good news!  Sometimes, it does!  *Sometimes*, correlation implies causation.  
 
 This requires that the "treatment" is somehow randomly allocated.  The best example is in a randomized, placebo controlled, double-blind experiment.
 
-**Example experiment:**  Thirty milk-producing cows are randomly split into two groups of fifteen (treatment vs control).  The treatment group is given a multivitamin in their water.  The treatment group is not.  Over the course of a year, the average amount of milk they produce each day is given below (in pounds).  We want to know if the multivitamin increases milk production.  
+**Example:**  
 
-```{r}
-treatment = c(49,81,73,112,95,88,48,38,39,71,74,60,88,81,79)
-control = c(68,63,48,57,70,66,90,44,105,67,59,96,77,79,33)
-```
+On November 16, 2020 Moderna [released the first results from their phase 3 clinical trail for their COVID-19 vaccine](https://investors.modernatx.com/news-releases/news-release-details/modernas-covid-19-vaccine-candidate-meets-its-primary-efficacy).
 
-What should we do?  
+In summary, over 30,000 people in the trial.  I assume half recieved the vaccine and the other half recieved the placebo (can someone confirm this?).  In total, there were 95 cases of COVID-19 among the participants; 90 among the placebo group and 5 among the "treated" group.  Of the 95 cases, 11 were severe cases and all of those were in the placebo group.
 
-What might be a different experiment?
+In this study, vaccination is correlated with reduction of risk.  Does this mean that the vaccination causally reduced COVID-19 infection? Why or why not?
 
-**Sampling   **   
+## Sampling   
 
 Presidential election polls often have +/- 3% "confidence interval".  What is that all about? 
 
-**Example sampling:**  There are roughly 250 million eligible voters in the United States.  We want to estimate what proportion of them expect to vote in the 2020 presidential election.  How might we estimate that? Be more specific than "sampling".  *How* would you sample them?  What might be some difficulties of that technique?  
+**Example:**  
+
+At the end of October 2020, many wanted to know the outcome of the forthcoming 2020 presidential election.  A common technique is "random digit dialing".   
+
+[This poll of Wisconsin](https://law.marquette.edu/poll/2020/10/28/new-marquette-law-school-poll-finds-biden-lead-over-trump-stable-at-five-percentage-points/), reached roughly 806 registered voters in Wisconsin.  After [a significant amount of statistical work](https://law.marquette.edu/poll/wp-content/uploads/2020/10/MLSP65Methodology.pdf), this poll reported that 48\% of *likely* voters will choose Biden,  43\% Trump, 2\% Jorgensen, and  7\% undecided.  The margin of error for this poll was reported to be +/- 4.3\%.  
+
+In order to reach those 806 participants, many more numbers need to be dialed. In this poll, the response rate was 4.3\%. [See here for more data and the definition of how the 4.3 number is computed](https://law.marquette.edu/poll/wp-content/uploads/2020/10/MLSP65Methodology.pdf).  In that link, you see that in fact over 100,000 numbers were dialed! Most of those calls were never picked up.  Among those dialed, 806 were registered voters and agreed to participate.  There were 1113 that refused to participate (or hung up).  There is so much work that goes in to making these polls work!  
+
+[In the actual election](https://en.wikipedia.org/wiki/2020_United_States_presidential_election_in_Wisconsin#Results), Biden received 49.45\% of votes cast in Wisconsin and Trump received 48.82\%. 
 
 
-**Exploration **
+## Exploration 
 
 What if your data looked like this, what would you do?  
 
@@ -75,13 +80,13 @@ In *exploration*, we want to group things into clusters or decompose things into
 **Example exploration:** My research studies how the news media directs our attention. We focus on Twitter.  Given that the news media is highly segmented ("media bubbles"), we grouped leading journalists and media Twitter accounts into 11 different groups.  We did not predetermine what these groups should be!  Instead, we used the data to find "clusters".  In particular, the data we used is who-follows-who on Twitter.  
 
 
-**Prediction  **
+## Prediction  
 
 [Chapter 1 in ISLR](http://pages.stat.wisc.edu/~karlrohe/ht/01-introduction.pdf)
 
 See handwritten digits.  
 
-**Observational data analysis**
+## Observational data analysis
 
 To be discussed later. 
 
