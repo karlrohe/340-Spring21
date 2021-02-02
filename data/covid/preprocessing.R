@@ -117,9 +117,12 @@ covid19 = full_join(cases_long %>% select(countyFIPS,date,cases),
                     deaths_long, 
                     by=c("countyFIPS","date")) %>% 
   mutate(date = mdy(date),
-         countyFIPS = as.character(countyFIPS),
-         stateFIPS  = as.character(stateFIPS)) %>% 
+         countyFIPS = sprintf("%05d",as.numeric(countyFIPS)),
+         stateFIPS  = sprintf("%02d",as.numeric(stateFIPS))) %>% 
   relocate(date,stateName,stateFIPS,countyName,countyFIPS,population,.before=1)
+
+# remove invalid 00001 FIPS
+covid19$countyFIPS[covid19$countyFIPS=='00001'] = NA
 
 # check result
 str(covid19)
@@ -127,4 +130,4 @@ head(covid19,10)
 tail(covid19,10)
 
 # save result
-write.csv(covid19,file=gzfile("covid19.csv.gz",compression=9))
+write.csv(covid19,row.names=F,file=gzfile("covid19.csv.gz",compression=9))
