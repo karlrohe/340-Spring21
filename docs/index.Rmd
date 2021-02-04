@@ -21,6 +21,12 @@ office: 1239 MSC
 1) Why do we need statistical models? What is the point of modeling? [World, Data, Models (wdm)](text/worldDataModels.html)
 2) Chapter 1 in wdm; random variables.
 
+#### Homework
+
+[homework1](chapter_01_random_variables/homework-01-generate_random_variables.Rmd) due February 10 in canvas. Note that the Rmd and html files for the homework can be found by just editing the web address from .Rmd to .html at the end.
+
+
+
 ### Week 1  
 #### Topics 
 1) This is a fun and important course because this is not an intro course.  It serves as a gateway to the "advanced" courses.  Moreover, we get to learn fundamental methodologies and play with data. 
