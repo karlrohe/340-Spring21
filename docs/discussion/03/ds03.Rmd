@@ -1,0 +1,61 @@
+---
+title:  "STAT340: Discussion 3: Random Variables"
+author: "Names"
+date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
+documentclass: article
+classoption: letterpaper
+output:
+  html_document:
+  highlight: tango
+---
+
+```{r setup, include=FALSE}
+# if sourced, set working directory to file location
+# added tryCatch in case knitting runs into error
+tryCatch({
+  if(Sys.getenv('RSTUDIO')=='1'){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+  }}, error = function(e){}
+)
+
+# install necessary packages
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(knitr,tidyverse)
+
+knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" #")
+```
+
+---
+
+## Group discussion (15-20min)
+
+As a group with everyone in the section (TA + all students), discuss for each of the example random variables given...
+
+ 1. ...whether it's discrete or continuous?
+ 2. ...which type of random variable (e.g. bernoulli, poisson, geometric, uniform, etc...) or function of random variable(s) would best model it?
+ 3. ...why does this type of random variable best model it? (what assumptions are you making and why are they likely to be satisfied?)
+ 4. ...what situations can cause this model to fail? (in particular, how could these assumptions potentially be violated?)
+
+Random variables to discuss:
+
+ - Number of passing cars in an hour.
+ - How many people contract covid-19 in a placebo trial.
+ - The BMI of a population.
+ - Number of cats in a litter.
+ - Total of pair of dice (**hint**: it's a function of discrete uniform variables,).
+ - How many times you have to roll a pair of dice before getting doubles. (**hint**: it's a *memoryless* discrete RV we've covered in lecture)
+ - **Bonus**: How long your laptop lasts before dying (**hint**: this could be modeled as the continuous analog of the previous RV)
+
+
+## Exercise (rest of time)
+
+Now, break off into groups of 3-4 students. In your group, nominate one person to share your screen. As a group, choose at least 2 (you're welcome to choose more) of the above random variables. For each chosen RV, do the following:
+
+ 1. Generate a few observations using an appropriate model (if it requires parameters, you may guess something sensible or use Google to find better estimates) and show us the output.
+ 2. Do the numbers you generated in step 1 make sense? Why or why not?
+ 3. Generate more observations (at least 1000 (don't print the output this time)) and make a simple histogram of the result. Is this what you expected? Comment on how this might change if you chose different parameters OR if some of the assumptions you made are violated.
+
+
+## Submission
+
+Make sure the **names of everyone** who worked on this with you is included in the header of this document. Then, **knit this document** and submit **both this file and the HTML output** on Canvas under Assignments ⇒ Discussion 3.
