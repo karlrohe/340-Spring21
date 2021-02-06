@@ -23,7 +23,7 @@ office: 1239 MSC
 
 #### Homework
 
-[homework1](chapter_01_random_variables/homework-01-generate_random_variables.Rmd) due February 10 in canvas. Note that the Rmd and html files for the homework can be found by just editing the web address from .Rmd to .html at the end.
+[homework1](chapter_01_random_variables/text/homework-01-generate_random_variables.Rmd) due February 10 in canvas. Note that the Rmd and html files for the homework can be found by just editing the web address from .Rmd to .html at the end.
 
 
 
