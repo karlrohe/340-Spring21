@@ -16,6 +16,25 @@ office: 1239 MSC
 [ ![chart of weekly office hours. for visually impaired, see text version of this chart at the following link to the canvas announcement: https://canvas.wisc.edu/courses/244428/discussion_topics/922086 ](./340_hours.png) ](./340_hours.png)
 </div>
 
+
+### Week 3   
+#### Recap 
+
+Finish random variables in [World, Data, Models](text/worldDataModels.html). 
+
+Learning objectives:   
+- Identify random variables for basic things that we want to model. Things to think about... Ideally, you can you model the actual mechanism.  Alternatively, you are "emulating its shape". Things to think about: is it continuous or discrete? Does it have a "heavy tail"? Usually, you have multiple random variables. 
+- Start to build richer models with basic random variables. 
+- Critique why a certain distribution is a poor model for some real world phenomenon.  One of the most important assumptions is independence.  
+
+
+#### Topics  
+Monte Carlo in [World, Data, Models](text/worldDataModels.html)
+
+#### Homework
+
+[homework 2](text/chapter_02_monte_carlo/homework-02-monte_carlo.Rmd) due Feb 17 in canvas.  
+
 ### Week 2  
 
 1) Why do we need statistical models? What is the point of modeling? [World, Data, Models (wdm)](text/worldDataModels.html)
