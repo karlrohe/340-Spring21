@@ -201,7 +201,7 @@ Covariance_Matrix = matrix(
   c(.05^2,.04^2,.04^2,.05^2), 
   nrow = 2)
 Covariance_Matrix
-WMp = mvrnorm(n = 1000, 
+WMp = mvrnorm(n = 10^4, 
               mu = Mean_Vector, 
               Sigma = Covariance_Matrix)
 plot(WMp, xlab = "Wisconsin proportion", ylab = "Michigan proportion")
@@ -212,3 +212,16 @@ lines(c(-10,10),c(.5,.5), col = "red")
 What region of this plot corresponds to $W=-1$ and $M=+1$?  Does it make sense that there are fewer points in the top left compared to the top right? 
 
 
+```{r}
+dim(WMp)
+WMp = as_tibble(WMp)
+colnames(WMp) = c("Wp","Mp")
+WMp %>% 
+  mutate(W = (Wp>.5), M = (Mp>.5)) %>% 
+  group_by(M) %>% 
+  summarize(mean(W))
+
+WMp %>% 
+  mutate(W = (Wp>.5), M = (Mp>.5)) %>% 
+  summarize(mean(W))
+```

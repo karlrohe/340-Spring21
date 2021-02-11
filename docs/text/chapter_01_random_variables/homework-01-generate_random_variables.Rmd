@@ -42,14 +42,14 @@ rbinom(n = 1, size = 10, prob = .3)
 ### 1c) Generate ten copies of each random variable.
 
 ```{r}
-# generate 5 Bernoulli random variables:
-rbernoulli(n = 5, p=.5) 
+# generate 10 Bernoulli random variables:
+rbernoulli(n = 10, p=.5) 
 
-# generate 5 Binomial random variables:
+# generate 10 Binomial random variables:
 
-# generate 5 Geometric random variables:
+# generate 10 Geometric random variables:
 
-# generate 5 Poisson random variables:
+# generate 10 Poisson random variables:
 
 ```
 
