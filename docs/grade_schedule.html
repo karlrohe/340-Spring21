@@ -448,7 +448,6 @@ summary {
 </tr>
 </tbody>
 </table>
-<p>We first create the vector of assignments in approximate chronological order. Then, we create a small vector of graders with the above proportions. Next, we duplicate randomly ordered copies of the grader vector and match with the assignments vector.</p>
 <div id="creating-assignments-vector" class="section level3">
 <h3>Creating assignments vector</h3>
 <p>Assignments schedule:</p>
@@ -488,7 +487,6 @@ cat(assignments,sep=&quot;\n&quot;)</code></pre>
 </div>
 <div id="create-vector-of-graders" class="section level3">
 <h3>Create vector of graders</h3>
-<p>First, create right proportions of graders.</p>
 <pre class="r"><code>graders = c(
   &quot;Jiaxin Hu&quot;,
   rep(&quot;Yongjoon Kim&quot;,2),
@@ -503,63 +501,35 @@ graders</code></pre>
  # [11] &quot;Bowen Zhang&quot;</code></pre>
 <pre class="r"><code>length(graders)</code></pre>
 <pre><code> # [1] 11</code></pre>
-<p>We only need to repeat this vector twice since there are 22 assignments and 11 graders. However, to make grading less of a burden, we try to avoid having the same person grade the last <span class="math inline">\(N\)</span> assignments (i.e. each person gets at least a break of <span class="math inline">\(N\)</span> assignments (about <span class="math inline">\(N/2\)</span> weeks since there are 2 assignments per week) of break before grading the next assignment.)</p>
-<p>We do this by first doubling the vector of graders, then one by one sampling from the remaining graders <strong>excluding the previous <span class="math inline">\(N\)</span></strong> without replacement. At the end, there’s a chance that the remaining graders may be the same, but we simply try again if this happens until we get an order that works.</p>
-<p>After some experimentation, it turns out that the case with <span class="math inline">\(N=3\)</span> is fairly easy to find.</p>
-<pre class="r"><code># status for checking if done
-done = F
-
-# gap weeks
-N = 3
-
-# define convenient not in function
+<p>We try to find an ordering that will give people an <span class="math inline">\(N\)</span> week gap. Of course, we can find this manually, but it’s more fun to write it this way, where the next one is <strong>totally randomly sampled</strong> from the remaining graders.</p>
+<p>Turns out <span class="math inline">\(N=4\)</span> is pretty easy to find.</p>
+<pre class="r"><code>done = F
+N = 4
+all_graders = reordered = NULL
 `%notin%` = Negate(`%in%`)
 
-# create dummy variables so &lt;&lt;- works
-all_graders = reordered = NULL
-
-# define function that, given remaining graders and current running order,
-# randomly samples one grader from remaining, deletes it, and adds to the running order
 sampleNextGrader = function(remaining_graders,running_order){
-    
-    # get previous N graders
     last_graders = na.omit(rev(running_order))[1:N]
-    
-    # get remaining graders not in last N graders
-    # (we have to use this instead of setdiff() since setdiff discards duplicates)
     different_graders = remaining_graders[ remaining_graders %notin% last_graders]
     
-    # if no different graders left (i.e. we have reached an impossible case), halt and try again
     if(length(different_graders) == 0) stop(&quot;Trying again!&quot;)
     
-    # randomly sample 1, but noting the order, so we can easily delete it
     next_grader_place = sample(1:length(different_graders),1)
-    
-    # get grader, and delete from remaining graders
     next_grader = different_graders[next_grader_place]
-    new_remaining = remaining_graders[-next_grader_place]
-    
-    # adding next grader to running_order
+    where_in_remaining = min(which(remaining_graders==next_grader))
+    new_remaining = remaining_graders[-where_in_remaining]
+
     next_place = min(which(is.na(running_order)))
     running_order[next_place] = next_grader
-    
-    # return results
+
     return(list(&quot;remaining&quot;=new_remaining,&quot;order&quot;=running_order))
 }
 
-# use while loop to check if ordering succeeded
 while(!done){
   
-  # use try catch to gracefully handle if result fails
   tryCatch({
-    
-    # globally define vector of all graders to draw from
     all_graders &lt;&lt;- sample(rep(graders,2))
-    
-    # globally define reordered graders
     reordered &lt;&lt;- rep(NA,length(all_graders))
-    
-    # now run the function while reordered isn&#39;t filled
     while(NA %in% reordered){
       res = sampleNextGrader(all_graders,reordered)
       all_graders &lt;&lt;- res$remaining
@@ -569,7 +539,7 @@ while(!done){
     done &lt;&lt;- T
     
   }, error = function(e){
-    # try again!
+    # retry
   })
 }</code></pre>
 </div>
@@ -577,30 +547,30 @@ while(!done){
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>Here’s the resulting distribution of grading duties:</p>
-<pre class="r"><code>print(data.frame(assignments,reordered),quote=F,row.names=F)</code></pre>
-<pre><code> #    assignments    reordered
+<pre class="r"><code>print(data.frame(assignments,graders=reordered),quote=F,row.names=F)</code></pre>
+<pre><code> #    assignments      graders
  #   discussion 2  Bi Cheng Wu
- #     homework 1 Yongjoon Kim
+ #     homework 1   Yanbo Shen
  #   discussion 3  Yongfeng Wu
- #     homework 2   Yanbo Shen
- #   discussion 4  Bowen Zhang
- #     homework 3 Yongjoon Kim
- #   discussion 5  Yongfeng Wu
- #     homework 4   Yanbo Shen
- #   discussion 6  Bi Cheng Wu
- #     homework 5  Bowen Zhang
- #   discussion 7    Jiaxin Hu
- #     homework 6  Yongfeng Wu
- #   discussion 8  Bi Cheng Wu
- #     homework 7   Yanbo Shen
- #   discussion 9 Yongjoon Kim
- #     homework 8  Bowen Zhang
- #  discussion 10  Yongfeng Wu
- #     homework 9  Bi Cheng Wu
- #  discussion 11   Yanbo Shen
- #    homework 10  Bowen Zhang
+ #     homework 2  Bowen Zhang
+ #   discussion 4 Yongjoon Kim
+ #     homework 3  Bi Cheng Wu
+ #   discussion 5   Yanbo Shen
+ #     homework 4  Yongfeng Wu
+ #   discussion 6    Jiaxin Hu
+ #     homework 5 Yongjoon Kim
+ #   discussion 7  Bi Cheng Wu
+ #     homework 6  Bowen Zhang
+ #   discussion 8   Yanbo Shen
+ #     homework 7    Jiaxin Hu
+ #   discussion 9  Yongfeng Wu
+ #     homework 8 Yongjoon Kim
+ #  discussion 10  Bowen Zhang
+ #     homework 9   Yanbo Shen
+ #  discussion 11  Bi Cheng Wu
+ #    homework 10  Yongfeng Wu
  #  discussion 12 Yongjoon Kim
- #    homework 11  Bi Cheng Wu</code></pre>
+ #    homework 11  Bowen Zhang</code></pre>
 </div>
 
 

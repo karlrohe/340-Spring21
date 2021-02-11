@@ -27,8 +27,6 @@ We need to create a fair grading schedule that is proportional to the appointmen
 | Yongfeng Wu  | 2 |
 | Bowen Zhang  | 2 |
 
-We first create the vector of assignments in approximate chronological order. Then, we create a small vector of graders with the above proportions. Next, we duplicate randomly ordered copies of the grader vector and match with the assignments vector.
-
 ### Creating assignments vector
 
 Assignments schedule:
@@ -50,8 +48,6 @@ length(assignments)
 
 ### Create vector of graders
 
-First, create right proportions of graders.
-
 ```{r}
 graders = c(
   "Jiaxin Hu",
@@ -65,67 +61,38 @@ graders
 length(graders)
 ```
 
-We only need to repeat this vector twice since there are `r length(assignments)` assignments and `r length(graders)` graders. However, to make grading less of a burden, we try to avoid having the same person grade the last $N$ assignments (i.e. each person gets at least a break of $N$ assignments (about $N/2$ weeks since there are 2 assignments per week) of break before grading the next assignment.)
+We try to find an ordering that will give people an $N$ week gap. Of course, we can find this manually, but it's more fun to write it this way, where the next one is **totally randomly sampled** from the remaining graders.
 
-We do this by first doubling the vector of graders, then one by one sampling from the remaining graders **excluding the previous $N$** without replacement. At the end, there's a chance that the remaining graders may be the same, but we simply try again if this happens until we get an order that works.
-
-After some experimentation, it turns out that the case with $N=3$ is fairly easy to find.
+Turns out $N=4$ is pretty easy to find.
 
 ```{r}
-# status for checking if done
 done = F
-
-# gap weeks
-N = 3
-
-# define convenient not in function
+N = 4
+all_graders = reordered = NULL
 `%notin%` = Negate(`%in%`)
 
-# create dummy variables so <<- works
-all_graders = reordered = NULL
-
-# define function that, given remaining graders and current running order,
-# randomly samples one grader from remaining, deletes it, and adds to the running order
 sampleNextGrader = function(remaining_graders,running_order){
-    
-    # get previous N graders
     last_graders = na.omit(rev(running_order))[1:N]
-    
-    # get remaining graders not in last N graders
-    # (we have to use this instead of setdiff() since setdiff discards duplicates)
     different_graders = remaining_graders[ remaining_graders %notin% last_graders]
     
-    # if no different graders left (i.e. we have reached an impossible case), halt and try again
     if(length(different_graders) == 0) stop("Trying again!")
     
-    # randomly sample 1, but noting the order, so we can easily delete it
     next_grader_place = sample(1:length(different_graders),1)
-    
-    # get grader, and delete from remaining graders
     next_grader = different_graders[next_grader_place]
-    new_remaining = remaining_graders[-next_grader_place]
-    
-    # adding next grader to running_order
+    where_in_remaining = min(which(remaining_graders==next_grader))
+    new_remaining = remaining_graders[-where_in_remaining]
+
     next_place = min(which(is.na(running_order)))
     running_order[next_place] = next_grader
-    
-    # return results
+
     return(list("remaining"=new_remaining,"order"=running_order))
 }
 
-# use while loop to check if ordering succeeded
 while(!done){
   
-  # use try catch to gracefully handle if result fails
   tryCatch({
-    
-    # globally define vector of all graders to draw from
     all_graders <<- sample(rep(graders,2))
-    
-    # globally define reordered graders
     reordered <<- rep(NA,length(all_graders))
-    
-    # now run the function while reordered isn't filled
     while(NA %in% reordered){
       res = sampleNextGrader(all_graders,reordered)
       all_graders <<- res$remaining
@@ -135,7 +102,7 @@ while(!done){
     done <<- T
     
   }, error = function(e){
-    # try again!
+    # retry
   })
 }
 
@@ -146,6 +113,6 @@ while(!done){
 Here's the resulting distribution of grading duties:
 
 ```{r}
-print(data.frame(assignments,reordered),quote=F,row.names=F)
+print(data.frame(assignments,graders=reordered),quote=F,row.names=F)
 ```
 
