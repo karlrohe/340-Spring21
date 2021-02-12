@@ -75,7 +75,7 @@ sampleNextGrader = function(remaining_graders,running_order){
     last_graders = na.omit(rev(running_order))[1:N]
     different_graders = remaining_graders[ remaining_graders %notin% last_graders]
     
-    if(length(different_graders) == 0) stop("Trying again!")
+    if(length(different_graders) == 0) stop()
     
     next_grader_place = sample(1:length(different_graders),1)
     next_grader = different_graders[next_grader_place]
@@ -99,6 +99,12 @@ while(!done){
       reordered <<- res$order
     }
     
+    final = data.frame(assignments,graders=reordered)
+    
+    for(G in unique(reordered)){
+      if(0!=unname(diff(table(sub(" [^ ]*$","",final[final[2]==G,][[1]]))))) stop()
+    }
+    
     done <<- T
     
   }, error = function(e){
@@ -113,6 +119,7 @@ while(!done){
 Here's the resulting distribution of grading duties:
 
 ```{r}
-print(data.frame(assignments,graders=reordered),quote=F,row.names=F)
+print(final,quote=F,row.names=F)
+print(final[order(final[[2]]),],quote=F,row.names=F)
 ```
 
