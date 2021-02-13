@@ -28,6 +28,8 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 
 ---
 
+[Link to source file](./ds04.Rmd)
+
 ## Group Discussion (5-10 min)
 
 As a group, briefly discuss the following questions.
