@@ -22,6 +22,8 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 
 ---
 
+[Link to source file](ds01.Rmd)
+
 ## Warmup
 
 Break off into pairs and introduce each other. Questions:
