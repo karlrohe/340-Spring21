@@ -1,3 +1,4 @@
+
 # Stat 340: Introduction to Data Modeling II (aka World, Data, and Models)
 ### Spring 2020
 ## UW-Madison

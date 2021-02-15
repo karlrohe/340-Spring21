@@ -1,3 +1,4 @@
+
 # Stat 333: Applied Linear Regression
 ### Fall 2019
 ## UW-Madison
