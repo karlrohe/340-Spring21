@@ -1,3 +1,4 @@
+
 ---
 title:  "STAT340: Discussion 4: Monte Carlo"
 author: "Names"
@@ -32,7 +33,7 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 
 ## Group Discussion (5-10 min)
 
-As a group, briefly discuss the following questions.
+As a group, briefly discuss the following questions!
 
 1. So what is the defining feature of Monte Carlo methods? I.e. what makes a method "Monte Carlo"?
 2. What are some advantages and drawbacks of Monte Carlo methods? List at least 2 of each.
