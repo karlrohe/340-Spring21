@@ -1,3 +1,4 @@
+
 ---
 title:  "STAT340: Discussion 2: Data \"Playgrounds\""
 author: "Names"

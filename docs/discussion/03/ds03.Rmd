@@ -1,3 +1,4 @@
+
 ---
 title:  "STAT340: Discussion 3: Random Variables"
 author: "Names"

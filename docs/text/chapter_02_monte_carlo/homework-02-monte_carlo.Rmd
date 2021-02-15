@@ -1,3 +1,4 @@
+
 ---
 title: "Homework 2 for Stat 340; Monte Carlo"
 author: "Karl Rohe"

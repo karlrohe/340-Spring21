@@ -1,3 +1,4 @@
+
 ---
 title:  "STAT340: Discussion 1: Intro/setup"
 author: "Name"

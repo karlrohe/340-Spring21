@@ -1,3 +1,4 @@
+
 ### Rearrange the terms...  
 $$ E(S ) > S  - a_.95 \quad \Leftrightarrow \quad S <E(S )+a_.95$$
 and 

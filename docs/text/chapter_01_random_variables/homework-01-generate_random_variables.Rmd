@@ -1,3 +1,4 @@
+
 ---
 title: "Homework 1 for Stat 340; Introduction to Discrete Random Variables"
 author: "Karl Rohe"

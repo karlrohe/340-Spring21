@@ -1,3 +1,4 @@
+
 # Variance and the Central Limit Theorem
 
 Variance is a magical quantity that is hugely important for the Central Limit Theorem.  

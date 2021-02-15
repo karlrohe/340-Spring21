@@ -1,3 +1,4 @@
+
 # Monte Carlo 
 
 In lots of settings, we have some random variable $X$ and some property $A$ and we want to know the probability that $X$ has property $A$.  

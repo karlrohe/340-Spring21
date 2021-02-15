@@ -1,3 +1,4 @@
+
 ---
 title: "Homework 3 for Stat 340; Estimation"
 author: "Karl Rohe"
