@@ -564,13 +564,12 @@ summary {
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># given output of rbernoulli or rbinom (a vector of 0&#39;s and 1&#39;s)</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co"># compute the length of the longest continuous run of 1&#39;s</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>longestHeadRun =<span class="st"> </span><span class="cf">function</span>(trials){</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  runs =<span class="st"> </span><span class="kw">rle</span>(trials)</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="kw">return</span>(<span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">0</span>,runs<span class="op">$</span>lengths[runs<span class="op">$</span>values<span class="op">==</span><span class="dv">1</span>])))</span>
-<span id="cb3-6"><a href="#cb3-6"></a>}</span>
-<span id="cb3-7"><a href="#cb3-7"></a></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># demo (output hidden for brevity)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">longestHeadRun</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)) <span class="co"># returns 0</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">longestHeadRun</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)) <span class="co"># returns 4</span></span></code></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="kw">return</span>(<span class="kw">with</span>(<span class="kw">rle</span>(trials),<span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">0</span>,lengths[values<span class="op">==</span><span class="dv">1</span>]))))</span>
+<span id="cb3-5"><a href="#cb3-5"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># demo (output hidden for brevity)</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">longestHeadRun</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)) <span class="co"># returns 0</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">longestHeadRun</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)) <span class="co"># returns 4</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Do exercise 3 here</span></span></code></pre></div>
 <p><br /></p>
 <hr />
