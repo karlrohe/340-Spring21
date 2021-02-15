@@ -6,7 +6,8 @@ documentclass: article
 classoption: letterpaper
 output:
   html_document:
-  highlight: tango
+    highlight: tango
+    fig_caption: false
 ---
 
 ```{r setup, include=FALSE}
@@ -26,6 +27,8 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 ```
 
 ---
+
+[Link to source file](https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussion/03/ds03.Rmd)
 
 ## Group discussion (15-20min)
 

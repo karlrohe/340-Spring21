@@ -6,23 +6,29 @@ documentclass: article
 classoption: letterpaper
 output:
   html_document:
-  highlight: tango
+    highlight: tango
+    fig_caption: false
 ---
 
 ```{r setup, include=FALSE}
 # if sourced, set working directory to file location
-if(Sys.getenv('RSTUDIO')=='1') setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# added tryCatch in case knitting runs into error
+tryCatch({
+  if(Sys.getenv('RSTUDIO')=='1'){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+  }}, error = function(e){}
+)
 
 # install necessary packages
 if(!require(pacman)) install.packages("pacman")
-pacman::p_load(knitr,fs)
+pacman::p_load(knitr,tidyverse)
 
 knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" #")
 ```
 
 ---
 
-[Link to source file](ds01.Rmd)
+[Link to source file](https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussion/01/ds01.Rmd)
 
 ## Warmup
 
