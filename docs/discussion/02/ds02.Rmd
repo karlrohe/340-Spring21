@@ -29,7 +29,7 @@ knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" 
 
 ---
 
-[Link to source file](https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussion/02/ds02.Rmd)
+[Link to source file](ds02.Rmd)
 
 ## Synthesizing data using "playgrounds"
 
