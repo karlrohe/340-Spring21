@@ -52,7 +52,7 @@ As usual, **bonus parts are _optional_** but will **give extra statistical _EXP_
 1. Estimating $\pi$.
    a. Randomly generate $N$ pairs of points $(x,y)$ **uniformly** between $-1$ and $1$ for some large $N$ (at least $1000$, but the more the better!)
    b. Using R, plot the points as **small dots**, along with [the unit circle](https://ggforce.data-imaginist.com/reference/geom_circle.html) (i.e. circle centered at $(0,0)$ with radius 1) and a [square that circumscribes it](https://www.varsitytutors.com/hotmath/hotmath_help/topics/circles-inscribed-in-squares). Your result should look similar to this:
-   <center><img src="pi.png" style="width:165px;"/></center>
+   <center><img src="https://karlrohe.github.io/340-Spring21/discussion/04/pi.png" style="width:165px;"/></center>
    c. What proportion of your points lie inside the circle? ([Hint](https://math.stackexchange.com/questions/198764/how-to-know-if-a-point-is-inside-a-circle))
    d. How does this proportion relate to $\pi$, and how can you use it to estimate $\pi$?
    e. Calculate your [percentage error](https://www.mathsisfun.com/numbers/percentage-error.html) from the [true value](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Constants.html).
