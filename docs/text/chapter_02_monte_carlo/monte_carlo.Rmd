@@ -128,7 +128,7 @@ simulate_X = function(){
 
 # Second, write a function to evaluate whether X \in A.
 check_if_X_in_A = function(X){
-  return(X > .426)  # remember to not put the comma in 20,000.  R doesn't like that!
+  return(X > .426)  
 }
 
 # Now, we are going to do it lots of times.  
