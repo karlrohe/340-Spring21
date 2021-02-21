@@ -12,3 +12,6 @@
 
 # R cache files
 **/*_cache/
+
+# auxiliary script files used in writing discussions
+**/aux_script*
