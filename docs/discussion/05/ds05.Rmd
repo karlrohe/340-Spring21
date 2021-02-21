@@ -344,18 +344,19 @@ Using this test statistic, what is the new $p$-value? What do you conclude (i.e.
 
 As usual, make sure the **names of everyone** who worked on this with you is included in the header of this document. Then, **knit this document** and submit **both this file and the HTML output** on Canvas under Assignments ⇒ Discussion 4
 
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
 ---
 
-<br/>
 
-<br/>
-
-<br/>
-
----
-
-
-<div style="font-size:50%;">
 
 #### _Appendix: Comment about how the throws were generated_
 
@@ -363,7 +364,6 @@ As I have explained before, the throws were intentionally generated to have a "h
 
 ```{r}
 n = 200
-
 throws = rep(NA,n)
 
 for(i in 1:n){
@@ -384,5 +384,3 @@ The numbers were chosen this way so that the average number of 3-point shots mad
 200 was used as the number of throws in the experiment as a balance between lowering the variance of the ratio $R$ of the generated sequence while still being somewhat plausible for a professional basketball player to achieve.
 
 <br/>
-
-</div>

@@ -506,29 +506,29 @@ summary {
 <div id="submission" class="section level2">
 <h2>Submission</h2>
 <p>As usual, make sure the <strong>names of everyone</strong> who worked on this with you is included in the header of this document. Then, <strong>knit this document</strong> and submit <strong>both this file and the HTML output</strong> on Canvas under Assignments ⇒ Discussion 4</p>
+<p><br /></p>
+<p><br /></p>
+<p><br /></p>
+<p><br /></p>
+<p><br /></p>
 <hr />
-<p><br /></p>
-<p><br /></p>
-<p><br /></p>
-<hr />
-<div id="appendix-comment-about-how-the-throws-were-generated" class="section level4" style="font-size:50%;">
+<div id="appendix-comment-about-how-the-throws-were-generated" class="section level4">
 <h4><em>Appendix: Comment about how the throws were generated</em></h4>
 <p>As I have explained before, the throws were intentionally generated to have a “hot hands” effect. The first throw was randomly chosen with a <span class="math inline">\(35\%\)</span> chance of success (chosen based on a quick Google search of average 3-point shot rates). After that, the probability of success of the next shot was dependent on the success of the previous shot. If the previous attempt was a success, this was raised to <span class="math inline">\(45\%\)</span>; if it missed, this was lowered to <span class="math inline">\(25\%\)</span>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">200</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>throws <span class="ot">=</span> <span class="fu">rep</span>(<span class="cn">NA</span>,n)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i<span class="sc">==</span><span class="dv">1</span>){</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.35</span>,<span class="fl">0.65</span>))</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(throws[i<span class="dv">-1</span>]<span class="sc">==</span><span class="st">&quot;Y&quot;</span>){</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.45</span>,<span class="fl">0.55</span>))</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.75</span>))</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>throws <span class="ot">=</span> <span class="fu">rep</span>(<span class="cn">NA</span>,n)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i<span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.35</span>,<span class="fl">0.65</span>))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(throws[i<span class="dv">-1</span>]<span class="sc">==</span><span class="st">&quot;Y&quot;</span>){</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.45</span>,<span class="fl">0.55</span>))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      throws[i] <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;N&quot;</span>),<span class="dv">1</span>,<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.75</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The numbers were chosen this way so that the average number of 3-point shots made is still close-ish to <span class="math inline">\(35\%\)</span> (it’s <span class="math inline">\(31.25\%\)</span> to be exact) and so that the effect is large enough to be detectable, but not so much so that the run-length statistic will also be able to detect an effect (which might happen if the strength of the effect was raised by raising/lowering the numbers even more).</p>
 <p>200 was used as the number of throws in the experiment as a balance between lowering the variance of the ratio <span class="math inline">\(R\)</span> of the generated sequence while still being somewhat plausible for a professional basketball player to achieve.</p>
 <p><br /></p>
