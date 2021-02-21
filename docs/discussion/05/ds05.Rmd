@@ -232,6 +232,7 @@ How do the longest-run-lengths of the simulated sequences compare with the origi
 
 ```
 
+> _**REPLACE THIS TEXT WITH YOUR 
 
 <br/>
 
@@ -289,7 +290,7 @@ _**Now, write a function that**_ given the above table as an input, returns the 
 # getRatioFromTable = function(tb){
 #   return(...)
 # }
-
+# 
 # if you completed the function correctly, the next line should return 2.4
 # getRatioFromTable( tableOfConsecutivePairs( throws ) )
 ```
@@ -299,7 +300,7 @@ _**Now, write a function that**_ given the above table as an input, returns the 
 ```{r}
 # DO THIS: uncomment the function below and complete it
 # 
-# getPermutedRations = function(vec,n){
+# getPermutedRatios = function(vec,n){
 #   ...
 #   ...
 #   return(...)
@@ -318,7 +319,7 @@ Similar to part **(e)**, **run this function** $n$ times (again, at least 1,000 
 <center><img src="https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussion/05/ratio.png" style="width:240px;"></center>
 
 ```{r}
-# make plot here
+# run function AND make plot here
 
 ```
 
@@ -329,7 +330,7 @@ Using this test statistic, what is the new $p$-value? What do you conclude (i.e.
 
 ```
 
-> _**REPLACE THIS TEXT WITH YOUR COMPUTER P-VALUE AND YOUR CONCLUSION ABOUT THE PLAYER. DOES HE HAVE "HOT HANDS"?
+> _**REPLACE THIS TEXT WITH YOUR COMPUTED P-VALUE AND CONCLUSION ABOUT THE PLAYER. DOES HE HAVE "HOT HANDS"?**_
 
 <br/>
 

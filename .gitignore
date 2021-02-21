@@ -14,4 +14,6 @@
 **/*_cache/
 
 # auxiliary script files used in writing discussions
-**/aux_script*
+# as well as solution files (marked with SOLUTION in name)
+**/*aux_script*
+**/*SOLUTION*
