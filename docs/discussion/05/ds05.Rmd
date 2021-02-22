@@ -241,7 +241,7 @@ How do the longest-run-lengths of the simulated sequences compare with the origi
 
 #### (f)
 
-I (Bi) promise you that **a very large "hot hands" effect exists in the data** (again, you don't know this yet!), so clearly the run length test in this case isn't powerful enough (in other words, it's not sensitive enough to the underlying effect). However, **we can construct a statistic** that gives us a much **more powerful** test!
+I (Bi) promise you that **a very large "hot hands" effect exists in the data** (again, you don't know this yet!), so clearly the run length test in this case isn't powerful enough (in other words, it's not sensitive enough to the underlying effect). However, **we can construct a statistic** that gives us a **much more powerful** test!
 
 Consider **every pair of consecutive throws** and make a table of the outcomes. For example, the first 8 throws in the sequence are YNNNNYYN. Breaking this into consecutive pairs, we have YN, NN, NN, NN, NY, YY, YN. This gives the table:
 
