@@ -49,7 +49,7 @@ As a group, briefly discuss the following questions!
 
 1. What is the the difference between the null and alternative hypotheses?
    - Don't just say "we assume the null"; why do we usually choose "mean = __" or "no effect" as the null rather than as the alternative? Hint: think about our ability to predict the outcome and compute $p$-values. Is this equally easy to do under both hypotheses?
-2. Why do we use $\leq$ and $\geq$ instead of $<$ and $>$? How does this relate to the idea of a "surprising set"?
+2. Why do we use $\leq$ and $\geq$ instead of $=$ in for example $\small P(X\geq9)$? How does this relate to the idea of a "surprising set"?
 
 <br/>
 
