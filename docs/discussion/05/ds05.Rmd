@@ -232,7 +232,7 @@ How do the longest-run-lengths of the simulated sequences compare with the origi
 
 ```
 
-> _**REPLACE THIS TEXT WITH YOUR 
+> _**REPLACE THIS TEXT WITH YOUR REPSONSE**_
 
 <br/>
 
