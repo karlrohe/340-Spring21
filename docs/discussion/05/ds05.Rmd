@@ -273,7 +273,7 @@ To save time, I already wrote a function that splits the sequence of throws into
 # install the runner package if necessary
 if(!"runner" %in% rownames(installed.packages())) install.packages("runner")
 
-# define function
+# define function for tabulating consecutive pairs
 tableOfConsecutivePairs = function(vec){
   return(table(runner::runner(vec,k=2,f=paste,collapse="")[-1]))
 }
