@@ -220,6 +220,8 @@ Now, **run the function** for some large $n$ (at least 1,000 but can you do 10,0
 
 <center><img src="https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussion/05/runs.png" style="width:240px;"></center>
 
+(**Hint:** to use a vector in a plot, first turn it into a data.frame (I recommend using a function like [`enframe( )` from the `tibble` package](https://tibble.tidyverse.org/reference/enframe.html).)
+
 ```{r}
 # make plot here
 
@@ -277,6 +279,9 @@ if(!"runner" %in% rownames(installed.packages())) install.packages("runner")
 tableOfConsecutivePairs = function(vec){
   return(table(runner::runner(vec,k=2,f=paste,collapse="")[-1]))
 }
+
+# test function for correct output
+tableOfConsecutivePairs(strsplit("YNNNNYYN",split="")[[1]])
 
 # run function on original sequence of throws
 tableOfConsecutivePairs(throws)
