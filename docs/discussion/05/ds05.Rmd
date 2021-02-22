@@ -225,7 +225,7 @@ Now, **run the function** for some large $n$ (at least 1,000 but can you do 10,0
 
 ```
 
-How do the longest-run-lengths of the simulated sequences compare with the original sequence? What is your $p$-value for this test statistic? What do you conclude about the hypotheses? (**Hint:** the $p$-value in this case is the proportion of the density curve to the right of the vertical line (count how many are greater than the line), and should be between 0.3 and 0.5).
+How do the longest-run-lengths of the simulated sequences compare with the original sequence? What is your $p$-value for this test statistic? What do you conclude about the hypotheses? (**Hint:** the $p$-value in this case is the proportion of the density curve to the right of the vertical line (count how many are greater than the line), and should be roughly between 0.1 and 0.2).
 
 ```{r}
 # compute p-value here (make sure to show the result of the computation!)
