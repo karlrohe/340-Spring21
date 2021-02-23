@@ -258,7 +258,7 @@ Ten times more samples makes 52\%, 1000 times less likely!  Whoa.
 
 #### How many times would you need to flip the coin to be certain that it is fair?
 
-Discuss...
+Discuss...  What is a more productive variation on this question?
 
 
 ## Example: Car deaths
