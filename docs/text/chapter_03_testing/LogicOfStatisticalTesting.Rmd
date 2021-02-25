@@ -170,8 +170,8 @@ simulate_S = function(){
 Then, we would find large values of $S$ to be surprising; large and positive **or** large and negative.  This is a 
 "two-sided test". 
 
-3) The problem gives us that $x = .54$ and $s= .54 - .5 = .04; notice that this is lower case $x$ and $s$ because it is the data we've observed.  So, the "surprising event" is 
-\{\mbox{Either } S \ge .04 \ \mbox{ or }  \ S \le -.04\}= \{|S| > .04\}\]
+3) The problem gives us that $x = .54$ and $s= .54 - .5 = .04$; notice that this is lower case $x$ and $s$ because it is the data we've observed.  So, the "surprising event" is 
+\[\{\mbox{Either } S \ge .04 \ \mbox{ or }  \ S \le -.04\}= \{|S| > .04\}\]
 ```{r}
 check_if_S_in_surprising_set = function(S){
   return(abs(S) >= .04)
@@ -327,6 +327,8 @@ January 1 is an odd date, because 1 is odd.  What percentage of students are bor
 \[H_0: \mbox{half of students have odd birthdays}\]
 by collecting some data!
 
+Note: This is a bit tricky because it doesn't create a statistical model. We will need to clarify it...  
+
 In class, let's try to estimate this with our own birthdays.  Count the number of people with odd and even dates in class.  What proportion have odd birthdays?
 
 ```{r}
@@ -337,74 +339,28 @@ proportionOdd = odd/(odd+even)
 proportionOdd
 ```
 
-Even though this example is a bit silly, let's be very careful because Hypothesis testing is something that we take very seriously. Before continuing, what is the statistical model that $H_0$ creates for ```proportionOdd```? What is random?
-
-This is a trick question because it doesn't create a statistical model. We could add "and students in the class are a random subset of $n=130$ students from the population of $43,820$."  Alternatively, we could say XXXXXXXX
-
-so this might be surprising.\footnote{If needed, we can make the statement "half the counting numbers" rigorous in office hours.}  Do most people in the population have odd birthdays?  Or, did we observe more odd's simply due to chance? 
-
-A rephrasing of this question: Is this **evidence** that most people have odd Birthdays? Why or why not? If so, how good is this evidence?  
 
 We have data.  We want to know something about the world that generated that data. This is inference ("going up").  To do *statistical inference* we need a statistical model and we are going to do what Jordan calls *reductio ad unlikely* (be sure to read the excerpt from Jordan's book).  
 
-Given that half of the counting numbers are odd,  we want to *test* the (null) hypothesis: 
-\[H_0: \mbox{half the population of students has odd birthdays}\]  
-A hypothesis lives in your imagination.  So, now we are going to do a bunch of imagining, with our computers, to test this hypothesis.
+This hypothesis kinda gives us a (null) statistical model.  In our model (i.e. in our imagination), we can generate lots of simulated/imagined data sets that have the same sample size as our observed data.  Then, we are going to Monte Carlo (yes, it is now a verb) with $S$ = `proportionOdd` and $A =$ ? to compute $P(S ?)$.
 
-This hypothesis kinda gives us a (null) statistical model.  In our model (i.e. in our imagination), we can generate lots of simulated/imagined data sets that have the same sample size as our observed data.  Then, we are going to Monte Carlo (yes, it is now a verb) with $X$ = `proportionOdd` and $A =$ [.571,1] to compute $P(X \ge .571)$.
-
-Now, we need code to simulate $X$.  This will express the null/imagined model **exactly**.
+Now, we need code to simulate $S$.  This will express the null/imagined model **exactly**.
 ```{r}
 library(purrr)
-simulate_X = function(){
+simulate_S = function(){
   which_birthdays_are_odd = rbernoulli(n = 35, p = .5)  
   oddBirthdays = sum(which_birthdays_are_odd)
   proportionOdd = oddBirthdays/35
-  X = proportionOdd
+  S = proportionOdd
   # # rbernoulli comes from purrr. 
   # # if you prefer very concise code
   # # you could write:
   # X = rbinom(n = 1,size = 35,prob = .5)/35
   #  note that this concise code doesn't depend on purrr 
-  return(X)
+  return(S)
 }
 ```
 This simulation model actually makes another modeling assumption that we haven't discussed! It is one of the most important assumptions in all of statistics *and it is always hidden*. It's an assumption that we always need to talk about in the context of statistical testing and p-values. In the long tradition of hiding the discussion of this assumption, you will need to find it in this chapter.  
-
-
-
-
-
-
-
-So, we are going to *imagine* repeating this experiment under the "null hypothesis" that half of all birthdays are odd and that birthdays are "independent." 
-
-
-So, we want to imagine repeating the experiment under a setting where each birthday is odd with probability .5 and there are 35 students in the class.  Under these assumptions, the number of odd students is $X \sim Binomial(n=35, p = .5)$.  
-
-We want to use Monte Carlo to compute $P(X \ge 20)$, because 20 is the observed number of odd students.
-
-
-
-
-```{r}
-oddSims =  rbinom(10000,35,.5) 
-hist(oddSims)
-lines(c(odd,odd), c(0,10^9), lty = 4, col = "red")
-mean(oddSims >= odd)  
-```
-
-So, on roughly 25% of imagined experiments where *we know that the "true probability" is .5*, the number of students with odd birthdays exceeded what we observed above. That is a hard sentence.  Read it again.  Make sure you understand it.  
-
-This shows that while we observed more odd than even birthdays in our data collection, the number that we observed is not so strange, simply due to chance.
-
-
-If your "alternative hypothesis" is not that $p>.5$, but rather that $p \ne .5$, then it is also reasonable to do a two-tailed test. In that case, then we would want to use Monte Carlo to estimate $$P(X \not \in (15,20)) = P(X \le 15) + P(X \ge 20),$$ where the value of 15 comes from finding that 20 is 2.5 greater than 35/2.  
-
-```{r}
-mean(oddSims >= 20)  + mean(oddSims <= 15)  
-```
-
 
 
 
