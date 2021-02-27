@@ -139,7 +139,7 @@ Either way, read the excerpt from Jordan Ellenberg's New York Times Best Selling
 3) Compute $P(S \in SurprisingSet)$ with Monte Carlo to get a p-value (recall chapter 2).  
 
 
-[homework2](homework/).  Note that you can [change the web address](homework/02-TestAndEstimate.Rmd) to get the .Rmd code.  
+[homework for testing](chapter_03_testing/homework-03-statistical_testing.html).  Note that you can [change the web address](chapter_03_testing/homework-03-statistical_testing.Rmd) to get the .Rmd code.  
 
 
 #  Estimation

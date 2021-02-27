@@ -1,0 +1,14 @@
+# extras from logic of testing
+
+
+
+
+## Example  
+
+[Let's do an experiment](examples/ball_experiment.html).
+
+
+## Comparing Bouncing Balls to odd birthdays
+
+The Odd Birthday example and the Bouncing Ball Experiment are very different in the way that they think of the world.  In the experiment, you were "randomly" assigned to a treatment group.  As such, *correlation implies causation*.  This is not something that is "in the data".  This is something that is "in the world" and "in our model".
+
