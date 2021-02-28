@@ -265,7 +265,7 @@ summary {
 
 <h1 class="title toc-ignore">STAT340: Discussion 6: More Hypothesis Testing</h1>
 <h4 class="author">Names</h4>
-<h4 class="date">28 February, 2021</h4>
+<h4 class="date">Date</h4>
 
 </div>
 
@@ -282,7 +282,7 @@ summary {
 <div id="exercises" class="section level2">
 <h2>Exercises</h2>
 <p>Since we haven’t covered covered estimation yet, today we will explore more exercises relating to hypothesis testing. As usual, break off into <strong>groups of 3-4 students</strong>. In your group, nominate one person to share their screen.</p>
-<p>This week, there are <strong>two shorter exercises</strong>, both of which you must complete.</p>
+<p>This week, there are <strong>two shorter-ish exercises</strong>, both of which you must complete.</p>
 <hr />
 <p><br /></p>
 <div id="gender-gap-in-chess" class="section level3">
@@ -290,7 +290,7 @@ summary {
 <p>Due to myriad complex biological factors (e.g. <a href="https://doi.org/10.1002/ajpa.1330530314">higher average height</a>, <a href="https://doi.org/10.1152/jappl.2000.89.1.81">higher skeletal muscle mass</a>, <a href="https://dx.doi.org/10.1016%2Fj.tem.2007.08.003">larger lung sizes</a>, etc.. just to name a few), there continues to be a <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3761733"><em>significant gender gap</em></a> in performance in most sports at the top competitive level.</p>
 <p>The same gender gap also exists in <a href="https://theconversation.com/whats-behind-the-gender-imbalance-in-top-level-chess-150637">games like chess</a> where it is less clear why this difference exists. Does the discrepancy mean that men are actually better at chess than women?</p>
 <p>Dr. Wei Ji Ma refuted this idea in a <a href="https://en.chessbase.com/post/what-gender-gap-in-chess"><strong>recent article</strong></a>, arguing that <em><strong>participation level largely accounts for the observed differences</strong></em> in ratings of top chess players. Since women are so underrepresented in chess (between <span class="math inline">\(5\%\)</span> and <span class="math inline">\(15\%\)</span> depending on inclusion criteria (location, rating, age, etc.)), there is just simply a much lower chance of having female players who are as good as the top male players (similar to how in a longer sequence of coin flips, there are just more chances of having longer runs than in a shorter sequence).</p>
-<p>Using official <a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO rating</a> data for Indian players obtained from <a href="https://en.wikipedia.org/wiki/FIDE">FIDE</a> (the international governing body for chess), he performed a <strong>permutation test</strong> that showed participation level <em><strong>can indeed largely account for the observed gender gap</strong></em>. For this exercise, you will reproduce his results for American players.</p>
+<p>Using official <a href="https://en.wikipedia.org/wiki/Elo_rating_system">ELO rating</a> data for Indian players obtained from <a href="https://en.wikipedia.org/wiki/FIDE">FIDE</a> (the international governing body for chess), he performed a <strong>permutation test</strong> that showed participation level <em><strong>can indeed largely account for the observed gender gap</strong></em>. For this exercise, you will reproduce his results using American players.</p>
 <ol style="list-style-type: lower-alpha">
 <li><em><strong>Download</strong></em> a (slightly preprocessed) <a href="chess.csv.gz">data frame of the current FIDE standard (tournament) format ELO ratings</a>. Import it normally using <code>read_csv</code> (<code>.csv.gz</code> just means it’s a <a href="https://www.rdocumentation.org/packages/R.utils/versions/1.9.6/topics/gzip">csv that was compressed</a> to save space; <em>you can ignore this</em> since most functions in <em>R will automagically decompress and read them</em>, so no extra work needed), and check it was correctly read by inspecting the first few rows with <code>head()</code>.</li>
 </ol>
@@ -299,21 +299,129 @@ summary {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ratings.standard = read_csv(...)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># head(...)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
-<li><em><strong>Make a table</strong></em> showing the number of players, mean rating, and highest rating for each sex. (<strong>Hint:</strong> this can be easily done in one <code>dplyr</code> step; use <code>group_by</code> followed by a <code>summarise</code> with 3 summary parameters, one)</li>
+<li><p>Ma points out junior players (<strong>born on or after 2000</strong>) may have unreliable ratings. <em><strong>Remove these players</strong></em> from the data frame. Also <em><strong>remove non-US</strong></em> players, since right now we are interested in analyzing American players.</p>
+<p>Then, <em><strong>make a density plot</strong></em> of players’ ratings, showing the <strong>male and female players as separate curves</strong> in the same plot window. Do they look very different?</p></li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment the lines below and complete them</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ratings.standard %&gt;% </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(...) %&gt;% </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   summarise(num  = ... ,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#             mean = ... ,</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#             max  = ... ,)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment lines below and complete them</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note &amp; can be used to filter 2 criteria (bday and country)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ratings.standard.us = ratings.standard %&gt;% </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(... &amp; ...)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(ratings.standard.us, aes(x=... , color=...)) + geom_density()</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># don&#39;t forget to add appropriate title/axes!!</span></span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><p><em><strong>Make a table</strong></em> showing the number of players, mean rating, and highest rating for each sex. (<strong>Hint:</strong> this can be easily done in one <code>dplyr</code> step; use <code>group_by</code> followed by a <code>summarise</code> with 3 values).</p>
+<p>What percent of these non-junior American players are women? How many points lower is the rating of the top female American player than the top male?</p></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment the lines below and complete them</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ratings.standard.us %&gt;% </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(...) %&gt;% </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   summarise(num  = ... ,  # for help, see dplyr.tidyverse.org/reference/n.html</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#             mean = ... ,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#             max  = ... ,)</span></span></code></pre></div>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Let the <strong>null hypothesis</strong> be that there is no actual gender gap in performance, i.e. that <em><strong>sex does not influence ratings</strong></em>. Assuming this is true, then we should be able to <strong>permute</strong> the sex column without affecting any observables.</p>
+<p><em><strong>Write a function</strong></em> <code>permutedMaxSexDiff(df,n)</code> that, given a data frame <code>df</code> and a number of iterations <code>n</code>, will for each iteration permute the players’ sexes, recompute the difference in rating between the top male and top female players, and save the result to be returned.</p>
+<p>For efficiency (important in for loops), we implement this as <strong>shuffling the ratings</strong>, then computing <span class="math display">\[- \max(\text{first $n_F$ elements of permuted ratings}) + \max(\text{rest of ratings vector})\]</span> where <span class="math inline">\(n_F\)</span> is the number of female players in the original data frame. Note <strong>this strategy is equivalent</strong> to permuting the player sexes and then computing the difference in each group (in both cases, we’re just randomly choosing <span class="math inline">\(n_F\)</span> values as a group and comparing the maxes of both groups).</p></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment function below and complete</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># permutedMaxSexDiff = function(df,n){</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   # preallocate vector of results</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   diffs = rep(NA,n)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   # find number of players to draw in each iteration</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   n.F = sum(df$Sex == &quot;F&quot;)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   # start loop</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   for(i in 1:n){</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     # permute ratings</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     permuted = sample(df$Rating)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     # find max of first n.F elements of vector</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     max.F = ...?</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#     # find max of rest of vector</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#     max.M = ...?</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     # find difference in max ratings and save in results vector</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#     diffs[i] = ...?</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#   }</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   # return results vector</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   return(diffs)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span></code></pre></div>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><p>Now, <em><strong>run the function</strong></em> with at least <span class="math inline">\(N=1000\)</span> iterations (can you do <span class="math inline">\(10,000\)</span>?) and visualize the results by <em><strong>plotting a histogram</strong></em>. Again, add a vertical line to denote the gender gap in the actual population of non-junior American chess players (top male rating - top female rating).</p>
+<p>Compute a <span class="math inline">\(p\)</span>-value for your test (<strong>hint:</strong> if you do enough iterations, this should be roughly between 0.6 and 0.7). Is this result what you expect to observe under the null hypothesis?</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment the following lines and complete them</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # run the function</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># diffs = permutedMaxSexDiff(ratings.standard.us, ...?)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # use enframe to turn vector into data frame for plotting</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># diffs %&gt;% enframe(name=NULL,value=&quot;diff&quot;) %&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   ggplot(aes(...?)) + geom_histogram()</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # compute p-value using mean(), this works since</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # TRUE is numerically treated as 1 and FALSE as 0, and</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # mean is just sum of elements divided by length</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># pval = mean(diffs &gt; ...?)</span></span></code></pre></div>
+<blockquote>
+<p><em><strong>REPLACE THIS TEXT WITH YOUR RESPONSE</strong></em></p>
+</blockquote>
 <hr />
+<p><br /></p>
+</div>
+<div id="linear-regression-coefficient-testing" class="section level3">
+<h3>2. Linear regression coefficient testing</h3>
+<p>To demonstrate the incredible versatility of Monte Carlo methods, we have a second example using the topic of linear regression. (In the future you will see more examples than just permutation tests, but they are extremely well suited to hypothesis testing so we will continue using them for now).</p>
+<p>This exercise is written to be simpler than the last one, and should take you less time.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Inspect the built-in example data frame <code>mtcars</code> that’s loaded with every R session. <strong>Briefly read the help page</strong> by running <code>?mtcars</code> if you are unfamiliar with the dataset.</p>
+<p>There are many variables but today we will just focus on <strong><code>mpg</code> (the response variable) and <code>drat</code> (a predictor variable)</strong>. Make sure you know what these two variables refer to in real life (see help page!). Create a new data frame called <code>mtcars.small</code> with just these two columns and print this new data frame.</p></li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">### do 2.a here</span></span></code></pre></div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Below, I’ve performed a simple linear regression, showing the coefficients. <strong>Take note of the coefficient estimate for the slope <span class="math inline">\(\beta_1\)</span></strong>, which represents the strength of the linear relationship between the two variables (<strong>note</strong> this is NOT the same as <em>significance</em>; <a href="https://en.wikipedia.org/wiki/Statistical_significance#Effect_size">see this</a>).</p>
+<p>One way you can estimate the <em>significance</em> of <span class="math inline">\(\beta_1\)</span> (that is usually taught) is to use the linear regression model formulation to derive a <a href="https://www.real-statistics.com/regression/hypothesis-testing-significance-regression-line-slope/"><span class="math inline">\(t\)</span>-statistic test</a> for the coefficients and then compare the estimates to the null hypothesis that <span class="math inline">\(\beta_1=0\)</span>, i.e. there is NO linear relationship between the variables. This method has the advantage of possibly higher power at the cost of being more susceptible to heteroscedasticity (among other things).</p>
+<p>You can see from the output below the slope has an estimate of <span class="math inline">\(7.678\)</span> and a standard error of <span class="math inline">\(1.507\)</span>. The <span class="math inline">\(t\)</span>-statistic is then calculated as <span class="math inline">\((7.678-0)/1.507=5.096\)</span> which has <span class="math inline">\(n-2=30\)</span> degrees of freedom where <span class="math inline">\(n\)</span> is the number of observations. We can then compute the <span class="math inline">\(p\)</span>-value using <code>2*(1-pt(5.096,30))</code> and confirm <strong>it matches the table</strong>. (Don’t worry if you don’t fully understand this; however, note the process is almost identical to how you would perform an ordinary <span class="math inline">\(t\)</span>-test!)</p></li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO THIS: uncomment code below and take note of slope estimate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fist we run lm with mpg regressed on drat,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data=mtcars.small means use columns from this data frame,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># then run coef() function to extract coefficients from model</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(lm(mpg ~ drat, data=mtcars.small))$coefficients</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2*(1-pt(5.096042,30))</span></span></code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><p>Another way you can estimate the significance of <span class="math inline">\(\beta_1\)</span> under the null hypothesis of <span class="math inline">\(\beta_1=0\)</span> is by (you guessed it!) permuting the coordinates! If indeed <span class="math inline">\(\beta_1=0\)</span>, then permuting the <span class="math inline">\(x\)</span> coordinates (so they get assigned randomly to the <span class="math inline">\(y\)</span> coordinates) should have no effect (since <span class="math inline">\(\beta_1=0\)</span> implies the relationship is actually a flat line).</p>
+<p>Write a function that performs <span class="math inline">\(n\)</span> iterations of the following:</p>
+<ol style="list-style-type: lower-roman">
+<li>Randomly permute the <span class="math inline">\(x\)</span> coordinates (<code>drat</code> values).</li>
+<li>Run linear regression using <code>lm</code>.</li>
+<li>Save the estimate for the slope of each iteration to be returned.</li>
+</ol>
+<p>Run your function with at least <span class="math inline">\(N=1000\)</span> (can you get it to <span class="math inline">\(10,000\)</span> or even higher?). What is the <span class="math inline">\(p\)</span>-value you get from this method?</p>
+<ul>
+<li><strong>Note:</strong> If the method in part b. is accurate and the <span class="math inline">\(p\)</span>-value is on the order of <span class="math inline">\(10^{-5}\)</span>, you may need <span class="math inline">\(10^5=100,000\)</span> iterations to see a single case where the permuted slope is equal to or greater than in absolute value to the actual slope, so if you run a lower <span class="math inline">\(N\)</span> and don’t see a single case, that’s ok, it just means the <span class="math inline">\(p\)</span>-value is so small that your simulation size cannot detect it.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">### do 2.c here</span></span></code></pre></div>
+<hr />
+<p><br /></p>
 </div>
 </div>
 <div id="submission" class="section level2">
 <h2>Submission</h2>
-<p>As usual, make sure the <strong>names of everyone</strong> who worked on this with you is included in the header of this document. Then, <strong>knit this document</strong> and submit <strong>both this file and the HTML output</strong> on Canvas under Assignments ⇒ Discussion 4</p>
+<p>As usual, make sure the <strong>names of everyone</strong> who worked on this with you is included in the header of this document. Then, <strong>knit this document</strong> and submit <strong>both this file and the HTML output</strong> on Canvas under Assignments ⇒ Discussion 6</p>
 </div>
 
 
