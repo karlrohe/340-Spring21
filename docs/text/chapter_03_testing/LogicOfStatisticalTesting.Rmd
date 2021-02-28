@@ -267,17 +267,17 @@ In 2018,  39,404 people in the US died in car accidents.  In 2019, it was 38,800
 
 Follow the logic of statistical testing above.
 
-1) What is a statistical model for $D_{2018}, D_{2019}$, the number of people that die in the US in car accidents in 2018 and 2019, such that they have the same distribution? These are counts of things.  So, I would propose Poisson.  To embed the notion of "no statistical difference between 2018 and 2019", they should have the same rate parameter $\lambda$.  We will set $\lambda$ to be the average of the two observed values (this is our best guess)... $38,702 = (38,000+39,404)/2$.  Then,
-\[H_0:\mbox{$D_{2018}, D_{2019}$ are independent and identically distributed Poisson($\lambda = 38,702$)}\]
+1) What is a statistical model for $D_{2018}, D_{2019}$, the number of people that die in the US in car accidents in 2018 and 2019, such that they have the same distribution? These are counts of things.  So, I would propose Poisson.  To embed the notion of "no statistical difference between 2018 and 2019", they should have the same rate parameter $\lambda$.  We will set $\lambda$ to be the average of the two observed values (this is our best guess)... $39,102 = (38,800+39,404)/2$.  Then,
+\[H_0:\mbox{$D_{2018}, D_{2019}$ are independent and identically distributed Poisson($\lambda = 39,102$)}\]
 2) As a test statistic, I propose that we use "the percent difference"
-\[S = \frac{D_{2018} - D_{2019}}{D_{2018} + D_{2019}}.\]
+\[S = \frac{D_{2018} - D_{2019}}{D_{2018}}.\]
 Notice that under the null hypothesis, $S$ is going to take values around zero.
 I think we should use a "two-sided test", meaning that we will reject if the absolute value of $S$ (i.e. $|S|$) is big.\footenote{Why two-sided? Well, if the number was going up, people would also have a strong reaction.  So, whether $S$ is large and positive or large and negative, we would take either as providing evidence against the null hypothesis.}  So, we will want to evaluate
 \[P(|S| > |s|)\]
-3) We have our data, $d_{2018} = 39,404$ and $d_{2019} = 38,000$.  So, 
-\[s = \frac{d_{2019} - d_{2018}}{d_{2019} + d_{2018}}\approx -1.8\%\]
+3) We have our data, $d_{2018} = 39,404$ and $d_{2019} = 38,800$.  So, 
+\[s = \frac{d_{2019} - d_{2018}}{d_{2018}}\approx -1.5\%\]
 ```{r}
-s = (38000-39404)/(38000+39404)
+s = (38800-39404)/(39404)
 s
 ```
 4) 
@@ -286,9 +286,9 @@ s
 library(dplyr)
 # First, write a function to simulate S
 simulate_S = function(){
-  D2018 = rpois(1,38702)
-  D2019 = rpois(1,38702)
-  S = (D2019-D2018)/(D2019+D2018)
+  D2018 = rpois(1,39102)
+  D2019 = rpois(1,39102)
+  S = (D2019-D2018)/(D2018)
   return(S)
 }
 
@@ -315,7 +315,7 @@ for(i in 1:r){
 monte_carlo = as_tibble(monte_carlo)
 monte_carlo %>% summarise(mean(S_in_A))
 ```
-Huh???  The p-value is zero???  What is going on?
+
 
 ```{r}
 monte_carlo %>% ggplot(aes(x = S)) + geom_histogram()
@@ -323,13 +323,11 @@ monte_carlo %>% ggplot(aes(x = S)) + geom_histogram()
 
 ## Example: Odd Birthdays 
 
+In the logic above, it looks very clear... steps 1, 2, 3, 4.  This is an ideal.  Often times, it is more iterative, back-and-forth.  For example, it might look like this...
+
 January 1 is an odd date, because 1 is odd.  What percentage of students are born on odd dates?  Given that half of the counting numbers are odd, let's test the null hypothesis
 \[H_0: \mbox{half of students have odd birthdays}\]
-by collecting some data!
-
-Note: This is a bit tricky because it doesn't create a statistical model. We will need to clarify it...  
-
-In class, let's try to estimate this with our own birthdays.  Count the number of people with odd and even dates in class.  What proportion have odd birthdays?
+by collecting some data. For example, the data that I imagine observing could look like this:
 
 ```{r}
 # enter the data:
@@ -339,16 +337,17 @@ proportionOdd = odd/(odd+even)
 proportionOdd
 ```
 
+The proportion have odd birthdays will be our test statistic $S$.
 
-We have data.  We want to know something about the world that generated that data. This is inference ("going up").  To do *statistical inference* we need a statistical model and we are going to do what Jordan calls *reductio ad unlikely* (be sure to read the excerpt from Jordan's book).  
+In class, we will collect some real data. It might look like we are ready to do that now.  However, the fundamental thing from steps 1 and 2 is that we are able to simulate $S$ under the null hypothesis.  
 
-This hypothesis kinda gives us a (null) statistical model.  In our model (i.e. in our imagination), we can generate lots of simulated/imagined data sets that have the same sample size as our observed data.  Then, we are going to Monte Carlo (yes, it is now a verb) with $S$ = `proportionOdd` and $A =$ ? to compute $P(S ?)$.
+How would we do that? The null hypothesis does not really create a statistical model for data we observe. We will need to clarify it...  
 
-Now, we need code to simulate $S$.  This will express the null/imagined model **exactly**.
+Perhaps we think the code below can clarify our statistical model (step 2 before step 1?).  Well, it certainly expresses the null/imagined model **exactly**.
 ```{r}
 library(purrr)
 simulate_S = function(){
-  which_birthdays_are_odd = rbernoulli(n = 35, p = .5)  
+  which_birthdays_are_odd = rbernoulli(n = 35, p = .5)   # why 35?  why .5?
   oddBirthdays = sum(which_birthdays_are_odd)
   proportionOdd = oddBirthdays/35
   S = proportionOdd
@@ -363,6 +362,16 @@ simulate_S = function(){
 This simulation model actually makes another modeling assumption that we haven't discussed! It is one of the most important assumptions in all of statistics *and it is always hidden*. It's an assumption that we always need to talk about in the context of statistical testing and p-values. In the long tradition of hiding the discussion of this assumption, you will need to find it in this chapter.  
 
 
+In our model (i.e. in our imagination), we can generate lots of simulated/imagined data sets that have the same sample size as our observed data.  Then, we are going to Monte Carlo (yes, it is now a verb) with $S$ = `proportionOdd` and $A =$ ? to compute $P(S ?)$.
+
+
+
+In the end, we will have data.  We want to know something about the world that generated that data. This is inference ("going up").  To do *statistical inference* we need a statistical model and we are going to do what Jordan calls *reductio ad unlikely* (be sure to read the excerpt from Jordan's book).  In this example, the steps of the logic are all jumbled up.  Sometimes, when you are still finding your way, this is what it looks like. 
+
+
+
+
+
 
 
 **Statistical Independence**
@@ -374,21 +383,6 @@ This implicitly models the birthdays as "independent".  This means that if you k
 
 
 
-## Example  
-
-[Let's do an experiment](examples/ball_experiment.html).
-
-
-## Comparing Bouncing Balls to odd birthdays
-
-The Odd Birthday example and the Bouncing Ball Experiment are very different in the way that they think of the world.  In the experiment, you were "randomly" assigned to a treatment group.  As such, *correlation implies causation*.  This is not something that is "in the data".  This is something that is "in the world" and "in our model".
-
-
 ## Power: the probability that you reject the null hypothesis
 
-If you think the percentage of odd dates is greater than 50%, roughly what would that number be?  How many samples would you need to see this difference?  Note that "seeing a difference" is random!  Even if there is a difference, sometimes you won't see it due to random chance. The probability that we detect the difference is called the [power](https://en.wikipedia.org/wiki/Power_(statistics)) of the test. These ideas are important when you are designing an experiment; you want to make sure that your experiment succeeds!   How many samples would we need, in order to make the power in the Odd Birthdays experiment at least 80%?  Do some simulations!
-
-```{r}
-
-```
-
+If you think the percentage of odd birthdays is greater than 50%, roughly what would that number be?  How many samples would you need to see this difference?  Note that "seeing a difference" is random!  Even if there is a difference, sometimes you won't see it due to random chance. The probability that we detect the difference is called the [power](https://en.wikipedia.org/wiki/Power_(statistics)) of the test. These ideas are important when you are designing an experiment; you want to make sure that your experiment succeeds!   How many samples would we need, in order to make the power in the Odd Birthdays experiment at least 80%?  Do some simulations!

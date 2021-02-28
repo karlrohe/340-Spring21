@@ -19,7 +19,7 @@ b) Write 2-4 sentences of reaction (question, comments, disagreed, something piq
 
 ###  2) Are odd birthdays independent?
 
-a) What does it mean that odd birthdays (as discussed in the text) are independent?   
+a) What does it mean that odd birthdays (as discussed in the text) are independent? Usually, the assumption of independence is about "the real world".  It isn't "in the data".  It is a "short story" that you need to say about how things could go wrong.    
 b) The text says that it is **wrong** to assume odd birthdays are independent. Why is that?   
 c) The text says that it is still **reasonable** to assume odd birthdays are independent. Why is that?
 

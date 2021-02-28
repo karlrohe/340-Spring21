@@ -24,14 +24,16 @@ office: 1239 MSC
 Continue Hypothesis testing in [World, Data, Models](text/worldDataModels.html).
 
 
-After [the logic of statistical testing via Monte Carlo Simulation](chapter_03_testing/LogicOfStatisticalTesting.html), you should know how to test a hypothesis with Monte Carlo.  This involves three steps.  
+After [the logic of statistical testing via Monte Carlo Simulation](text/chapter_03_testing/LogicOfStatisticalTesting.html), you should know how to test a hypothesis with Monte Carlo.  This involves three steps.  
 
 1) Convert null hypothesis into a statistical model from which we can simulate (recall chapter 1).  
 2) Develop a test statistic $S$ and "surprising set" for $S$ based upon  our understanding of the setting.   
 3) Compute $P(S \in SurprisingSet)$ with Monte Carlo to get a p-value (recall chapter 2).  
 
 
+[Homework for testing Due Friday March 5](text/chapter_03_testing/homework-03-statistical_testing.Rmd) .Rmd
 
+[Homework for testing Due Friday March 5](text/chapter_03_testing/homework-03-statistical_testing.html) .html
 
 
 ### Week 4   
