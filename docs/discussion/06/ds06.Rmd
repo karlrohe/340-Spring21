@@ -154,7 +154,7 @@ d. Let the **null hypothesis** be that there is no actual gender gap in performa
 
 e. Now, _**run the function**_ with at least $N=1000$ iterations (can you do $10,000$?) and visualize the results by _**plotting a histogram**_. Again, add a vertical line to denote the gender gap in the actual population of non-junior American chess players (top male rating - top female rating).
   
-   Compute a $p$-value for your test (**hint:** if you do enough iterations, this should be roughly between 0.6 and 0.7). Is this result what you expect to observe under the null hypothesis?
+   Compute a $p$-value for your test (**hint:** if you do enough iterations, this should be roughly between 0.6 and 0.7). Is this result what you expect to observe under the null hypothesis? Are your results consistent with Ma's results?
 
 ```{r}
 # DO THIS: uncomment the following lines and complete them
