@@ -504,7 +504,7 @@ lines(qs[2]*c(1,1), c(0,10^9), col = &quot;red&quot;, lwd = 3)</code></pre>
 <h3>What about “parameter estimation” to “fit the model” in step 1?</h3>
 <p>In some cases, it is easy to imagine how we should estimate the parameter in the model (e.g. take an average). In other cases, this is more complicated. For example, within a couple weeks, we will discuss logistic regression where we want to predict <span class="math inline">\(Y \in \{0,1\}\)</span> which could represent “whether a person defaults on a loan?” or “do they die?” or anything else that has 2 possible outcomes. To predict it, we are given <span class="math inline">\(p\)</span> features/predictors/covariates about the person <span class="math inline">\(x_1, \dots, x_p\)</span>. Here, this <span class="math inline">\(p\)</span> is different from above! This one stands for “predictors” instead of “probability”… this is standard notation and a super big bummer that it conflicts!</p>
 <p>The logistic regression model is</p>
-<p><span class="math display">\[P(Y = 1) = \frac{exp(\sum_i x_i \beta_i)}{1+exp(\sum_i x_i \beta_i)},\]</span></p>
+<p><span class="math display">\[P(Y = 1| x_1, \dots, x_p) = \frac{\exp(\sum_i x_i \beta_i)}{1+\exp(\sum_i x_i \beta_i)},\]</span></p>
 <p>where <span class="math inline">\(\beta_1, \dots, \beta_p \in R\)</span> are the parameters of the model. Given a bunch of people’s data, we want to estimate the <span class="math inline">\(\beta\)</span>’s and give confidence intervals. How do we estimate these parameters? It’s complicated! But there is code in R that makes it easy. Once we can do that, then we can follow the logic above!</p>
 </div>
 </div>

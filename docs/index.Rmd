@@ -23,7 +23,7 @@ office: 1239 MSC
 
 Finish Hypothesis testing in [World, Data, Models](text/chapter_03_testing/LogicOfStatisticalTesting.html).
 
-Start estimation in [World, Data, Models](text/chapter_04_estimation/03-Estimation.html).
+Start estimation in [World, Data, Models](text/chapter_04_estimation/LogicOfStatisticalEstimation.html).
 
 
 

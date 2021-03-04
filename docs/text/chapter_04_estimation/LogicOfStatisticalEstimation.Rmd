@@ -211,7 +211,7 @@ In some cases, it is easy to imagine how we should estimate the parameter in the
 
 The logistic regression model is
 
-\[P(Y = 1) = \frac{exp(\sum_i x_i \beta_i)}{1+exp(\sum_i x_i \beta_i)},\]
+\[P(Y = 1| x_1, \dots, x_p) = \frac{\exp(\sum_i x_i \beta_i)}{1+\exp(\sum_i x_i \beta_i)},\]
 
 where $\beta_1, \dots, \beta_p \in R$ are the parameters of the model.  Given a bunch of people's data, we want to estimate the $\beta$'s and give confidence intervals.  How do we estimate these parameters?  It's complicated!  But there is code in R that makes it easy.  Once we can do that, then we can follow the logic above!
 
