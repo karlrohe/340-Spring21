@@ -1,6 +1,6 @@
 
 ---
-title: "Homework 3 for Stat 340; Estimation"
+title: "Homework 4 for Stat 340; Estimation"
 author: "Karl Rohe"
 output: html_document
 ---
