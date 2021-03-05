@@ -26,6 +26,13 @@ Finish Hypothesis testing in [World, Data, Models](text/chapter_03_testing/Logic
 Start estimation in [World, Data, Models](text/chapter_04_estimation/LogicOfStatisticalEstimation.html).
 
 
+#### Homework
+
+[Homework for statistical estimation](text/chapter_04_estimation/homework-03-Estimation.Rmd).Rmd
+
+[Homework for statistical estimation](text/chapter_04_estimation/homework-03-Estimation.html).html
+
+Due in canvas March 12. 
 
 
 ### Week 5   

@@ -1,0 +1,70 @@
+
+---
+title: "Homework 3 for Stat 340; Estimation"
+author: "Karl Rohe"
+output: html_document
+---
+  
+  
+### 1)  Planting seeds
+
+Suppose you plant 10,000 seeds and 7,334 germinate.  Estimate the probability of seed germination and provide a 95\% confidence interval. 
+
+### 2) Light bulbs
+Suppose you install 10 light bulbs.  This is how many days it takes them to burn out:
+
+```{r}
+burn_out = c(103,6,517,254,966,381,286,535,239,67)
+```
+
+If we model the days to burn out as Geometric(p), then a good estimate for $p$ is...
+
+```{r}
+1/mean(burn_out)
+```
+  
+Compute a 95% confidence interval for the expected time to burn out. i.e. a 95% confidence interval for this quantity:
+
+```{r}
+mean(burn_out)
+```
+  
+  
+
+###  3) Green Bay Packers
+  
+The Green Bay Packers won 13 of their 16 regular season games this year (2019). Propose a statistical model with random variables for their wins and loses.  We will estimate their win probabilty as $13/16 \approx .81$  Notice that, so far, we have only discussed 95\% confidence intervals.  What needs to change to make it a 90\% interval? Generate a 90% confidence interval for the true probability.  
+
+
+
+### 4) Counting the fish in Mendota
+
+In order to count the number of [Northern Pike](https://en.wikipedia.org/wiki/Northern_pike) in Lake Mendota,  we perform the following experiment.  We enlist  500 fishers with 500 boats.  On the first weekend in June, all 500 go fishing for pike.  For every pike they catch, they tag it [like this](fishTag.png) and then release it back into the lake.  As soon as anyone catches a pike, the call the central office.  Once the central office records 501 pike, everyone is told to go home.  This happens again on the last weekend in July.  All 500 go fishing for pike again, with the same protocol, except they stop after 502 pike. In the July weekend, of the 502 pike caught, 8 had a tag from the June weekend.
+
+We are going to use this data to estimate the total number of pike in Mendota using the capture-recapture technique for population size estimation.
+
+**4a) Distribution of tags**
+
+What are two or three distributions that we could use for the number of July fish with June tags? There are at least two pretty good answers that we've talked about in class. And one "more correct" answer that we haven't yet talked about. 
+
+**4b) Do any of these models include N, the total number of pike?**
+
+We want to estimate $N$, the total number of pike in Mendota.  Find a distribution for 2a that includes $N$.
+
+**4c)  Now, think more like your grandparents...**
+
+- Estimate the following probability... Given that you catch a pike in July, what is the probability of it having a June tag? 
+- Suppose you actually knew the total number of pike is $N$.  What is the actual probability of catching a pike with a June tag?
+
+**4d) Estimate $N$**
+
+Set the two quantities in the second problem above equal to one another and solve for $N$.  What is your estimate for $N$, the total number of pike?
+
+**4e) Make a confidence interval**
+
+Create a 95% confidence interval for your grandparent-estimate from 2c.   What assumptions will you need to make to simulate this process?
+
+  
+  
+
+
