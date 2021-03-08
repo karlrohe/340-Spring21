@@ -300,7 +300,7 @@ summary {
 <div id="data-import" class="section level3">
 <h3>Data import</h3>
 <p>This dataset contains every earthquake (on Earth, not just in the US) of magnitude 4.5 or greater that was detected by USGS from beginning of 2017 to end of 2020. A detailed description of the columns can be <a href="https://earthquake.usgs.gov/data/comcat/data-eventterms.php"><strong>found here</strong></a>, but the <strong>main variables</strong> we are interested in <strong>are <code>time</code> and <code>mag.binned</code></strong> (magnitude rounded to nearest half integer).</p>
-<p>For convenience, much of the data cleaning and preprocessing has already been done for you; <a href="quakes.us.csv.gz"><strong>download the prepared data here</strong></a> and <strong>save into the same directory as this source file</strong>. Then, uncomment and run the lines of code below to import the data.</p>
+<p>For convenience, much of the data cleaning and preprocessing has already been done for you; <a href="quakes.csv.gz"><strong>download the prepared data here</strong></a> and <strong>save into the same directory as this source file</strong>. Then, uncomment and run the lines of code below to import the data.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># parseTime = function(times){</span></span>

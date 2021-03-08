@@ -77,7 +77,7 @@ In seismology (the study of earthquakes), the relationship between the frequency
 
 This dataset contains every earthquake (on Earth, not just in the US) of magnitude 4.5 or greater that was detected by USGS from beginning of 2017 to end of 2020. A detailed description of the columns can be [**found here**](https://earthquake.usgs.gov/data/comcat/data-eventterms.php), but the **main variables** we are interested in **are `time` and `mag.binned`** (magnitude rounded to nearest half integer).
 
-For convenience, much of the data cleaning and preprocessing has already been done for you; [**download the prepared data here**](quakes.us.csv.gz) and **save into the same directory as this source file**. Then, uncomment and run the lines of code below to import the data.
+For convenience, much of the data cleaning and preprocessing has already been done for you; [**download the prepared data here**](quakes.csv.gz) and **save into the same directory as this source file**. Then, uncomment and run the lines of code below to import the data.
 
 ```{r}
 # library(tidyverse)
