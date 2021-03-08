@@ -1,6 +1,6 @@
 
 ---
-title:  "STAT340: Discussion 7: Estimating Earthquake Frequency"
+title:  "STAT340: Discussion 7: Earthquake Estimation"
 author: "Names"
 date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
 documentclass: article
