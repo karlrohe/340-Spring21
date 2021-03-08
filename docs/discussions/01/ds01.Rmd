@@ -1,0 +1,98 @@
+
+---
+title:  "STAT340: Discussion 1: Intro/setup"
+author: "Name"
+date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
+documentclass: article
+classoption: letterpaper
+output:
+  html_document:
+    highlight: tango
+    fig_caption: false
+---
+
+```{r setup, include=FALSE}
+# if sourced, set working directory to file location
+# added tryCatch in case knitting runs into error
+tryCatch({
+  if(Sys.getenv('RSTUDIO')=='1'){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+  }}, error = function(e){}
+)
+
+# install necessary packages
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(knitr,tidyverse)
+
+knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" #")
+```
+
+---
+
+[Link to source file](ds01.Rmd)
+
+## Warmup
+
+Break off into pairs and introduce each other. Questions:
+
+1. Year?
+1. Major?
+1. One type of data interested in studying?
+   - (examples: simple numeric, text, time series, geospatial, network, survival, audio/video, other data specific to a subject area, etc...)
+1. Some other fun/cool fact about you?
+
+## Setup R/Rstudio
+
+Note: Chromebooks do not support R/Rstudio and thus are not sufficient for this class. Please talk to instructors/TAs if you are unable to find a suitable computer to use for this course.
+
+- [Install R](https://cloud.r-project.org/)
+   - If you already have R, please check it's the most recent version (4.0.3)
+
+```{r}
+# show R version string
+sessionInfo()$R.version$version.string
+```
+
+- [Install Rstudio](https://rstudio.com/products/rstudio/download/#download)
+
+## Setup course folder
+
+It's important to keep your course files organized. We recommend you organize your files in a folder structure like this:
+
+ - STAT340
+   - lecture
+   - discussion
+     - 01
+     - 02
+     - ...
+   - homework
+     - 01
+     - 02
+     - ...
+   - project
+     - data
+     - analysis
+     - plots
+     - ...
+   - ...
+
+Take a minute now to make the above. You can place `STAT340` anywhere you like (e.g. Documents, Desktop, Dropbox, etc). Also move this file (`ds01.Rmd`) into `STAT340/discussion/01` . After knitting, the next line should show your `STAT340` directory structure correctly.
+
+```{r, comment=""}
+fs::dir_tree("../../../STAT340")
+```
+
+## Rstudio intro/refresher
+
+ - Panels (source, console, environment/history, plots/help/viewer)
+ - File operations (new, open, save, source, knit, etc.)
+ - Working directory
+ - Common shortcuts (run line, comment, insert chunk, etc.)
+
+## Final check
+
+Make sure your R and Rstudio are both installed, up to date, and ready to rock. If you're having issues, ask now!
+
+## Optional: backup/version control
+
+It is **strongly recommended** you use some kind of backup or version control system (GitHub/Lab, Dropbox, Onedrive, etc.) so you don't lose your course files if something unexpected happens. If you need help with this, please ask your instructors/TA.
