@@ -269,4 +269,3 @@ According to your model, you would expect to see an earthquake with magnitude be
 ## Submission
 
 As usual, make sure the **names of everyone** who worked on this with you is included in the header of this document. Then, **knit this document** and submit **both this file and the HTML output** on Canvas under Assignments ⇒ Discussion 7.
-
