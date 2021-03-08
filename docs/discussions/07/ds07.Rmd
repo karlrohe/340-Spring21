@@ -66,7 +66,7 @@ As usual, break off into **groups of 3-4 students**. In your group, nominate one
 
 ### Background
 
-In seismology (the study of earthquakes), the relationship between the frequency and magnitude of earthquakes (in a certain place and period of time) can be modeled by the [Gutenberg-Richter law](https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law) (GR law). Let $M$ be the [Richter magnitude](https://en.wikipedia.org/wiki/Richter_magnitude_scale) of a seismic event, and $N$ be the number of events with magnitude _**greater than or equal to $M$**_. Then, the GR law states that $$N=10^{a-bM}$$ or in other words $$\log_{10}(N)=a-bM$$ where $a$ and $b$ are unknown constants. Note that this relationship should appear as a line on a plot of $\log_{10}(N)$ vs $M$.
+In seismology (the study of earthquakes), the relationship between the frequency and magnitude of earthquakes (in a certain place and period of time) can be modeled by the [Gutenberg-Richter law](https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law) (GR law). Let $M$ be the [Richter magnitude](https://en.wikipedia.org/wiki/Richter_magnitude_scale) of a seismic event, and $N$ be the number of events with magnitude _**greater than or equal to $M$**_. Then, the GR law states that $$N=10^{a-bM}$$ or in other words $$\log_{10}(N)=a-bM$$ where $a$ and $b$ are unknown constants that depend on the particular choice of place/period. Note that this relationship should appear as a line on a plot of $\log_{10}(N)$ vs $M$.
 
 <br/>
 
@@ -75,7 +75,7 @@ In seismology (the study of earthquakes), the relationship between the frequency
 
 ### Data import
 
-This dataset contains every earthquake (on the planet, not just in the US) of magnitude 4.5 or greater that was detected by USGS from beginning of 2017 to end of 2020. A description of each of the columns can be [found here](https://earthquake.usgs.gov/data/comcat/data-eventterms.php).
+This dataset contains every earthquake (on Earth, not just in the US) of magnitude 4.5 or greater that was detected by USGS from beginning of 2017 to end of 2020. A detailed description of the columns can be [**found here**](https://earthquake.usgs.gov/data/comcat/data-eventterms.php), but the **main variables** we are interested in **are `time` and `mag.binned`** (magnitude rounded to nearest half integer).
 
 For convenience, much of the data cleaning and preprocessing has already been done for you; [**download the prepared data here**](quakes.us.csv.gz) and **save into the same directory as this source file**. Then, uncomment and run the lines of code below to import the data.
 
@@ -91,12 +91,13 @@ For convenience, much of the data cleaning and preprocessing has already been do
 
 
 # EXPLANATION:
-# parseTime is a function used to convert datetime strings to datetime format
+# parseTime here is a function to help convert the datetime strings in this file to datetime format
 # mutate_at is used to apply parseTime to both the "time" and "updated" columns
-# the main columns we need are time and mag.binned (magnitude rounded to nearest half integer)
+# also, recall that .gz means it's been compressed using the gz program, which saves a lot of space,
+#   but R can still directly read it as if it's an ordinary csv file (underrated feature)
 ```
 
-For our purposes, this data needs to be summarized to obtain $N$ for each year, i.e. the number of earthquakes with magnitude at least as strong as a given value of $M$. Since this is a bit tricky, it's also been done for you below.
+For our purposes, this data needs to be summarized to obtain $N$ vs $M$ values for each year, where $N$ is the number of earthquakes with magnitude at least as strong as a given value of $M$ (see wiki page on [GR law](https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law) for more details). Since this is a bit tricky, it's also been done for you below.
 
 ```{r}
 # quakes.count = quakes %>%
@@ -129,11 +130,11 @@ Before moving onto the next step, inspect the data frame to **make sure you comp
 
 ### Visualization
 
-As usual, the **first step is to visualize the data**. Make a **scatter plot** of $\log_{10}(N)$ vs $M$ (note this means $M$ is on the horizontal axis (you say $y$ vs $x$, NOT $x$ vs $y$)). Then, **add a line plot on top**, making sure the **years are correctly grouped** together and distinguished from each other (use something like `color` or `shape` or even `linetype`, or a combination of them, use your judgment to determine what looks best).
+As usual, the **first step is to visualize the data**. Make a **scatter plot** of $\log_{10}(N)$ vs $M$ (note this means $M$ is on the horizontal axis (you say $y$ vs $x$, NOT $x$ vs $y$)). Then, **add a line plot on top**, making sure the **years are correctly grouped** together and distinguished from each other (use something like `color` or `shape` or even `linetype`, or a combination of them, (use your judgment to determine what looks best)).
 
-_Note: you can either use either use `log10(N)` as the `x` aesthetic, OR directly use `x=N` and just rescale the axis to be logarithmic. I recommend this second method since it makes the axis easier to read ([see here for an example](https://stackoverflow.com/a/9223257))._
+_Note: you can either use `log10(N)` as the `x` aesthetic, OR directly use `x=N` and just rescale the axis to be logarithmic using `scale_y_log10()`. I recommend this second method since it makes the axis easier to read ([see here for an example](https://stackoverflow.com/a/9223257))._
 
-Ideally, it might look something like this:
+Ideally, it might look something like this (don't forget to add nice title/labels!)
 
 <center><img src="https://raw.githubusercontent.com/karlrohe/340-Spring21/master/docs/discussions/07/plot.png" style="width:240px;"></center>
 
@@ -148,7 +149,7 @@ Ideally, it might look something like this:
 
 ### Estimation
 
-Next, we will fit a simple linear regression to the data to estimate $a$ and $b$. Complete the line of code below to fit the model (don't forget the linear relationship is NOT between $N$ and $M$ but rather between $\log_{10}(N)$ and $M$).
+Next, we will fit a simple linear regression to the data to estimate $a$ and $b$. Complete the line of code below to fit the model (don't forget the linear relationship is NOT between $N$ and $M$ but rather between $\log_{10}(N)$ and $M$, so adjust your model formula accordingly!).
 
 ```{r}
 # lm.quakes = lm(...)
@@ -160,7 +161,7 @@ View a summary of the model to see coefficients' estimates, $p$-values, and othe
 # summary(lm.quakes)
 ```
 
-From your fit, what are your estimates for the constants $a$ and $b$? Pay **careful attention** to the signs here! (hint: remember the GR law uses the convention $a-bM$ whereas R assumes you are fitting `intercept + slope * M`, so therefore `slope` = $-b$).
+From your fit, what are your estimates for the constants $a$ and $b$? Pay **careful attention** to the signs here! (hint: remember the GR law uses the convention $a-bM$ whereas R assumes you are fitting `intercept + slope * M`, so therefore your fitted `slope` = $-b$).
 
 Try to avoid copy-pasting or manually typing in values. The `coef()` function lets you extract coefficients from a model object (e.g. `lm.quakes`). You can then use `[i]` to access the i-th value of this coefficients vector. You may also want to use `unname()` at the end to remove the name from the value (if you don't, it may carry through later calculations and no longer be a correct name for the output value).
 
@@ -169,7 +170,7 @@ Try to avoid copy-pasting or manually typing in values. The `coef()` function le
 # b = ...?
 ```
 
-(Hint: if you did this correctly, `a+b` should be about `10.49`)
+(Hint: if you did this correctly, `a+b` should evaluate to approximately `10.49`)
 
 <br/>
 
@@ -178,15 +179,15 @@ Try to avoid copy-pasting or manually typing in values. The `coef()` function le
 
 ### Checking fit
 
-It's always nice to visually check your fit to make sure everything looks right. Plot your line of best fit alone with the data points below.
+It's always **nice to visually check your fit** to make sure everything looks right. Plot your **line of best fit along with the data points** in the chunk below.
 
-This time, I recommend using `log10(N)` as the `x` aesthetic, then using [`geom_abline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) to plot your line of regression using your estimated slope and intercept values (this avoids dealing with distorted axis cause by the other method). Note you can use your variables `a` and `b` here that were defined previously to avoid manually typing in numerical estimates (which is almost always bad!).
+_Hint: this time, I recommend using `log10(N)` as the `x` aesthetic, then using [`geom_abline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) to plot your line of regression using your estimated slope and intercept values (this avoids dealing with distorted axis cause by the other method's `scale_y_log10()` which can be non-intuitive to deal with). Note you can use your variables `a` and `b` here that were defined previously to avoid manually typing in numerical estimates (which is almost always bad!)._
 
 ```{r}
 # ggplot(quakes.count,aes(...)) + ...
 ```
 
-You can also check the residuals of your fit. This is fairly convenient to do in base R. Note there is **slight heteroscedasticity** due to the fact that higher magnitude earthquakes occur much less often than lower magnitude earthquakes so it's harder to estimate them as precisely. **This is expected** and not a huge threat to the validity of our model.
+You can also check [the residuals of your fit](https://rpubs.com/iabrady/residual-analysis). This is fairly convenient to do in base R. Note there is **slight heteroscedasticity** due to the fact that higher magnitude earthquakes occur much less often than lower magnitude earthquakes so it's harder to estimate them as precisely. **This is expected** and not a huge threat to the validity of our model.
 
 ```{r}
 # par(mfrow=c(1,2))
@@ -218,7 +219,7 @@ Give a brief interpretation of these intervals.
 
 ### Predictions
 
-From the [GR law](https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law#Background), we can deduce that the total number of earthquakes of **any magnitude** must be $N_\text{Total}=10^a$. Using your estimate for $a$, _**approximately**_ how many earthquakes are there in total every year on Earth? (Remember to think about how precisely you can estimate this and **round your answer appropriately!** Not all the digits you get from R are significant, so you only need some of them!).
+From the [GR law](https://en.wikipedia.org/wiki/Gutenberg%E2%80%93Richter_law#Background), we can deduce that the **total number of earthquakes of any magnitude** is equal to $$N_\text{Total}=10^a$$ Using your estimate for $a$, _**approximately**_ how many earthquakes are there in total every year on Earth? (Remember to think about how precisely you can estimate this and **round your answer appropriately!** Not all the digits you get from R are significant, so you only need some of them!).
 
 Use the box below to compute your answer, then respond with a short sentence below.
 
@@ -250,7 +251,7 @@ According to your model, how many earthquakes of magnitude 7 or greater do you e
 
 
 
-According to your model, you would expect to see an earthquake with magnitude between 9 and 9.5 on average every how many years?
+According to your model, you would expect to see an earthquake with magnitude between 9 and 9.5 on average _once every how many years_?
 
 ```{r}
 # perform calculations here
