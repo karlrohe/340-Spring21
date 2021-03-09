@@ -18,6 +18,11 @@ office: 1239 MSC
 </div>
 
 
+### Week 7   
+
+Estimation in [World, Data, Models](text/chapter_04_estimation/LogicOfStatisticalEstimation.html).
+
+Learning objective: Be able to construct confidence intervals, given (1) a way to fit a model and (2) a way to simulate from the model.
 
 ### Week 6   
 

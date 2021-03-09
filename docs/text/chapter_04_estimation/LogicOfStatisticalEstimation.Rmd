@@ -217,6 +217,72 @@ where $\beta_1, \dots, \beta_p \in R$ are the parameters of the model.  Given a 
 
 
 
+##  What makes this logic logical?
+
+There are three key conditions that we need to ensure that the above logic works.  Two of these conditions are easy to check. The other is not as easy.
+
+Suppose that $S$ is the observed statistic and $S^*$ is one "simulated version" of $S$ from the fitted model.  Let $q_.025$ and $q_.975$ be the 2.5% and 97.5% quantiles from the distribution of $S^*$. 
+
+**Key condition 1:**  The quantiles of $S^*$ are symmetric around $\mathbb{E}(S^*)$.  That is, there exists a number $a$ such that
+\[(q_.025, q_.975) = (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a).\]
+
+Notice that all of these quantities are observed in the logic of statistical estimation.  So, this condition can be easily examined by checking if $S - q_.025$ is close to $q_.975 -S$.
+
+**Key condition 2:**  The "width of the distribution" of $S^*$ is pretty close to the "width of the distribution" of $S$.  That is, for  values of $a$ like the one in Key condition 1,
+\[P(S^* \in (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a)) \approx
+P(S \in (\mathbb{E}(S)-a, \mathbb{E}(S)+a))
+\]
+This is likely to be true because we imagine $S$ as being generated *in the world* from the same statistical model that we use to generate $S^*$ on our computer **subject to slightly different values of parameters in their models**; that is, we estimate the parameters that generate $S$.  The big time magic is that those parameters can be a little bit off, but this key condition is still reasonable.
+
+
+This condition is harder to check.  How could you do it? It is way more complicated than anything we will do.  ![](eyes.png "You would do a 'second layer' of resampling. For each simulation that gives you an S*, you would fit a model and resample a bunch of 'S**'.  Then, you would compare P(S*...) to P(S** ...).")
+
+**Key condition 3:**  $\mathbb{E}(S^*) = S$
+
+This condition is easy to check: take an average over $r$ replicates of $S*$.  Is that average close to $S$?
+
+
+### Why it works...
+
+Note that a 95% confidence interval $(L,U)$ for $\mathbb{E}(S)$ should satisfy
+\[P(\mathbb{E}(S) \in (L,U)) = .95,\]
+Why is this event random? (scroll over eyes for answer) ![](eyes.png "The *interval* (L,U) is a random interval because L and U are random variables that we compute from data.")
+
+From the definition of $q_.025$ and $q_.975$, we know that
+\[P(S^* \in (q_.025, q_.975)) = .95.\]
+What is random here?   ![](eyes.png "S*")
+
+We are going to set $L=q_.025$ and $U = q_.975$ and we want to show that the first probability is still (approximately) .95.  That would mean that $(L,U) = (q_.025, q_.975)$ is a 95% confidence interval. 
+
+Ok.  This should be confusing. In the first probability,  $L$ is random.  Then, we are saying that $q_.025$ is fixed, but that $L = q_.025$ (and similarly for $U$ and $q_.975$).  Yes.  That should be confusing.  If you are not confused, try harder! :)
+
+The reason both are true is that the first and second probabilities are entirely different notions of probability.  The first one is "random stuff in the world that generates your data".  The second one is "random stuff that you do with Monte Carlo".  And in that second one, we typically no longer consider our data to be random.  Weird.  Let's return to this confusion in  a bit.
+
+*Here we go*
+
+
+By key condition 1, we have a number $a$ such that
+
+\[P(S^* \in (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a)) = P(S^* \in (q_.025, q_.975)).\]
+We know that this is equal to .95 from the definitions of $q_.025$ and $q_.975$. 
+
+Using that same value of $a$ and the key condition 2...
+\[P(S^* \in (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a)) \approx 
+P(S \in (\mathbb{E}(S)-a, \mathbb{E}(S)+a)) = 
+P(\mathbb{E}(S) \in (S-a, S+a)) .\]
+
+Finally, using key condition 3,
+\[(S-a, S+a) = (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a) = (q_.025, q_.975).\]
+
+Thus, putting the pieces together,
+\[.95 = P(S^* \in (\mathbb{E}(S^*)-a, \mathbb{E}(S^*)+a)) \approx P(\mathbb{E}(S) \in (S-a, S+a)) = P(\mathbb{E}(S) \in (q_.025, q_.975)). \]
+
+
+
+
+
+
+
 
 
 ## Version 2 of the logic for statistical estimation (advanced)
