@@ -132,7 +132,7 @@ Before moving onto the next step, inspect the data frame to **make sure you comp
 
 As usual, the **first step is to visualize the data**. Make a **scatter plot** of $\log_{10}(N)$ vs $M$ (note this means $M$ is on the horizontal axis (you say $y$ vs $x$, NOT $x$ vs $y$)). Then, **add a line plot on top**, making sure the **years are correctly grouped** together and distinguished from each other (use something like `color` or `shape` or even `linetype`, or a combination of them, (use your judgment to determine what looks best)).
 
-_Note: you can either use `log10(N)` as the `x` aesthetic, OR directly use `x=N` and just rescale the axis to be logarithmic using `scale_y_log10()`. I recommend this second method since it makes the axis easier to read ([see here for an example](https://stackoverflow.com/a/9223257))._
+_Note: you can either use `log10(N)` as the `y` aesthetic, OR directly use `y=N` and just rescale the axis to be logarithmic using `scale_y_log10()`. I recommend this second method since it makes the axis easier to read ([see here for an example](https://stackoverflow.com/a/9223257))._
 
 Ideally, it might look something like this (don't forget to add nice title/labels!)
 
@@ -181,7 +181,7 @@ Try to avoid copy-pasting or manually typing in values. The `coef()` function le
 
 It's always **nice to visually check your fit** to make sure everything looks right. Plot your **line of best fit along with the data points** in the chunk below.
 
-_Hint: this time, I recommend using `log10(N)` as the `x` aesthetic, then using [`geom_abline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) to plot your line of regression using your estimated slope and intercept values (this avoids dealing with distorted axis cause by the other method's `scale_y_log10()` which can be non-intuitive to deal with). Note you can use your variables `a` and `b` here that were defined previously to avoid manually typing in numerical estimates (which is almost always bad!)._
+_Hint: this time, I recommend using `log10(N)` as the `y` aesthetic, then using [`geom_abline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) to plot your line of regression using your estimated slope and intercept values (this avoids dealing with distorted axis cause by the other method's `scale_y_log10()` which can be non-intuitive to deal with). Note you can use your variables `a` and `b` here that were defined previously to avoid manually typing in numerical estimates (which is almost always bad!)._
 
 ```{r}
 # ggplot(quakes.count,aes(...)) + ...
