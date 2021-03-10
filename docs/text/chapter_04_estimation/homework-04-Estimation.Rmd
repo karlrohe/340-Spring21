@@ -62,7 +62,7 @@ Set the two quantities in the second problem above equal to one another and solv
 
 **4e) Make a confidence interval**
 
-Create a 95% confidence interval for your grandparent-estimate from 2c.   What assumptions will you need to make to simulate this process?
+Create a 95% confidence interval for your grandparent-estimate from 4d.   What assumptions will you need to make to simulate this process?
 
   
   
