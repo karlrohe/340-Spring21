@@ -24,6 +24,15 @@ Estimation in [World, Data, Models](text/chapter_04_estimation/LogicOfStatistica
 
 Learning objective: Be able to construct confidence intervals, given (1) a way to fit a model and (2) a way to simulate from the model.
 
+Introduce the [project description](projectDescription.html).
+
+[Project timeline](ProjectTimeline.html)
+
+Maybe start [linear regression](http://pages.stat.wisc.edu/~karlrohe/ht/03-linear_regression.pdf) in ISLR.
+
+Homework (due the week after exam), Chapter 3 in ISLR: Questions 1, 3, 4, and 15 (p120).   
+
+
 ### Week 6   
 
 Finish Hypothesis testing in [World, Data, Models](text/chapter_03_testing/LogicOfStatisticalTesting.html).
