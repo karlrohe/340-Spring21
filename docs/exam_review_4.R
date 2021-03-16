@@ -9,6 +9,9 @@
 #'   fig_caption: false
 #' ---
 #' 
+#' [Link to source](exam_review_4.R). Note this source file is knitted using the
+#' [spin feature](https://bookdown.org/yihui/rmarkdown-cookbook/spin.html) of `knitr`.
+#' 
 #' ## Background
 #' 
 #' After class, Karl invited me to tackle question 4 on the exam review. See recording
