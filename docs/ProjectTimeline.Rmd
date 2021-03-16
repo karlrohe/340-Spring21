@@ -1,40 +1,38 @@
-
+---
+title: "Project Timeline"
+output: html_document
+---
 
 ### Final project preparation and timeline.
 
-Do you have a data source in mind for the course project?  After spring break, we have 5 weeks of class left (10 classes).  The last three classes will be for class presentations.  This means that we have only seven class times left before you need to be ready to start presenting!  Please read the [Project Description](projectDescription.html).
-
-
-####  Due Thursday, March 26 (Week 9)
-
-Please find a data source by Thursday, week 9. Write a short description of what the data measures and why you think it is interesting.  Provide a link to the data and a few rows of the data. Turn it in on canvas by class time on Thursday, week 9. 
-
-There is a lot of COVID-19 data being generated everyday on cases, tests, and deaths, across various spatial resolutions. As such, it could make for multiple different projects. You are welcome to study COVID-19.  You are also welcome to study something else.  You should study something that you care about.  It makes the project better (and more fun for everyone, audience included).
-
-Below are three secondary sources for data about COVID-19.  The sources below are secondary sources because the organizations that own the web address did not originally collect the data.  Instead, they are compiling it from multiple different sources. Fiddle with the web address to find the homepage that gives a data description.  You are welcome to use these for the course project.  If you do this, one of the first questions you need to decide on.... what level of resolution you want to study?  Do you want to study US states?  Countries?  Chinese provinces?  Which time point(s) do you use to begin your analysis?  Then, the second question you need to answer...  what other data can you find on the regions you want to study?  These other data sources will help you contextualize the differences between the regions.  Is there any other data that you would like?  Can you find it?
-
-```{r eval= F}
-library(readr)
-dat1 = read_csv("https://covidtracking.com/api/states/daily.csv")
-dat2 = read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
-dat3 = read_csv("https://coronadatascraper.com/timeseries-tidy.csv")
-```
-
-
-#### Tuesday, March 31  (Week 10)
-Please write a short description of why you find your data source interesting.  Turn this in on canvas by class time on Tuesday, week 10. 
+Do you have a data source in mind for the course project?  We have 7ish weeks of class left (14ish classes) and next week is an exam.  So, this means that we have only six weeks left.  Please read the [Project Description](ProjectDescription.html).
 
 
 
-#### Tuesday, April 7  (Week 11)
-Turn in your proposed thesis statement on canvas by class time on Tuesday, April 11.  
+####  Due Thursday, March 25 (Week 9)
+Find a group. Turn in a list of teammates and a rough guess for project area / data source by class time on Thursday.
 
-#### Tuesday, April 14 (Week 12)
-Turn in "Figure 1" (draft) on canvas by Tuesday, April 14.  Be sure to include a short description of it, so that it is a stand alone document.  State in the document what you see in the figure.  That is, what is the key message of the figure.  Ideally, this would align with the key message of your thesis statement and project. 
 
-#### Thursday, April 23 (Week 13)
-Be prepared to present your work in a deck of slides. 
+#### Thursday, April 1  (Week 10)
 
-#### Turn in final written project by May 7 at 2:45pm.
+
+Please find a data source by Thursday, week 10. Write a short description of what the data measures and why you think it is interesting.  Provide a link to the data and a few rows of the data. Turn it in on canvas by class time on Thursday, week 10. 
+
+
+
+#### Thursday, April 8  (Week 11)
+Please write a short description of why you find your data source interesting.  Turn this in on canvas by class time on Thursday, week 11. 
+
+
+#### Thursday, April 15 (Week 12)
+Turn in your proposed thesis statement on canvas by class time on Thursday, April 15  You need a statement describing what your project does.  
+
+
+
+
+#### Thursday, April 22 (Week 13)
+Turn in "Figure 1" (draft) on canvas by Thursday, April 22.  Be sure to include a short description of it, so that it is a stand alone document.  State in the document what you see in the figure.  That is, what is the key message of the figure.  Ideally, this would align with the key message of your thesis statement and project. 
+
+#### Turn in final project by May 5 at 5pm.
 Please consult the [project description](projectDescription.Rmd) for more details.
 

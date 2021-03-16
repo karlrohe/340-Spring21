@@ -19,6 +19,30 @@ office: 1239 MSC
 
 
 
+
+### Week 8  
+
+
+- [Midterm review code](midterm-review.Rmd)  
+- [Link to chapter 1](text/chapter_01_random_variables/random_variables.html) 
+- [Link to chapter 2](text/chapter_02_monte_carlo/monte_carlo.html) 
+- [Link to chapter 3](text/chapter_03_testing/LogicOfStatisticalTesting.html)
+- [Link to chapter 4](text/chapter_04_estimation/LogicOfStatisticalEstimation.html)   
+
+
+
+### Week 7   
+
+Estimation in [World, Data, Models](text/chapter_04_estimation/LogicOfStatisticalEstimation.html).
+
+Learning objective: Be able to construct confidence intervals, given (1) a way to fit a model and (2) a way to simulate from the model.
+
+Introduce the [project description](projectDescription.html).
+
+[Project timeline](ProjectTimeline.html)
+
+
+
 ### Week 6   
 
 Finish Hypothesis testing in [World, Data, Models](text/chapter_03_testing/LogicOfStatisticalTesting.html).
