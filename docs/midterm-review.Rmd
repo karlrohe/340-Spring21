@@ -1,0 +1,142 @@
+```{r}
+library(dplyr)
+library(purrr)
+```
+
+
+
+Question 1:
+```{r}
+n = 2000
+phat = 1887/n
+
+simulate_S = function(){
+  X = rbernoulli(n = n, phat)
+  S = mean(X)
+  return(S)
+}
+
+r = 10000
+monte_carlo = data.frame(replicate = 1:r, 
+                         S = rep(NA,r)) 
+for(i in 1:r){
+  monte_carlo$S[i] = simulate_S()
+}
+
+monte_carlo = as_tibble(monte_carlo)
+qs = monte_carlo$S %>% quantile(prob =c(.025, .975))
+qs
+```
+
+Question 2:
+```{r}
+#You run an experiment (one time):
+data = rbinom(1,size = 2000,1887/2000)
+
+# now, you want a confidence interval.  
+# We are going to make a function, that returns one given the data....
+
+simulate_S = function(data){
+  phat = data/2000
+  X = rbinom(n = 1, size = 2000, phat)
+  S = X/2000
+  return(S)
+}
+
+compute_confidence_interval =function(data){
+  r = 1000
+  monte_carlo = data.frame(replicate = 1:r, 
+                           S = rep(NA,r)) 
+  for(i in 1:r){
+    monte_carlo$S[i] = simulate_S(data)
+  }
+  
+  monte_carlo = as_tibble(monte_carlo)
+  qs = monte_carlo$S %>% quantile(prob =c(.025, .975))
+  return(qs)
+}
+interval = compute_confidence_interval(data)
+
+# does it cover 1887/2000
+
+true_p = 1887/2000
+
+does_it_cover = function(interval, true_p){
+  return(
+    between(true_p,left = interval[1], right = interval[2])
+  )
+}
+
+does_it_cover(interval,true_p)
+
+```
+
+
+
+Question 3 : What is the true coverage probability of Karl's Monte Carlo code?
+
+```{r}
+library(dplyr)
+# First, write a function to simulate X
+simulate_a_confidence_interval = function(){
+  
+  data = rbinom(1,size = 2000,1887/2000)
+  
+  # now, you want a confidence interval.  
+  # We are going to make a function, that returns one given the data....
+  
+  simulate_S = function(data){
+    phat = data/2000
+    X = rbinom(n = 1, size = 2000, phat)
+    S = X/2000
+    return(S)
+  }
+  
+  compute_confidence_interval =function(data){
+    r = 1000
+    monte_carlo = data.frame(replicate = 1:r, 
+                             S = rep(NA,r)) 
+    for(i in 1:r){
+      monte_carlo$S[i] = simulate_S(data)
+    }
+    
+    monte_carlo = as_tibble(monte_carlo)
+    qs = monte_carlo$S %>% quantile(prob =c(.025, .975))
+    return(qs)
+  }
+  interval = compute_confidence_interval(data)
+  
+  
+  return(interval)
+}
+
+# Second, write a function to evaluate whether X \in A.
+does_it_cover = function(lower_interval,upper_interval, true_p){
+  return(
+    between(true_p,left = lower_interval, right = upper_interval)
+  )
+}
+# Now, we are going to do it lots of times.  
+# Let's arrange the simulations in a data.frame with three columns
+r = 10000
+monte_carlo = data.frame(replicate = 1:r, 
+                         X1 = rep(NA,r), 
+                         X2 = rep(NA,r), 
+                         X_in_A = rep(NA, r)) 
+for(i in 1:r){
+  simulated_interval = simulate_a_confidence_interval()
+  monte_carlo$X1[i] = simulated_interval[1]
+  monte_carlo$X2[i] = simulated_interval[2]
+  monte_carlo$X_in_A[i] = does_it_cover(
+    lower_interval = monte_carlo$X1[i],
+    upper_interval = monte_carlo$X2[i] ,
+    true_p = 1887/2000)
+  
+  ## you could also write this as:   
+  #  monte_carlo[i,2] = simulate_X()
+  #  monte_carlo[i,3] = check_if_X_in_A(monte_carlo[i,2])
+}
+
+monte_carlo = as_tibble(monte_carlo)
+monte_carlo %>% summarise(mean(X_in_A))
+```
