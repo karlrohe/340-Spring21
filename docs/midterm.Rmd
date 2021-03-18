@@ -10,7 +10,7 @@ output: html_document
 **1a:** Compute the probability that a Poisson($\lambda = 1$) random variable is an even number.  You can generate a poisson random variable with `rpois(n = 1,lambda = 1)`.  You can check if `X` is even via 
 
 ```{r}
-is.even <- function(X){
+is.even <- function(X){ 
   remainder_from_dividing_by_two = X %% 2
   return(remainder_from_dividing_by_two == 0)
 }

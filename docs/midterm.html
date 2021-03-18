@@ -371,7 +371,7 @@ summary {
 <div id="poisson." class="section level3">
 <h3>1) Poisson.</h3>
 <p><strong>1a:</strong> Compute the probability that a Poisson(<span class="math inline">\(\lambda = 1\)</span>) random variable is an even number. You can generate a poisson random variable with <code>rpois(n = 1,lambda = 1)</code>. You can check if <code>X</code> is even via</p>
-<pre class="r"><code>is.even &lt;- function(X){
+<pre class="r"><code>is.even &lt;- function(X){ 
   remainder_from_dividing_by_two = X %% 2
   return(remainder_from_dividing_by_two == 0)
 }
