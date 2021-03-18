@@ -30,6 +30,7 @@ Homework: Chapter 3 in ISLR.  Questions 1, 3, 4, and 15 (p120).
 
 
 - [Midterm review code](midterm-review.Rmd)  
+- [Midterm review Q4](exam_review_4.html)
 - [Link to chapter 1](text/chapter_01_random_variables/random_variables.html) 
 - [Link to chapter 2](text/chapter_02_monte_carlo/monte_carlo.html) 
 - [Link to chapter 3](text/chapter_03_testing/LogicOfStatisticalTesting.html)

@@ -12,6 +12,7 @@
 
 # R cache files
 **/*_cache/
+**/*_files/
 
 # auxiliary script files used in writing discussions
 # as well as solution files (marked with SOLUTION in name)
@@ -19,3 +20,4 @@
 **/*SOLUTION*
 **/*OUTLINE*
 **/raw.csv*
+**/exam_script*
