@@ -1,0 +1,61 @@
+---
+title: "Midterm for Stat 340"
+author: "Karl Rohe"
+output: html_document
+---
+  
+  
+### 1) Poisson.
+
+**1a:** Compute the probability that a Poisson($\lambda = 1$) random variable is an even number.  You can generate a poisson random variable with `rpois(n = 1,lambda = 1)`.  You can check if `X` is even via 
+
+```{r}
+is.even <- function(X){
+  remainder_from_dividing_by_two = X %% 2
+  return(remainder_from_dividing_by_two == 0)
+}
+is.even(3)
+is.even(112)
+```
+  
+**1b:**   Compute the probability that a Poisson($\lambda = 10$) random variable is even.
+
+**1c:**   Compute the probability that a Poisson($\lambda =10$) random variable is greater than 20.
+
+**1d:**   Let $X \sim$ Poisson($\lambda =10$).   Use Monte Carlo to compute $\mathbb{E}(X)$.
+
+### 2) Geometric
+
+In class, we defined Geometric($p$) to be the number of Bernoulli($p$) coin flips required to get the first TRUE. So, FALSE FALSE TRUE would be 3. Some other places (including R and `rgeom`!) define Geometric($p$) to be the number of FALSE's before a true.  So, FALSE FALSE TRUE would be 2.  These definitions are very similar; the second is always one less than the first.  However, this difference might get annoying if you aren't careful.  
+
+**2a:**  Let $X \sim$ Geometric($p=1/10$)  in the way that we defined it in class.  Given that `Z <- rgeom(n = 1,prob = 1/10)` is always one less than the way we define it, write a function to simulate X (our way) from Z (in code above).  
+
+
+
+**2b:**  Using the definitions in 2a, compute $\mathbb{E}(X)$ using Monte Carlo.  
+
+
+
+**2c:**  Using the definitions in 2a, compute $P(X>20)$. 
+
+**2d:** Both 2b and 1d ask to compute the expectation.  How do the answers compare? Both 2c and 1d ask to compute the probability of being greater than 20.  How do the answers compare? Make sense of this phenomenon by visualizing these two distributions (i.e. make their histograms); what's going on with the distributions?
+
+
+
+### 3) Memes, part 1  (Please forgive me.  I drank too much coffee before writing this question.)
+
+In class thus far, there have been 416 comments posted in the bbcollaborate chat during class.  An expert panel has judged 47 of these comments to be memes.  
+
+The big-bad-deans say that they are concerned "if there is evidence that more than 10% of comments are memes."  So, this looks like bad news, 47/416 > 10%.  
+
+Karl pleads with the deans:  "Please, oh please, you big-bad-deans...  Memeing is totally random." (I don't actually know what this notion of "random" means, but please just run with it for this question.)
+
+Then, along comes you, a trusty and dedicated 340 student. You say that "because we have only observed 416 comments, we don't really know what the 'true proportion' of memes."  
+
+**3a:**  What would be a good distribution for the number of memes?
+
+
+**3b:**  Using your distribution from 3a, test the null hypothesis that the 'true proportion' is actually 10\%. It's all up to you now . . .  report the p-value.
+
+
+**3c:**  After seeing your answer to 3b, the deans retort, "just because you failed to reject the null hypothesis does not mean that we accept your null hypothesis of 9%." But you respond, "you said you are concerned 'If there is evidence that more than 10% of comments are memes.'" We interpret our failure to reject as insufficient evidence that more than 10% of comments are memes. They begrudgingly go along with your point (and say that they are going to clarify their language in the future).  In the end, they ask you to provide a 95% confidence interval for the true proportion.  Provide a 95% confidence interval for the 'true proportion'.
