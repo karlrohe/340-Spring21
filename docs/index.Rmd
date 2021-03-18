@@ -17,6 +17,12 @@ office: 1239 MSC
 [ ![chart of weekly office hours. for visually impaired, see text version of this chart at the following link to the canvas announcement: https://canvas.wisc.edu/courses/244428/discussion_topics/922086 ](./340_hours.png) ](./340_hours.png)
 </div>
 
+### Week 9    
+
+1) Start [linear regression](http://pages.stat.wisc.edu/~karlrohe/ht/03-linear_regression.pdf) in ISLR.
+
+
+Homework: Chapter 3 in ISLR.  Questions 1, 3, 4, and 15 (p120).   
 
 
 
