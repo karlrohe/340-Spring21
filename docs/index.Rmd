@@ -10,7 +10,7 @@ output:
 
 email: first name and last name at stat dott wisc dott edu  
 office: 1239 MSC  
-[Syllabus](syllabus.pdf), [discussions](discussions), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html).
+[Syllabus](syllabus.pdf), [discussions](discussions), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html), [Project timeline](ProjectTimeline.html).
 
 **Office Hours:**
 <div style="max-width:314px;">
