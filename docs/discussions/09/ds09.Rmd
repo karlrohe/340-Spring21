@@ -1,6 +1,6 @@
 
 ---
-title:  "STAT340: Discussion 8: Multiple linear regression"
+title:  "STAT340: Discussion 9: Multiple linear regression"
 author: "Names"
 date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
 documentclass: article
@@ -35,7 +35,7 @@ a:link {
 }
 </style>
 
-[Link to source file](ds08.Rmd)
+[Link to source file](ds09.Rmd)
 
 
 
