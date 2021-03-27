@@ -17,4 +17,4 @@ h3 {
  - <h3>[week 5](05/ds05.html)</h3>
  - <h3>[week 6](06/ds06.html)</h3>
  - <h3>[week 7](07/ds07.html)</h3>
-
+ - <h3>[week 8](08/ds08.html)</h3>
