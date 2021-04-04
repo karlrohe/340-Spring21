@@ -78,9 +78,9 @@ For the exercise, I have _**modified mtcars**_ by reducing it to the first four 
 Run the code below to import the new modified data frame, then fit a complete model with **ALL interaction and quadratic** terms (it is not uncommon to add all interaction terms, but you usually wouldn't add all quadratic terms like this unless you had a good reason; we're just doing it here for the sake of the exercise).
 
 ```{r}
-mtcars2 = as_tibble(read.csv(
-  row.names = 1,
-  text = ",mpg,cyl,disp,hp
+mtcars2 = as_tibble(read.csv(     # first use base R read.csv, then convert to tibblex
+  row.names = 1,                  # row.names=1 means treat first column as row names
+  text = ",mpg,cyl,disp,hp        # text='....' means use this string of text as the data
   Mazda RX4,14.8,6,160,110
   Mazda RX4 Wag,14.8,6,160,110
   Datsun 710,14.5,4,108,93

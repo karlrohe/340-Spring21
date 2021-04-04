@@ -286,9 +286,9 @@ a:link {
 <h2>Exercise</h2>
 <p>For the exercise, I have <em><strong>modified mtcars</strong></em> by reducing it to the first four columns (<code>mpg</code> is still the dependent variable; your predictor variables are now <code>cyl</code> <code>disp</code> and <code>hp</code>), and adding in some combination of significant interactions and/or quadratic terms.</p>
 <p>Run the code below to import the new modified data frame, then fit a complete model with <strong>ALL interaction and quadratic</strong> terms (it is not uncommon to add all interaction terms, but you usually wouldn’t add all quadratic terms like this unless you had a good reason; we’re just doing it here for the sake of the exercise).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars2 <span class="ot">=</span> <span class="fu">as_tibble</span>(<span class="fu">read.csv</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="dv">1</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">&quot;,mpg,cyl,disp,hp</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars2 <span class="ot">=</span> <span class="fu">as_tibble</span>(<span class="fu">read.csv</span>(     <span class="co"># first use base R read.csv, then convert to tibblex</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="dv">1</span>,                  <span class="co"># row.names=1 means treat first column as row names</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">&quot;,mpg,cyl,disp,hp        # text=&#39;....&#39; means use this string of text as the data</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Mazda RX4,14.8,6,160,110</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  Mazda RX4 Wag,14.8,6,160,110</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">  Datsun 710,14.5,4,108,93</span></span>
