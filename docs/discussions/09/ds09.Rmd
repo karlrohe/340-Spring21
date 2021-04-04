@@ -143,5 +143,5 @@ According to the model, what mileage would I expect on average with a car that h
 
 ## Submission
 
-As usual, make sure the names of everyone who worked on this with you is included in the header of this document. Then, knit this document and submit both this file and the HTML output on Canvas under Assignments ⇒ Discussion 7.
+As usual, make sure the names of everyone who worked on this with you is included in the header of this document. Then, knit this document and submit both this file and the HTML output on Canvas under Assignments ⇒ Discussion 9.
 
