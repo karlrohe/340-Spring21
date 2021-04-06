@@ -10,12 +10,18 @@ output:
 
 email: first name and last name at stat dott wisc dott edu  
 office: 1239 MSC  
-[Syllabus](syllabus.pdf), [discussions](discussions), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html), [Project timeline](ProjectTimeline.html).
+[Syllabus](syllabus.pdf), [discussions](discussions), [text](text/worldDataModels.html),   [R labs](labs.R), and [Project description](projectDescription.html), [Project timeline](ProjectTimeline.html). 
 
 **Office Hours:**
 <div style="max-width:314px;">
 [ ![chart of weekly office hours. for visually impaired, see text version of this chart at the following link to the canvas announcement: https://canvas.wisc.edu/courses/244428/discussion_topics/922086 ](./340_hours.png) ](./340_hours.png)
 </div>
+
+
+### Week 11    
+
+1) [logistic regression](http://pages.stat.wisc.edu/~karlrohe/ht/04-classification.pdf).
+
 
 ### Week 10    
 
