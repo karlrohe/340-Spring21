@@ -1,0 +1,127 @@
+
+---
+title:  "STAT340: Discussion 11: Logistic Regression"
+author: "Names"
+date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
+documentclass: article
+classoption: letterpaper
+output:
+  html_document:
+    highlight: tango
+    fig_caption: false
+---
+
+```{r setup, include=FALSE}
+# if sourced, set working directory to file location
+# added tryCatch in case knitting runs into error
+tryCatch({
+  if(Sys.getenv('RSTUDIO')=='1'){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+  }}, error = function(e){}
+)
+
+# install necessary packages
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(knitr,tidyverse)
+
+knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" #")
+```
+
+---
+
+<style>
+a:link {
+  text-decoration: underline;
+}
+</style>
+
+[Link to source file](ds11.Rmd)
+
+
+
+## Just for fun (1 min)
+
+<center><a href="https://xkcd.com/221/"><img id="comic" src="https://imgs.xkcd.com/comics/random_number.png" style="width:350px;"></a></center>
+
+<br/>
+
+
+
+## Discuss together (5-10 min)
+
+As an entire section, discuss these together:
+
+1. Why do we need to use a special method to fit binary outcome data? In other words, why can we not directly use normal linear regression?
+
+2. Compare the model equations for logistic regression and simple/multiple linear regression ([example](https://www.saedsayad.com/logistic_regression.htm)). How are they similar/different?
+
+<br/>
+
+
+
+## Brief reading (optional, ~ 5 min)
+
+For Generalized Linear Models (GLMs), of which logistic regression is one example, there are [4 different types of residuals](https://rpubs.com/benhorvath/glm_diagnostics), so you need to be more careful when using them (though they are **generally considered not as interesting/useful as in ordinary linear regression**, so they are often ignored). Briefly read about them if you are curious.
+
+<br/>
+
+
+
+## Exercise
+
+Today's exercise is a simple logistic regression example. The dataset is some graduate schools admissions data. The observed variable is whether or not someone was admitted to a school, and the three predictor variables are GRE score, Grade Point Average (GPA), and rank of the student's current school (1 for highest rank, 4 for lowest).
+
+Run the line of code below to import the data.
+
+```{r}
+admit = read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")
+```
+
+<br/>
+
+### Fitting/interpretation
+
+Fit a logistic regression model with all two-way interactions (yes, interactions can be used in GLM models too), and show the `summary()` output. Which variables in your model are significant? Report their coefficient estimates and $p$-values. Also provide $95\%$ confidence intervals for all coefficients.
+
+```{r}
+# show work in this chunk
+```
+
+What are the R² and adjusted R² for this model?
+
+```{r}
+# show work in this chunk
+```
+
+
+### Prediction
+
+#### a)
+
+Your friend, who goes to a school with a lower rank of 3, has a 3.5 GPA and scored 700 on his GRE. Do you expect him to be admitted? This time, calculate this **both** _by hand_ and with _R_ to check your answer.
+
+(hint: in `predict()` adding the parameter `type = "response"` gives you the actual final predicted response (probability of being admitted) which is probably what you want. See the [`predict.glm()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/predict.glm.html) help page for more details.)
+
+ > _**SHOW MANUAL CALCULATION HERE**_
+
+```{r}
+# check with R here
+```
+
+#### b)
+
+If you attended the highest ranked school (rank=1) but had a GPA of 2.5, approximately what do you need to score on your GRE to have a >50\% chance of being admitted? (You can do this part in R)
+
+ > _**REPLACE WITH RESPONSE**_
+
+<br/>
+
+As was mentioned before, residuals for GLM are more complicated yet less rewarding, so we will skip running model diagnostics. Feel free to read more about this in your free time if you are interested.
+
+<br/>
+
+
+## Submission
+
+As usual, make sure the names of everyone who worked on this with you is included in the header of this document. Then, knit this document and submit both this file and the HTML output on Canvas under Assignments ⇒ Discussion 11.
+

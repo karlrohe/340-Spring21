@@ -20,3 +20,4 @@ h3 {
  - <h3>week 8 exam review (see canvas)</h3>
  - <h3>[week 9](09/ds09.html)</h3>
  - <h3>[week 10](10/ds10.html)</h3>
+ - <h3>[week 11](11/ds11.html)</h3>
