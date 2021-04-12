@@ -87,11 +87,6 @@ Fit a logistic regression model with all two-way interactions (yes, interactions
 # show work in this chunk
 ```
 
-What are the R² and adjusted R² for this model?
-
-```{r}
-# show work in this chunk
-```
 
 
 ### Prediction
