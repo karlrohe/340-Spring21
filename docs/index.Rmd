@@ -22,6 +22,8 @@ office: 1239 MSC
 
 1) [logistic regression](http://pages.stat.wisc.edu/~karlrohe/ht/04-classification.pdf).   
 2) Review missingness suggestions  
+1) [Random forest](http://pages.stat.wisc.edu/~karlrohe/ht/08-trees.pdf)  Slides 1-7, 29-40. 
+1)  [Clustering, PCA](http://pages.stat.wisc.edu/~karlrohe/ht/10-unsupervised.pdf) and factor rotations. 
 1) Thesis statements   
 2) Workshop projects  
 
