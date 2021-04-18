@@ -1,0 +1,134 @@
+
+---
+title:  "STAT340: Discussion 12: Random Forest"
+author: "Names"
+date:   "`r format(Sys.time(), '%d %B, %Y')`" # autogenerate date as date of last knit
+documentclass: article
+classoption: letterpaper
+output:
+  html_document:
+    highlight: tango
+    fig_caption: false
+---
+
+```{r setup, include=FALSE}
+# if sourced, set working directory to file location
+# added tryCatch in case knitting runs into error
+tryCatch({
+  if(Sys.getenv('RSTUDIO')=='1'){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+  }}, error = function(e){}
+)
+
+# install necessary packages
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(knitr,tidyverse,ISLR,tree,MASS,randomForest)
+
+knitr::opts_chunk$set(tidy=FALSE,strip.white=FALSE,fig.align="center",comment=" #")
+```
+
+---
+
+<style>
+a:link {
+  text-decoration: underline;
+}
+</style>
+
+[Link to source file](ds12.Rmd)
+
+
+
+## Just for fun (1 min)
+
+<center><a href="https://xkcd.com/2448/"><img id="comic" src="https://imgs.xkcd.com/comics/eradication.png" title="When you get to hell, tell smallpox we say hello." style="width:450px;"></a></center>
+
+<br/>
+
+
+
+## Discuss together (5-10 min)
+
+As an entire section, discuss this together:
+
+Compare and contrast tree based methods with traditional regression based methods. How do they differ in fitting, interpretation, and what are their strengths/weaknesses?
+
+<br/>
+
+
+
+## Exercise
+
+### Background
+
+This exercise is taken from section 8.3 of the [ISLR book](https://www.statlearning.com/s/ISLRSeventhPrinting.pdf) (feel free to consult this section as a guide). We will be using the dataset `Carseats` (containing data on sales of child car seats) from the `ISLR` package, as well as the `tree` package, so ensure both are installed and loaded.
+
+```{r}
+library(ISLR)
+library(tree)
+```
+
+Uncomment the line below and briefly read about the dataset to understand what the data is measuring and what each of the variables mean.
+
+```{r}
+# ?Carseats
+```
+
+<br/>
+
+
+### Fitting classification tree (8.3.1)
+
+First, binarize the observed variable `Sales` so that >8 is coded as "High" and <=8 is coded as "Low". Make sure this is saved as a column in the `Carseats` data frame.
+
+Now, fit a classification tree to the new dataset, and view the result with `summary()` like you do with ordinary regression. What is your training error?
+
+Plot the result of your tree, showing the category names for qualitative predictors (see p.325 of ISLR).
+
+Follow the demo on p.326 of ISLR and create a train-test split in your data (feel free to use your own seed) so you can objectively evaluate the predictive accuracy of your model. Use the training data to refit your tree model, and evalute its performance on the test data set. What percent accuracy do you get?
+
+<br/>
+
+
+### Fitting regression tree (8.3.2)
+
+Next, use the same dataset to fit a regression tree. You can feel free to use the same train/test split as before, or if you wish, create a new split. This time, directly fit the `Sales` variable using the training dataset (see p.328 of ISLR).
+
+Show the output of the fit with `summary()`. What is your residual mean deviance? Plot the tree to visualize the result.
+
+Follow the instructions in ISLR for cross-validating and pruning, and then run your tree on the test dataset to generate predicted sales numbers. Compare the predictions with the observed sales values; what is the MSE of your predictions?
+
+<br/>
+
+
+### Fitting a random forest (8.3.3)
+
+Finally, let's fit a random forest to the `Boston` dataset (of housing value data from Boston suburbs) from the `MASS` package, using the `randomForest` pacakge. Ensure both are installed and loaded.
+
+```{r}
+library(MASS)
+library(randomForest)
+```
+
+Uncomment the line below and briefly read about the dataset to understand what the data is measuring and what each of the variables mean.
+
+```{r}
+# ?Boston
+```
+
+Create a train/split dataset just like you've done previously (see p.327 for how ISLR recommends splitting the Boston dataset).
+
+Following the instructions on p.329 of ISLR, fit a random forest model with bagging on the data using `medv` as the observed variable (again, feel free to use your own seed). Then, use the test dataset to generate new predictions. What MSE do you obtain, and how does this compare to the previous method? Also plot your new predictions against the observed `medv` values.
+
+Optional: if you wish, follow the instructions provided to grow the random forest by increasing the `ntree` argument to try to obtain a lower MSE. What is your new MSE?
+
+Finally, use the `importance()` function to view how important each of the predictor variables is in the model. Which ones are the most important and which are the least? Plot these importance values using the `varImpPlot` function.
+
+<br/>
+
+
+
+## Submission
+
+As usual, make sure the names of everyone who worked on this with you is included in the header of this document. Then, knit this document and submit both this file and the HTML output on Canvas under Assignments ⇒ Discussion 12.
+
