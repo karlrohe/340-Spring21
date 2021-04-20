@@ -17,6 +17,20 @@ office: 1239 MSC
 [ ![chart of weekly office hours. for visually impaired, see text version of this chart at the following link to the canvas announcement: https://canvas.wisc.edu/courses/244428/discussion_topics/922086 ](./340_hours.png) ](./340_hours.png)
 </div>
 
+
+### Week 13
+
+
+1) [Random forest](http://pages.stat.wisc.edu/~karlrohe/ht/08-trees.pdf)  Slides 1-7, 29-40. 
+1)  [Clustering, PCA](http://pages.stat.wisc.edu/~karlrohe/ht/10-unsupervised.pdf). 
+1) Thesis statements     
+2) Workshop projects  
+
+
+### Homework
+
+ISLR Chapter 4, questions 4 and 6 (p168). Due 4/26.
+
 ### Week 12
 
 
