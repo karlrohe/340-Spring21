@@ -31,7 +31,7 @@ office: 1239 MSC
 
 ### Homework
 
-ISLR Chapter 4, questions 4 and 6 (p168). Due 4/26.
+ISLR Chapter 4, questions 4 and 6 (p168). Due 4/26. EDIT: ONLY QUESTION 6. DON'T DO QUESTION 4.
 
 ### Week 12
 
