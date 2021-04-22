@@ -25,6 +25,8 @@ office: 1239 MSC
 1)  [Clustering, PCA](http://pages.stat.wisc.edu/~karlrohe/ht/10-unsupervised.pdf). 
 1) Thesis statements     
 2) Workshop projects  
+3) [Multiple testing slides](multiple_testing_slides.pdf)
+3) [Multiple testing simulation](multiple_test_simulation.R)
 
 
 ### Homework
