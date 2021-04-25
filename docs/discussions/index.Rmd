@@ -22,3 +22,4 @@ h3 {
  - <h3>[week 10](10/ds10.html)</h3>
  - <h3>[week 11](11/ds11.html)</h3>
  - <h3>[week 12](12/ds12.html)</h3>
+ - <h3>[week 13](13/ds13.html)</h3>
