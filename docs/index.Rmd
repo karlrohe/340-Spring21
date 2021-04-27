@@ -18,6 +18,20 @@ office: 1239 MSC
 </div>
 
 
+
+
+### Week 13
+
+
+1)  [Clustering, PCA](http://pages.stat.wisc.edu/~karlrohe/ht/10-unsupervised.pdf). 
+3) [Multiple testing slides](multiple_testing_slides.pdf)
+3) [Multiple testing simulation](multiple_test_simulation.R)
+2) Workshop projects  
+
+
+
+
+
 ### Week 13
 
 
